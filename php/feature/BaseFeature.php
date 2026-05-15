@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// PlaystationStore SDK base feature
+
+class PlaystationStoreBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(PlaystationStoreContext $ctx, array $options): void {}
+    public function PostConstruct(PlaystationStoreContext $ctx): void {}
+    public function PostConstructEntity(PlaystationStoreContext $ctx): void {}
+    public function SetData(PlaystationStoreContext $ctx): void {}
+    public function GetData(PlaystationStoreContext $ctx): void {}
+    public function GetMatch(PlaystationStoreContext $ctx): void {}
+    public function SetMatch(PlaystationStoreContext $ctx): void {}
+    public function PrePoint(PlaystationStoreContext $ctx): void {}
+    public function PreSpec(PlaystationStoreContext $ctx): void {}
+    public function PreRequest(PlaystationStoreContext $ctx): void {}
+    public function PreResponse(PlaystationStoreContext $ctx): void {}
+    public function PreResult(PlaystationStoreContext $ctx): void {}
+    public function PreDone(PlaystationStoreContext $ctx): void {}
+    public function PreUnexpected(PlaystationStoreContext $ctx): void {}
+}

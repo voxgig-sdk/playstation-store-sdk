@@ -1,0 +1,54 @@
+# BasicStoreFlow
+
+main: kit: flow: BasicStoreFlow:
+{
+  entity: "store",
+  kind: "basic",
+  name: "BasicStoreFlow",
+  step: [
+    {
+      match: {
+        age: "age01",
+        country: "country01",
+        language: "language01",
+        search_string: "search_string01"
+      }
+
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "store_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "store_ref01",
+        srcdatavar: "store_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        age: "age01",
+        country: "country01",
+        id: "store01",
+        language: "language01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-store_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicStoreFlow"
+}

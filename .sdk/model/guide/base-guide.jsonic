@@ -1,0 +1,34 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 5
+  metrics: count: method: 5
+
+  entity: geo: {
+    path: "/kamaji/api/chihiro/00_09_000/geo": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image": {
+      rename: param: "country": *"container_id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: store: {
+    path: "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}": {
+      op: load: method: *GET
+    }
+    path: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}": {
+      op: load: method: *GET
+    }
+    path: "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}": {
+      rename: param: "searchString": *"search_string"
+      op: list: method: *GET
+    }
+  }
+
+}

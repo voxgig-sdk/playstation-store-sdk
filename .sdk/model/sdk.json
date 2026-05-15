@@ -1,0 +1,1246 @@
+{
+  "name": "playstation-store",
+  "origin": "voxgig-sdk",
+  "def": "playstation-store_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "description": "This is a sample Playstation Store server.  You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).\n\n For search all games you can use the CUSA key for regions: \n\n * `STORE-MSF75508-FULLGAMES` for Europe.\n\n * `STORE-MSF77008-ALLGAMES` for America.\n\n See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page",
+        "license": {
+          "name": "MIT"
+        },
+        "servers": [
+          {
+            "description": "Playstation Store server",
+            "url": "https://store.playstation.com/"
+          }
+        ],
+        "title": "Playstation Store API",
+        "version": "1.0.5"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "geo": {
+          "alias": {
+            "field": {}
+          },
+          "name": "geo",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "method": "GET",
+                  "orig": "/kamaji/api/chihiro/00_09_000/geo",
+                  "parts": [
+                    "kamaji",
+                    "api",
+                    "chihiro",
+                    "00_09_000",
+                    "geo"
+                  ],
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true,
+                  "args": {},
+                  "select": {}
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "image": {
+          "alias": {
+            "field": {}
+          },
+          "name": "image",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 999,
+                        "kind": "param",
+                        "name": "age",
+                        "orig": "age",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "container_id",
+                        "orig": "country",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "cusa",
+                        "orig": "cusa",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "bg_color",
+                        "orig": "bg_color",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "h",
+                        "orig": "h",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": 100,
+                        "kind": "query",
+                        "name": "opacity",
+                        "orig": "opacity",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "platform",
+                        "orig": "platform",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "w",
+                        "orig": "w",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
+                  "parts": [
+                    "store",
+                    "api",
+                    "chihiro",
+                    "00_09_000",
+                    "container",
+                    "{container_id}",
+                    "{language}",
+                    "{age}",
+                    "{cusa}",
+                    "image"
+                  ],
+                  "rename": {
+                    "param": {
+                      "country": "container_id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "age",
+                      "bg_color",
+                      "container_id",
+                      "cusa",
+                      "h",
+                      "language",
+                      "opacity",
+                      "platform",
+                      "w"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "container"
+              ]
+            ]
+          },
+          "active": true,
+          "fields": []
+        },
+        "store": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "bucket",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "bundle_child_type_id",
+              "req": false,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "cloud_only_platform",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "container_type",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "content_type",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "default_sku",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "game_content_type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "game_content_types_list",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "id",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "image",
+              "req": true,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "parent_name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "playable_platform",
+              "req": true,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "provider_name",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "release_date",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "restricted",
+              "req": true,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "revision",
+              "req": true,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "short_name",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": true,
+              "type": "`$NUMBER`",
+              "active": true
+            },
+            {
+              "name": "top_category",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "url",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "store",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 999,
+                        "kind": "param",
+                        "name": "age",
+                        "orig": "age",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "country",
+                        "orig": "country",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "search_string",
+                        "orig": "search_string",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "direction",
+                        "orig": "direction",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_content_type",
+                        "orig": "game_content_type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_demo",
+                        "orig": "game_demo",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_type",
+                        "orig": "game_type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "genre",
+                        "orig": "genre",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "platform",
+                        "orig": "platform",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "price",
+                        "orig": "price",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "relationship",
+                        "orig": "relationship",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release_date",
+                        "orig": "release_date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "size",
+                        "orig": "size",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "sort",
+                        "orig": "sort",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "start",
+                        "orig": "start",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "subtitle_lang",
+                        "orig": "subtitle_lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "top_category",
+                        "orig": "top_category",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "voice_lang",
+                        "orig": "voice_lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
+                  "parts": [
+                    "store",
+                    "api",
+                    "chihiro",
+                    "00_09_000",
+                    "tumbler",
+                    "{country}",
+                    "{language}",
+                    "{age}",
+                    "{search_string}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "searchString": "search_string"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "age",
+                      "country",
+                      "direction",
+                      "game_content_type",
+                      "game_demo",
+                      "game_type",
+                      "genre",
+                      "language",
+                      "platform",
+                      "price",
+                      "relationship",
+                      "release_date",
+                      "search_string",
+                      "size",
+                      "sort",
+                      "start",
+                      "subtitle_lang",
+                      "top_category",
+                      "voice_lang"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            },
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 999,
+                        "kind": "param",
+                        "name": "age",
+                        "orig": "age",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "country",
+                        "orig": "country",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "cusa",
+                        "orig": "cusa",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "direction",
+                        "orig": "direction",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_content_type",
+                        "orig": "game_content_type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_demo",
+                        "orig": "game_demo",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "game_type",
+                        "orig": "game_type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "genre",
+                        "orig": "genre",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "platform",
+                        "orig": "platform",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "price",
+                        "orig": "price",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "relationship",
+                        "orig": "relationship",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "release_date",
+                        "orig": "release_date",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "size",
+                        "orig": "size",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "sort",
+                        "orig": "sort",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "start",
+                        "orig": "start",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "subtitle_lang",
+                        "orig": "subtitle_lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "top_category",
+                        "orig": "top_category",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "voice_lang",
+                        "orig": "voice_lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
+                  "parts": [
+                    "store",
+                    "api",
+                    "chihiro",
+                    "00_09_000",
+                    "container",
+                    "{country}",
+                    "{language}",
+                    "{age}",
+                    "{cusa}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "age",
+                      "country",
+                      "cusa",
+                      "direction",
+                      "game_content_type",
+                      "game_demo",
+                      "game_type",
+                      "genre",
+                      "language",
+                      "platform",
+                      "price",
+                      "relationship",
+                      "release_date",
+                      "size",
+                      "sort",
+                      "start",
+                      "subtitle_lang",
+                      "top_category",
+                      "voice_lang"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                },
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": 999,
+                        "kind": "param",
+                        "name": "age",
+                        "orig": "age",
+                        "reqd": true,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "country",
+                        "orig": "country",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "cusa",
+                        "orig": "cusa",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "direction",
+                        "orig": "direction",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "size",
+                        "orig": "size",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "sort",
+                        "orig": "sort",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": 0,
+                        "kind": "query",
+                        "name": "start",
+                        "orig": "start",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
+                  "parts": [
+                    "chihiro-api",
+                    "viewfinder",
+                    "{country}",
+                    "{language}",
+                    "{age}",
+                    "{cusa}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "age",
+                      "country",
+                      "cusa",
+                      "direction",
+                      "language",
+                      "size",
+                      "sort",
+                      "start"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "viewfinder"
+              ],
+              [
+                "container"
+              ],
+              [
+                "tumbler"
+              ]
+            ]
+          },
+          "active": true
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicGeoFlow": {
+          "entity": "geo",
+          "kind": "basic",
+          "name": "BasicGeoFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "geo_ref01",
+                "srcdatavar": "geo_ref01_data",
+                "suffix": "_dt0"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-geo_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicGeoFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicImageFlow": {
+          "entity": "image",
+          "kind": "basic",
+          "name": "BasicImageFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "image_ref01",
+                "srcdatavar": "image_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "age": "age01",
+                "container_id": "container01",
+                "id": "image01",
+                "language": "language01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-image_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicImageFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicStoreFlow": {
+          "entity": "store",
+          "kind": "basic",
+          "name": "BasicStoreFlow",
+          "step": [
+            {
+              "match": {
+                "age": "age01",
+                "country": "country01",
+                "language": "language01",
+                "search_string": "search_string01"
+              },
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "store_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "input": {},
+              "spec": []
+            },
+            {
+              "input": {
+                "ref": "store_ref01",
+                "srcdatavar": "store_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "age": "age01",
+                "country": "country01",
+                "id": "store01",
+                "language": "language01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-store_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicStoreFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "playstation-store"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "playstation-store",
+  "Name": "PlaystationStore",
+  "name_": "playstation_store",
+  "name-": "playstation-store",
+  "NAME": "PLAYSTATION-STORE"
+}

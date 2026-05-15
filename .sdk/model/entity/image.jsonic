@@ -1,0 +1,135 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  name: "image"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: 999
+                kind: "param"
+                name: "age"
+                orig: "age"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "param"
+                name: "container_id"
+                orig: "country"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "cusa"
+                orig: "cusa"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "bg_color"
+                orig: "bg_color"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "h"
+                orig: "h"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "opacity"
+                orig: "opacity"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "platform"
+                orig: "platform"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "w"
+                orig: "w"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image"
+          parts: [
+            "store"
+            "api"
+            "chihiro"
+            "00_09_000"
+            "container"
+            "{container_id}"
+            "{language}"
+            "{age}"
+            "{cusa}"
+            "image"
+          ]
+          rename: {
+            param: {
+              country: "container_id"
+            }
+          }
+          select: {
+            exist: [
+              "age"
+              "bg_color"
+              "container_id"
+              "cusa"
+              "h"
+              "language"
+              "opacity"
+              "platform"
+              "w"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "container"
+      ]
+    ]
+  }
+
+
+
+}

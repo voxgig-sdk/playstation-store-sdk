@@ -1,0 +1,35 @@
+# BasicImageFlow
+
+main: kit: flow: BasicImageFlow:
+{
+  entity: "image",
+  kind: "basic",
+  name: "BasicImageFlow",
+  step: [
+    {
+      input: {
+        ref: "image_ref01",
+        srcdatavar: "image_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        age: "age01",
+        container_id: "container01",
+        id: "image01",
+        language: "language01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-image_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicImageFlow"
+}

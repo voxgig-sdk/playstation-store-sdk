@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "image": {
+      "IMAGE00": {
+        "age": "AGE01",
+        "container_id": "CONTAINER01",
+        "cusa": "CUSA01",
+        "language": "LANGUAGE01"
+      },
+      "IMAGE01": {
+        "age": "AGE01",
+        "container_id": "CONTAINER01",
+        "cusa": "CUSA01",
+        "language": "LANGUAGE01"
+      },
+      "IMAGE02": {
+        "age": "AGE01",
+        "container_id": "CONTAINER01",
+        "cusa": "CUSA01",
+        "language": "LANGUAGE01"
+      }
+    }
+  },
+  "new": {
+    "image": {
+      "image_ref01": {}
+    }
+  }
+}

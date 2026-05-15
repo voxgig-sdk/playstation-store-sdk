@@ -1,0 +1,31 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      description: `This is a sample Playstation Store server.  You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).
+
+ For search all games you can use the CUSA key for regions: 
+
+ * \`STORE-MSF75508-FULLGAMES\` for Europe.
+
+ * \`STORE-MSF77008-ALLGAMES\` for America.
+
+ See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page`
+      license: {
+        name: "MIT"
+      }
+      servers: [
+        {
+          description: "Playstation Store server"
+          url: "https://store.playstation.com/"
+        }
+      ]
+      title: "Playstation Store API"
+      version: "1.0.5"
+    }
+  }
+}
+
+}
