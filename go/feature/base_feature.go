@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/playstation-store-sdk/core"
+	"github.com/voxgig-sdk/playstation-store-sdk/go/core"
 )
 
 type BaseFeature struct {

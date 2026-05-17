@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/playstation-store-sdk"
-	"github.com/voxgig-sdk/playstation-store-sdk/core"
+	sdk "github.com/voxgig-sdk/playstation-store-sdk/go"
+	"github.com/voxgig-sdk/playstation-store-sdk/go/core"
 )
 
 func TestGeoDirect(t *testing.T) {

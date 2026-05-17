@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/playstation-store-sdk/core"
+import "github.com/voxgig-sdk/playstation-store-sdk/go/core"
 
 func resultHeadersUtil(ctx *core.Context) *core.Result {
 	response := ctx.Response

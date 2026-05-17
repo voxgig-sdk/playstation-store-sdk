@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/playstation-store-sdk/core"
+import "github.com/voxgig-sdk/playstation-store-sdk/go/core"
 
 func cleanUtil(ctx *core.Context, val any) any {
 	return val

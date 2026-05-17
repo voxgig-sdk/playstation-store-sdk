@@ -5,19 +5,22 @@
         "age": "AGE01",
         "container_id": "CONTAINER01",
         "cusa": "CUSA01",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "IMAGE00"
       },
       "IMAGE01": {
         "age": "AGE01",
         "container_id": "CONTAINER01",
         "cusa": "CUSA01",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "IMAGE01"
       },
       "IMAGE02": {
         "age": "AGE01",
         "container_id": "CONTAINER01",
         "cusa": "CUSA01",
-        "language": "LANGUAGE01"
+        "language": "LANGUAGE01",
+        "id": "IMAGE02"
       }
     }
   },

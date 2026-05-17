@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/playstation-store-sdk/core"
+	"github.com/voxgig-sdk/playstation-store-sdk/go/core"
 )
 
 type LogFeature struct {

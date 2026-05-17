@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/playstation-store-sdk"
+	sdk "github.com/voxgig-sdk/playstation-store-sdk/go"
 )
 
 func TestExists(t *testing.T) {

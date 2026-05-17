@@ -1,9 +1,15 @@
 {
   "existing": {
     "geo": {
-      "GEO00": {},
-      "GEO01": {},
-      "GEO02": {}
+      "GEO00": {
+        "id": "GEO00"
+      },
+      "GEO01": {
+        "id": "GEO01"
+      },
+      "GEO02": {
+        "id": "GEO02"
+      }
     }
   },
   "new": {
