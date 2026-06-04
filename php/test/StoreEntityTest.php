@@ -101,7 +101,6 @@ function store_basic_setup($extra)
         "PLAYSTATIONSTORE_TEST_STORE_ENTID" => $idmap,
         "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN" => "FALSE",
-        "PLAYSTATIONSTORE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -113,7 +112,6 @@ function store_basic_setup($extra)
     if ($env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PLAYSTATIONSTORE_APIKEY"],
             ],
             $extra ?? [],
         ]);

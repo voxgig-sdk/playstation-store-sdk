@@ -16,7 +16,19 @@
           }
         ],
         "title": "Playstation Store API",
-        "version": "1.0.5"
+        "version": "1.0.5",
+        "tagline": "Query the PlayStation Store catalogue for game metadata, pricing, and artwork by region",
+        "homepage": "https://store.playstation.com/",
+        "docs_url": "https://freepublicapis.com/playstation-store-api",
+        "license_short": "Unofficial Swagger wrapper; PlayStation Store content belongs to Sony Interactive Entertainment.",
+        "license_md": "- This SDK is generated from an unofficial Swagger description of the PlayStation Store endpoints.\n- PlayStation, the PlayStation Store, and all game catalogue content are trademarks of Sony Interactive Entertainment.\n- No formal public terms accompany the unofficial spec; use is at your own risk and subject to Sony's terms for store.playstation.com.\n- The SDK wrapper itself is published under the MIT licence.",
+        "about_md": "The Playstation Store API is an unofficial wrapper around the backend that powers Sony's [PlayStation Store](https://store.playstation.com/). It exposes the same catalogue data the storefront uses to render game listings, regional pricing, and artwork — surfaced here through a Swagger description rather than any officially documented developer programme.\n\nWhat you can typically pull from the API:\n\n- Game listings filtered by region, with paging via `size`, `start`, and `sort` (for example `release_date`) parameters\n- Catalogue groupings such as newest releases per country store (e.g. Switzerland, US)\n- Product metadata: titles, descriptions, release dates, and platform tags\n- Pricing information for the requested storefront region\n- Image URLs served from `image.api.playstation.com` for box art and promotional assets\n\nOperational notes from community testing: the underlying endpoints respond in roughly 590 ms on average, CORS is enabled, and recent uptime has been reported at 100%. There is no documented authentication scheme or published rate limit — because this is an unofficial integration, treat both as subject to change without notice.",
+        "entity_desc": {
+          "geo": "Regional storefront selectors (for example country codes like `ch` for Switzerland or `us` for the United States) that scope catalogue, pricing, and language results.",
+          "image": "Product artwork and promotional imagery served from `image.api.playstation.com`, referenced by URL in catalogue responses.",
+          "store": "The PlayStation Store catalogue itself: game listings, metadata, and pricing accessed via paged queries with `size`, `start`, and `sort` parameters."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +36,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "geo": {

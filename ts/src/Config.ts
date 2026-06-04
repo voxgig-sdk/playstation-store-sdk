@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://store.playstation.com/',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

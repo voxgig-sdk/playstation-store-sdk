@@ -271,14 +271,12 @@ func storeDirectSetup(mockres any) *storeDirectSetupResult {
 	env := envOverride(map[string]any{
 		"PLAYSTATIONSTORE_TEST_STORE_ENTID": map[string]any{},
 		"PLAYSTATIONSTORE_TEST_LIVE":    "FALSE",
-		"PLAYSTATIONSTORE_APIKEY":       "NONE",
 	})
 
 	live := env["PLAYSTATIONSTORE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["PLAYSTATIONSTORE_APIKEY"],
 		}
 		client := sdk.NewPlaystationStoreSDK(mergedOpts)
 
