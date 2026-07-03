@@ -10,7 +10,7 @@ The Python SDK for the PlaystationStore API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install playstation-store-sdk
+pip install voxgig-sdk-playstation-store
 ```
 
 Or install from source:

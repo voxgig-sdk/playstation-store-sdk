@@ -10,7 +10,7 @@ The Lua SDK for the PlaystationStore API — an entity-oriented client using Lua
 
 ## Install
 ```bash
-luarocks install playstation-store-sdk
+luarocks install voxgig-sdk-playstation-store
 ```
 
 If the module is not yet published, add the source directory to
