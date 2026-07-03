@@ -136,12 +136,14 @@ def _store_direct_setup(mockres):
     env = runner.env_override({
         "PLAYSTATIONSTORE_TEST_STORE_ENTID": {},
         "PLAYSTATIONSTORE_TEST_LIVE": "FALSE",
+        "PLAYSTATIONSTORE_APIKEY": "NONE",
     })
 
     live = env.get("PLAYSTATIONSTORE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("PLAYSTATIONSTORE_APIKEY"),
         }
         client = PlaystationStoreSDK(merged_opts)
         return {

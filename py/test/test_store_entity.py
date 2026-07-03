@@ -107,6 +107,7 @@ def _store_basic_setup(extra):
         "PLAYSTATIONSTORE_TEST_STORE_ENTID": idmap,
         "PLAYSTATIONSTORE_TEST_LIVE": "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN": "FALSE",
+        "PLAYSTATIONSTORE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -117,6 +118,7 @@ def _store_basic_setup(extra):
     if env.get("PLAYSTATIONSTORE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("PLAYSTATIONSTORE_APIKEY"),
             },
             extra or {},
         ])

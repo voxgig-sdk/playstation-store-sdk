@@ -149,12 +149,14 @@ function store_direct_setup(mockres)
   local env = runner.env_override({
     ["PLAYSTATIONSTORE_TEST_STORE_ENTID"] = {},
     ["PLAYSTATIONSTORE_TEST_LIVE"] = "FALSE",
+    ["PLAYSTATIONSTORE_APIKEY"] = "NONE",
   })
 
   local live = env["PLAYSTATIONSTORE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["PLAYSTATIONSTORE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

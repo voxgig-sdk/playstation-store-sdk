@@ -1,22 +1,8 @@
 # PlaystationStore SDK
 
-Query the PlayStation Store catalogue for game metadata, pricing, and artwork by region
+Playstation Store API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Playstation Store API
-
-The Playstation Store API is an unofficial wrapper around the backend that powers Sony's [PlayStation Store](https://store.playstation.com/). It exposes the same catalogue data the storefront uses to render game listings, regional pricing, and artwork — surfaced here through a Swagger description rather than any officially documented developer programme.
-
-What you can typically pull from the API:
-
-- Game listings filtered by region, with paging via `size`, `start`, and `sort` (for example `release_date`) parameters
-- Catalogue groupings such as newest releases per country store (e.g. Switzerland, US)
-- Product metadata: titles, descriptions, release dates, and platform tags
-- Pricing information for the requested storefront region
-- Image URLs served from `image.api.playstation.com` for box art and promotional assets
-
-Operational notes from community testing: the underlying endpoints respond in roughly 590 ms on average, CORS is enabled, and recent uptime has been reported at 100%. There is no documented authentication scheme or published rate limit — because this is an unofficial integration, treat both as subject to change without notice.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install playstation-store-sdk
 luarocks install playstation-store-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PlaystationStoreSDK } from 'playstation-store'
 
-const client = new PlaystationStoreSDK({})
+const client = new PlaystationStoreSDK({
+  apikey: process.env.PLAYSTATION-STORE_APIKEY,
+})
 
+// Load geo data
+const geo = await client.Geo().load({})
+console.log(geo.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Geo** | Regional storefront selectors (for example country codes like `ch` for Switzerland or `us` for the United States) that scope catalogue, pricing, and language results. | `/kamaji/api/chihiro/00_09_000/geo` |
-| **Image** | Product artwork and promotional imagery served from `image.api.playstation.com`, referenced by URL in catalogue responses. | `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image` |
-| **Store** | The PlayStation Store catalogue itself: game listings, metadata, and pricing accessed via paged queries with `size`, `start`, and `sort` parameters. | `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}` |
+| **Geo** |  | `/kamaji/api/chihiro/00_09_000/geo` |
+| **Image** |  | `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image` |
+| **Store** |  | `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from playstationstore_sdk import PlaystationStoreSDK
 
-client = PlaystationStoreSDK({})
+client = PlaystationStoreSDK({
+    "apikey": os.environ.get("PLAYSTATION-STORE_APIKEY"),
+})
 
 
 # Load a specific geo
-geo, err = client.Geo(None).load(
-    {"id": "example_id"}, None
-)
+geo, err = client.Geo().load({"id": "example_id"})
+print(geo)
 ```
 
 ### PHP
@@ -129,13 +121,14 @@ geo, err = client.Geo(None).load(
 <?php
 require_once 'playstationstore_sdk.php';
 
-$client = new PlaystationStoreSDK([]);
+$client = new PlaystationStoreSDK([
+    "apikey" => getenv("PLAYSTATION-STORE_APIKEY"),
+]);
 
 
 // Load a specific geo
-[$geo, $err] = $client->Geo(null)->load(
-    ["id" => "example_id"], null
-);
+[$geo, $err] = $client->Geo()->load(["id" => "example_id"]);
+print_r($geo);
 ```
 
 ### Golang
@@ -143,8 +136,13 @@ $client = new PlaystationStoreSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/playstation-store-sdk/go"
 
-client := sdk.NewPlaystationStoreSDK(map[string]any{})
+client := sdk.NewPlaystationStoreSDK(map[string]any{
+    "apikey": os.Getenv("PLAYSTATION-STORE_APIKEY"),
+})
 
+// Load geo data
+geo, err := client.Geo(nil).Load(map[string]any{}, nil)
+fmt.Println(geo)
 ```
 
 ### Ruby
@@ -152,13 +150,14 @@ client := sdk.NewPlaystationStoreSDK(map[string]any{})
 ```ruby
 require_relative "PlaystationStore_sdk"
 
-client = PlaystationStoreSDK.new({})
+client = PlaystationStoreSDK.new({
+  "apikey" => ENV["PLAYSTATION-STORE_APIKEY"],
+})
 
 
 # Load a specific geo
-geo, err = client.Geo(nil).load(
-  { "id" => "example_id" }, nil
-)
+geo, err = client.Geo().load({ "id" => "example_id" })
+puts geo
 ```
 
 ### Lua
@@ -166,13 +165,14 @@ geo, err = client.Geo(nil).load(
 ```lua
 local sdk = require("playstation-store_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PLAYSTATION-STORE_APIKEY"),
+})
 
 
 -- Load a specific geo
-local geo, err = client:Geo(nil):load(
-  { id = "example_id" }, nil
-)
+local geo, err = client:Geo():load({ id = "example_id" })
+print(geo)
 ```
 
 ## Unit testing in offline mode
@@ -191,25 +191,21 @@ const result = await client.Geo().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PlaystationStoreSDK.test(None, None)
-result, err = client.Geo(None).load(
-    {"id": "test01"}, None
-)
+client = PlaystationStoreSDK.test()
+result, err = client.Geo().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PlaystationStoreSDK::test(null, null);
-[$result, $err] = $client->Geo(null)->load(
-    ["id" => "test01"], null
-);
+$client = PlaystationStoreSDK::test();
+[$result, $err] = $client->Geo()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Geo(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -218,19 +214,15 @@ result, err := client.Geo(nil).Load(
 ### Ruby
 
 ```ruby
-client = PlaystationStoreSDK.test(nil, nil)
-result, err = client.Geo(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PlaystationStoreSDK.test
+result, err = client.Geo().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Geo(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Geo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -334,16 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Playstation Store API
-
-- Upstream: [https://store.playstation.com/](https://store.playstation.com/)
-- API docs: [https://freepublicapis.com/playstation-store-api](https://freepublicapis.com/playstation-store-api)
-
-- This SDK is generated from an unofficial Swagger description of the PlayStation Store endpoints.
-- PlayStation, the PlayStation Store, and all game catalogue content are trademarks of Sony Interactive Entertainment.
-- No formal public terms accompany the unofficial spec; use is at your own risk and subject to Sony's terms for store.playstation.com.
-- The SDK wrapper itself is published under the MIT licence.
 
 ---
 

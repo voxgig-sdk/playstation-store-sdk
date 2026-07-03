@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://store.playstation.com/',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -63,9 +67,12 @@ class Config {
       "name": "geo",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/kamaji/api/chihiro/00_09_000/geo",
               "parts": [
@@ -75,17 +82,14 @@ class Config {
                 "00_09_000",
                 "geo"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -98,86 +102,88 @@ class Config {
       "name": "image",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "example": 999,
                     "kind": "param",
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "container_id",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "bg_color",
                     "orig": "bg_color",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "h",
                     "orig": "h",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "example": 100,
                     "kind": "query",
                     "name": "opacity",
                     "orig": "opacity",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "platform",
                     "orig": "platform",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "w",
                     "orig": "w",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -217,11 +223,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -236,317 +240,319 @@ class Config {
     "store": {
       "fields": [
         {
+          "active": true,
           "name": "bucket",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "bundle_child_type_id",
           "req": false,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "cloud_only_platform",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "container_type",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 3
         },
         {
+          "active": true,
           "name": "content_type",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 4
         },
         {
+          "active": true,
           "name": "default_sku",
           "req": true,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 5
         },
         {
+          "active": true,
           "name": "game_content_type",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 6
         },
         {
+          "active": true,
           "name": "game_content_types_list",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 7
         },
         {
+          "active": true,
           "name": "id",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 8
         },
         {
+          "active": true,
           "name": "image",
           "req": true,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 9
         },
         {
+          "active": true,
           "name": "name",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 10
         },
         {
+          "active": true,
           "name": "parent_name",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 11
         },
         {
+          "active": true,
           "name": "playable_platform",
           "req": true,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 12
         },
         {
+          "active": true,
           "name": "provider_name",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 13
         },
         {
+          "active": true,
           "name": "release_date",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 14
         },
         {
+          "active": true,
           "name": "restricted",
           "req": true,
           "type": "`$BOOLEAN`",
-          "active": true,
           "index$": 15
         },
         {
+          "active": true,
           "name": "revision",
           "req": true,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 16
         },
         {
+          "active": true,
           "name": "short_name",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 17
         },
         {
+          "active": true,
           "name": "timestamp",
           "req": true,
           "type": "`$NUMBER`",
-          "active": true,
           "index$": 18
         },
         {
+          "active": true,
           "name": "top_category",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 19
         },
         {
+          "active": true,
           "name": "url",
           "req": true,
           "type": "`$STRING`",
-          "active": true,
           "index$": 20
         }
       ],
       "name": "store",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "example": 999,
                     "kind": "param",
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "search_string",
                     "orig": "search_string",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "direction",
                     "orig": "direction",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_content_type",
                     "orig": "game_content_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_demo",
                     "orig": "game_demo",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_type",
                     "orig": "game_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "genre",
                     "orig": "genre",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "platform",
                     "orig": "platform",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "price",
                     "orig": "price",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "relationship",
                     "orig": "relationship",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "release_date",
                     "orig": "release_date",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "subtitle_lang",
                     "orig": "subtitle_lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "top_category",
                     "orig": "top_category",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "voice_lang",
                     "orig": "voice_lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -595,175 +601,175 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         },
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "example": 999,
                     "kind": "param",
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "direction",
                     "orig": "direction",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_content_type",
                     "orig": "game_content_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_demo",
                     "orig": "game_demo",
                     "reqd": false,
-                    "type": "`$BOOLEAN`",
-                    "active": true
+                    "type": "`$BOOLEAN`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "game_type",
                     "orig": "game_type",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "genre",
                     "orig": "genre",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "platform",
                     "orig": "platform",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "price",
                     "orig": "price",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "relationship",
                     "orig": "relationship",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "release_date",
                     "orig": "release_date",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "subtitle_lang",
                     "orig": "subtitle_lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "top_category",
                     "orig": "top_category",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "voice_lang",
                     "orig": "voice_lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -807,80 +813,80 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             },
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "example": 999,
                     "kind": "param",
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "direction",
                     "orig": "direction",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "size",
                     "orig": "size",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "sort",
                     "orig": "sort",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "example": 0,
                     "kind": "query",
                     "name": "start",
                     "orig": "start",
                     "reqd": false,
-                    "type": "`$INTEGER`",
-                    "active": true
+                    "type": "`$INTEGER`"
                   }
                 ]
               },
@@ -910,11 +916,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 1
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },

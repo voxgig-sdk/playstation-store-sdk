@@ -155,12 +155,14 @@ function store_direct_setup($mockres)
     $env = Runner::env_override([
         "PLAYSTATIONSTORE_TEST_STORE_ENTID" => [],
         "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
+        "PLAYSTATIONSTORE_APIKEY" => "NONE",
     ]);
 
     $live = $env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["PLAYSTATIONSTORE_APIKEY"],
         ];
         $client = new PlaystationStoreSDK($merged_opts);
         return [
