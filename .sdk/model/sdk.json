@@ -1100,6 +1100,7 @@
         }
       },
       "info": {
+        "auth": false,
         "description": "This is a sample Playstation Store server.  You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).\n\n For search all games you can use the CUSA key for regions: \n\n * `STORE-MSF75508-FULLGAMES` for Europe.\n\n * `STORE-MSF77008-ALLGAMES` for America.\n\n See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page",
         "license": {
           "name": "MIT"
@@ -1131,6 +1132,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -1181,6 +1183,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -1230,6 +1233,7 @@
               "active": false,
               "name": "",
               "package": "",
+              "state": "pending",
               "url": "",
               "vault": {
                 "alias": "",
@@ -1271,6 +1275,7 @@
               "active": false,
               "name": "luarocks",
               "package": "",
+              "state": "pending",
               "url": "https://luarocks.org",
               "vault": {
                 "alias": "luarocks",
@@ -1307,6 +1312,7 @@
               "active": false,
               "name": "packagist",
               "package": "",
+              "state": "pending",
               "url": "https://packagist.org",
               "vault": {
                 "alias": "packagist",
@@ -1349,6 +1355,7 @@
               "active": false,
               "name": "pypi",
               "package": "",
+              "state": "pending",
               "url": "https://pypi.org",
               "vault": {
                 "alias": "pypi",
@@ -1396,6 +1403,7 @@
               "active": false,
               "name": "rubygems",
               "package": "",
+              "state": "pending",
               "url": "https://rubygems.org",
               "vault": {
                 "alias": "gem",
@@ -1449,6 +1457,7 @@
               "active": false,
               "name": "npm",
               "package": "",
+              "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {
                 "alias": "npm",

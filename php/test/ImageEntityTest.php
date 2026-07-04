@@ -49,8 +49,7 @@ class ImageEntityTest extends TestCase
         // LOAD
         $image_ref01_ent = $client->Image(null);
         $image_ref01_match_dt0 = [];
-        [$image_ref01_data_dt0_loaded, $err] = $image_ref01_ent->load($image_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $image_ref01_data_dt0_loaded = $image_ref01_ent->load($image_ref01_match_dt0, null);
         $this->assertNotNull($image_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function image_basic_setup($extra)
         "PLAYSTATIONSTORE_TEST_IMAGE_ENTID" => $idmap,
         "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN" => "FALSE",
-        "PLAYSTATIONSTORE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function image_basic_setup($extra)
     if ($env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PLAYSTATIONSTORE_APIKEY"],
             ],
             $extra ?? [],
         ]);

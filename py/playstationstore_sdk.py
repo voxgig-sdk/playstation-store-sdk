@@ -144,16 +144,23 @@ class PlaystationStoreSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class PlaystationStoreSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class PlaystationStoreSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def geo(self):
+        """Idiomatic facade: client.geo.list() / client.geo.load({"id": ...})."""
+        from entity.geo_entity import GeoEntity
+        cached = getattr(self, "_geo", None)
+        if cached is None:
+            cached = GeoEntity(self, None)
+            self._geo = cached
+        return cached
 
     def Geo(self, data=None):
+        # Deprecated: use client.geo instead.
         from entity.geo_entity import GeoEntity
         return GeoEntity(self, data)
 
 
+    @property
+    def image(self):
+        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
+        from entity.image_entity import ImageEntity
+        cached = getattr(self, "_image", None)
+        if cached is None:
+            cached = ImageEntity(self, None)
+            self._image = cached
+        return cached
+
     def Image(self, data=None):
+        # Deprecated: use client.image instead.
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
+    @property
+    def store(self):
+        """Idiomatic facade: client.store.list() / client.store.load({"id": ...})."""
+        from entity.store_entity import StoreEntity
+        cached = getattr(self, "_store", None)
+        if cached is None:
+            cached = StoreEntity(self, None)
+            self._store = cached
+        return cached
+
     def Store(self, data=None):
+        # Deprecated: use client.store instead.
         from entity.store_entity import StoreEntity
         return StoreEntity(self, data)
 

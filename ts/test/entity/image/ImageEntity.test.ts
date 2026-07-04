@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'PLAYSTATION_STORE_TEST_IMAGE_ENTID': idmap,
     'PLAYSTATION_STORE_TEST_LIVE': 'FALSE',
     'PLAYSTATION_STORE_TEST_EXPLAIN': 'FALSE',
-    'PLAYSTATION_STORE_APIKEY': 'NONE',
   })
 
   idmap = env['PLAYSTATION_STORE_TEST_IMAGE_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PlaystationStoreSDK(merge([
       {
-        apikey: env.PLAYSTATION_STORE_APIKEY,
       },
       extra
     ]))

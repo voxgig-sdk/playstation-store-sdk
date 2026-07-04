@@ -49,8 +49,7 @@ class TestGeoEntity:
         # LOAD
         geo_ref01_ent = client.Geo(None)
         geo_ref01_match_dt0 = {}
-        geo_ref01_data_dt0_loaded, err = geo_ref01_ent.load(geo_ref01_match_dt0, None)
-        assert err is None
+        geo_ref01_data_dt0_loaded = geo_ref01_ent.load(geo_ref01_match_dt0, None)
         assert geo_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _geo_basic_setup(extra):
         "PLAYSTATIONSTORE_TEST_GEO_ENTID": idmap,
         "PLAYSTATIONSTORE_TEST_LIVE": "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN": "FALSE",
-        "PLAYSTATIONSTORE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _geo_basic_setup(extra):
     if env.get("PLAYSTATIONSTORE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PLAYSTATIONSTORE_APIKEY"),
             },
             extra or {},
         ])

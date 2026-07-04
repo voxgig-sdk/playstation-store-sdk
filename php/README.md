@@ -9,9 +9,10 @@ The PHP SDK for the PlaystationStore API — an entity-oriented client using PHP
 
 
 ## Install
-```bash
-composer require voxgig-sdk/playstation-store
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/playstation-store-sdk/releases](https://github.com/voxgig-sdk/playstation-store-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'playstationstore_sdk.php';
 
-$client = new PlaystationStoreSDK([
-    "apikey" => getenv("PLAYSTATION-STORE_APIKEY"),
-]);
+$client = new PlaystationStoreSDK();
 ```
 
 ### 3. Load a geo
 
 ```php
-[$result, $err] = $client->Geo()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->geo()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PlaystationStoreSDK::test();
 
-[$result, $err] = $client->PlaystationStore()->load(["id" => "test01"]);
+$result = $client->geo()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new PlaystationStoreSDK([
 Create a `.env.local` file at the project root:
 
 ```
-PLAYSTATION-STORE_TEST_LIVE=TRUE
-PLAYSTATION-STORE_APIKEY=<your-key>
+PLAYSTATION_STORE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -187,8 +190,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -256,7 +263,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.Geo()`
+Create an instance: `const geo = client.geo`
 
 #### Operations
 
@@ -267,13 +274,13 @@ Create an instance: `const geo = client.Geo()`
 #### Example: Load
 
 ```ts
-const geo = await client.Geo().load({ id: 'geo_id' })
+const geo = await client.geo.load({ id: 'geo_id' })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -284,13 +291,13 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.Store()`
+Create an instance: `const store = client.store`
 
 #### Operations
 
@@ -328,13 +335,13 @@ Create an instance: `const store = client.Store()`
 #### Example: Load
 
 ```ts
-const store = await client.Store().load({ id: 'store_id' })
+const store = await client.store.load({ id: 'store_id' })
 ```
 
 #### Example: List
 
 ```ts
-const stores = await client.Store().list()
+const stores = await client.store.list()
 ```
 
 
@@ -409,11 +416,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$geo = $client->geo();
+$geo->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $geo->dataGet() now returns the loaded geo data
+// $geo->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

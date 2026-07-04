@@ -9,9 +9,12 @@ The TypeScript SDK for the PlaystationStore API — a type-safe, entity-oriented
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/playstation-store
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/playstation-store-sdk/releases](https://github.com/voxgig-sdk/playstation-store-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PlaystationStoreSDK } from 'playstation-store'
+import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
 
-const client = new PlaystationStoreSDK({
-  apikey: process.env.PLAYSTATION-STORE_APIKEY,
-})
+const client = new PlaystationStoreSDK()
 ```
 
 ### 3. Load a geo
 
 ```ts
-const result = await client.Geo().load({ id: 'example_id' })
+const result = await client.geo.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PlaystationStoreSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.geo.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new PlaystationStoreSDK({ apikey: '...' })
+const client = new PlaystationStoreSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.geo
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new PlaystationStoreSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new PlaystationStoreSDK({
 Create a `.env.local` file at the project root:
 
 ```
-PLAYSTATION-STORE_TEST_LIVE=TRUE
-PLAYSTATION-STORE_APIKEY=<your-key>
+PLAYSTATION_STORE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new PlaystationStoreSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new PlaystationStoreSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -306,7 +303,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.Geo()`
+Create an instance: `const geo = client.geo`
 
 #### Operations
 
@@ -317,13 +314,13 @@ Create an instance: `const geo = client.Geo()`
 #### Example: Load
 
 ```ts
-const geo = await client.Geo().load({ id: 'geo_id' })
+const geo = await client.geo.load({ id: 'geo_id' })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -334,13 +331,13 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.Store()`
+Create an instance: `const store = client.store`
 
 #### Operations
 
@@ -378,13 +375,13 @@ Create an instance: `const store = client.Store()`
 #### Example: Load
 
 ```ts
-const store = await client.Store().load({ id: 'store_id' })
+const store = await client.store.load({ id: 'store_id' })
 ```
 
 #### Example: List
 
 ```ts
-const stores = await client.Store().list()
+const stores = await client.store.list()
 ```
 
 
@@ -445,7 +442,7 @@ playstation-store/
 Import the SDK from the package root:
 
 ```ts
-import { PlaystationStoreSDK } from 'playstation-store'
+import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
 ```
 
 ### Entity state
@@ -455,11 +452,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const geo = client.geo
+await geo.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// geo.data() now returns the loaded geo data
+// geo.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

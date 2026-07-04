@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       description: `This is a sample Playstation Store server.  You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).
 
  For search all games you can use the CUSA key for regions: 

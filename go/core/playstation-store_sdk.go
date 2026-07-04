@@ -245,16 +245,25 @@ func (sdk *PlaystationStoreSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// Geo returns a Geo entity bound to this client.
+// Idiomatic usage: client.Geo(nil).List(nil, nil) or
+// client.Geo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PlaystationStoreSDK) Geo(data map[string]any) PlaystationStoreEntity {
 	return NewGeoEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PlaystationStoreSDK) Image(data map[string]any) PlaystationStoreEntity {
 	return NewImageEntityFunc(sdk, data)
 }
 
 
+// Store returns a Store entity bound to this client.
+// Idiomatic usage: client.Store(nil).List(nil, nil) or
+// client.Store(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PlaystationStoreSDK) Store(data map[string]any) PlaystationStoreEntity {
 	return NewStoreEntityFunc(sdk, data)
 }

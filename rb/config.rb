@@ -15,9 +15,6 @@ module PlaystationStoreConfig
       },
       "options" => {
         "base" => "https://store.playstation.com/",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -83,6 +80,7 @@ module PlaystationStoreConfig
                         "orig" => "age",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -91,6 +89,7 @@ module PlaystationStoreConfig
                         "orig" => "country",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                       {
                         "active" => true,
@@ -99,6 +98,7 @@ module PlaystationStoreConfig
                         "orig" => "cusa",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 2,
                       },
                       {
                         "active" => true,
@@ -107,6 +107,7 @@ module PlaystationStoreConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 3,
                       },
                     ],
                     "query" => [
@@ -371,6 +372,7 @@ module PlaystationStoreConfig
                         "orig" => "age",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -379,6 +381,7 @@ module PlaystationStoreConfig
                         "orig" => "country",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                       {
                         "active" => true,
@@ -387,6 +390,7 @@ module PlaystationStoreConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 2,
                       },
                       {
                         "active" => true,
@@ -395,6 +399,7 @@ module PlaystationStoreConfig
                         "orig" => "search_string",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 3,
                       },
                     ],
                     "query" => [
@@ -588,6 +593,7 @@ module PlaystationStoreConfig
                         "orig" => "age",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -596,6 +602,7 @@ module PlaystationStoreConfig
                         "orig" => "country",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                       {
                         "active" => true,
@@ -604,6 +611,7 @@ module PlaystationStoreConfig
                         "orig" => "cusa",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 2,
                       },
                       {
                         "active" => true,
@@ -612,6 +620,7 @@ module PlaystationStoreConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 3,
                       },
                     ],
                     "query" => [
@@ -793,6 +802,7 @@ module PlaystationStoreConfig
                         "orig" => "age",
                         "reqd" => true,
                         "type" => "`$INTEGER`",
+                        "index$" => 0,
                       },
                       {
                         "active" => true,
@@ -801,6 +811,7 @@ module PlaystationStoreConfig
                         "orig" => "country",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 1,
                       },
                       {
                         "active" => true,
@@ -809,6 +820,7 @@ module PlaystationStoreConfig
                         "orig" => "cusa",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 2,
                       },
                       {
                         "active" => true,
@@ -817,6 +829,7 @@ module PlaystationStoreConfig
                         "orig" => "language",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 3,
                       },
                     ],
                     "query" => [

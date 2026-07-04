@@ -4,6 +4,8 @@ import { GeoEntity } from './entity/GeoEntity'
 import { ImageEntity } from './entity/ImageEntity'
 import { StoreEntity } from './entity/StoreEntity'
 
+export type * from './PlaystationStoreTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class PlaystationStoreSDK {
 
 
 
+  _geo?: GeoEntity
+
+  // Idiomatic facade: `client.geo.list()` / `client.geo.load({ id })`.
+  get geo(): GeoEntity {
+    return (this._geo ??= new GeoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.geo` instead. */
   Geo(data?: any) {
     const self = this
     return new GeoEntity(self,data)
   }
 
 
+  _image?: ImageEntity
+
+  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
+  get image(): ImageEntity {
+    return (this._image ??= new ImageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.image` instead. */
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
+  _store?: StoreEntity
+
+  // Idiomatic facade: `client.store.list()` / `client.store.load({ id })`.
+  get store(): StoreEntity {
+    return (this._store ??= new StoreEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.store` instead. */
   Store(data?: any) {
     const self = this
     return new StoreEntity(self,data)

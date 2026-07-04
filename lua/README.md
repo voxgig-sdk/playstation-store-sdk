@@ -9,12 +9,9 @@ The Lua SDK for the PlaystationStore API — an entity-oriented client using Lua
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-playstation-store
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/playstation-store-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("playstation-store_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("PLAYSTATION-STORE_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a geo
 
 ```lua
-local result, err = client:Geo():load({ id = "example_id" })
+local result, err = client:geo():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:PlaystationStore():load({ id = "test01" })
+local result, err = client:geo():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-PLAYSTATION-STORE_TEST_LIVE=TRUE
-PLAYSTATION-STORE_APIKEY=<your-key>
+PLAYSTATION_STORE_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -261,7 +254,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.Geo()`
+Create an instance: `const geo = client.geo`
 
 #### Operations
 
@@ -272,13 +265,13 @@ Create an instance: `const geo = client.Geo()`
 #### Example: Load
 
 ```ts
-const geo = await client.Geo().load({ id: 'geo_id' })
+const geo = await client.geo.load({ id: 'geo_id' })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -289,13 +282,13 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load({ id: 'image_id' })
+const image = await client.image.load({ id: 'image_id' })
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.Store()`
+Create an instance: `const store = client.store`
 
 #### Operations
 
@@ -333,13 +326,13 @@ Create an instance: `const store = client.Store()`
 #### Example: Load
 
 ```ts
-const store = await client.Store().load({ id: 'store_id' })
+const store = await client.store.load({ id: 'store_id' })
 ```
 
 #### Example: List
 
 ```ts
-const stores = await client.Store().list()
+const stores = await client.store.list()
 ```
 
 
@@ -414,11 +407,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local geo = client:geo()
+geo:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- geo:data_get() now returns the loaded geo data
+-- geo:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

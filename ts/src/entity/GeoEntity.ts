@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Geo,
+  GeoLoadMatch,
+} from '../PlaystationStoreTypes'
 
 // TODO: needs Entity superclass
-class GeoEntity extends PlaystationStoreEntityBase {
+class GeoEntity extends PlaystationStoreEntityBase<Geo> {
 
   constructor(client: PlaystationStoreSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GeoEntity extends PlaystationStoreEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GeoLoadMatch, ctrl?: Control): Promise<Geo> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GeoEntity extends PlaystationStoreEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Geo> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

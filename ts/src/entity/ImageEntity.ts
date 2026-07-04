@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Image,
+  ImageLoadMatch,
+} from '../PlaystationStoreTypes'
 
 // TODO: needs Entity superclass
-class ImageEntity extends PlaystationStoreEntityBase {
+class ImageEntity extends PlaystationStoreEntityBase<Image> {
 
   constructor(client: PlaystationStoreSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ImageEntity extends PlaystationStoreEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ImageLoadMatch, ctrl?: Control): Promise<Image> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ImageEntity extends PlaystationStoreEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Image> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

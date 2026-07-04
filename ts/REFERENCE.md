@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `PlaystationStoreSDK.test()`.
 ## GeoEntity
 
 ```ts
-const geo = client.Geo()
+const geo = client.geo
 ```
 
 ### Operations
@@ -144,7 +143,7 @@ const geo = client.Geo()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Geo().load({ id: 'geo_id' })
+const result = await client.geo.load({ id: 'geo_id' })
 ```
 
 ### Common Methods
@@ -178,7 +177,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.Image()
+const image = client.image
 ```
 
 ### Operations
@@ -188,7 +187,7 @@ const image = client.Image()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Image().load({ id: 'image_id' })
+const result = await client.image.load({ id: 'image_id' })
 ```
 
 ### Common Methods
@@ -222,7 +221,7 @@ Return a copy of the entity options.
 ## StoreEntity
 
 ```ts
-const store = client.Store()
+const store = client.store
 ```
 
 ### Fields
@@ -258,7 +257,7 @@ const store = client.Store()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Store().list()
+const results = await client.store.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -266,7 +265,7 @@ const results = await client.Store().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Store().load({ id: 'store_id' })
+const result = await client.store.load({ id: 'store_id' })
 ```
 
 ### Common Methods

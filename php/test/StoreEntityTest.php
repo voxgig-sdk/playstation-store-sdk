@@ -55,16 +55,14 @@ class StoreEntityTest extends TestCase
             "search_string" => $setup["idmap"]["search_string01"],
         ];
 
-        [$store_ref01_list_result, $err] = $store_ref01_ent->list($store_ref01_match, null);
-        $this->assertNull($err);
+        $store_ref01_list_result = $store_ref01_ent->list($store_ref01_match, null);
         $this->assertIsArray($store_ref01_list_result);
 
         // LOAD
         $store_ref01_match_dt0 = [
             "id" => $store_ref01_data["id"],
         ];
-        [$store_ref01_data_dt0_loaded, $err] = $store_ref01_ent->load($store_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $store_ref01_data_dt0_loaded = $store_ref01_ent->load($store_ref01_match_dt0, null);
         $store_ref01_data_dt0_load_result = Helpers::to_map($store_ref01_data_dt0_loaded);
         $this->assertNotNull($store_ref01_data_dt0_load_result);
         $this->assertEquals($store_ref01_data_dt0_load_result["id"], $store_ref01_data["id"]);
@@ -101,7 +99,6 @@ function store_basic_setup($extra)
         "PLAYSTATIONSTORE_TEST_STORE_ENTID" => $idmap,
         "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN" => "FALSE",
-        "PLAYSTATIONSTORE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -113,7 +110,6 @@ function store_basic_setup($extra)
     if ($env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PLAYSTATIONSTORE_APIKEY"],
             ],
             $extra ?? [],
         ]);

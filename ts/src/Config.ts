@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://store.playstation.com/',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -116,7 +112,8 @@ class Config {
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -124,7 +121,8 @@ class Config {
                     "name": "container_id",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -132,7 +130,8 @@ class Config {
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -140,7 +139,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   }
                 ],
                 "query": [
@@ -404,7 +404,8 @@ class Config {
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -412,7 +413,8 @@ class Config {
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -420,7 +422,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -428,7 +431,8 @@ class Config {
                     "name": "search_string",
                     "orig": "search_string",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   }
                 ],
                 "query": [
@@ -621,7 +625,8 @@ class Config {
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -629,7 +634,8 @@ class Config {
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -637,7 +643,8 @@ class Config {
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -645,7 +652,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   }
                 ],
                 "query": [
@@ -826,7 +834,8 @@ class Config {
                     "name": "age",
                     "orig": "age",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -834,7 +843,8 @@ class Config {
                     "name": "country",
                     "orig": "country",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   },
                   {
                     "active": true,
@@ -842,7 +852,8 @@ class Config {
                     "name": "cusa",
                     "orig": "cusa",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 2
                   },
                   {
                     "active": true,
@@ -850,7 +861,8 @@ class Config {
                     "name": "language",
                     "orig": "language",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 3
                   }
                 ],
                 "query": [

@@ -74,14 +74,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PLAYSTATIONSTORE_TEST_GEO_ENTID': {},
     'PLAYSTATIONSTORE_TEST_LIVE': 'FALSE',
-    'PLAYSTATIONSTORE_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PLAYSTATIONSTORE_TEST_LIVE
 
   if (live) {
     const client = new PlaystationStoreSDK({
-      apikey: env.PLAYSTATIONSTORE_APIKEY,
     })
 
     let idmap: any = env['PLAYSTATIONSTORE_TEST_GEO_ENTID']

@@ -42,8 +42,7 @@ class GeoEntityTest < Minitest::Test
     # LOAD
     geo_ref01_ent = client.Geo(nil)
     geo_ref01_match_dt0 = {}
-    geo_ref01_data_dt0_loaded, err = geo_ref01_ent.load(geo_ref01_match_dt0, nil)
-    assert_nil err
+    geo_ref01_data_dt0_loaded = geo_ref01_ent.load(geo_ref01_match_dt0, nil)
     assert !geo_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def geo_basic_setup(extra)
     "PLAYSTATIONSTORE_TEST_GEO_ENTID" => idmap,
     "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
     "PLAYSTATIONSTORE_TEST_EXPLAIN" => "FALSE",
-    "PLAYSTATIONSTORE_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def geo_basic_setup(extra)
   if env["PLAYSTATIONSTORE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["PLAYSTATIONSTORE_APIKEY"],
       },
       extra || {},
     ])

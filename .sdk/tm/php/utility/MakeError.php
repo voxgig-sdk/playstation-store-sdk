@@ -9,7 +9,7 @@ require_once __DIR__ . '/../core/Error.php';
 
 class PlaystationStoreMakeError
 {
-    public static function call(?PlaystationStoreContext $ctx, mixed $err): array
+    public static function call(?PlaystationStoreContext $ctx, mixed $err): mixed
     {
         if ($ctx === null) {
             require_once __DIR__ . '/../core/Context.php';
@@ -52,8 +52,8 @@ class PlaystationStoreMakeError
         $ctx->ctrl->err = $sdk_err;
 
         if ($ctx->ctrl->throw_err === false) {
-            return [$result->resdata, null];
+            return $result->resdata;
         }
-        return [null, $sdk_err];
+        throw $sdk_err;
     }
 }

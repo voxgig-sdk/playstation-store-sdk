@@ -14,9 +14,6 @@ local function make_config()
     },
     options = {
       base = "https://store.playstation.com/",
-      auth = {
-        prefix = "Bearer",
-      },
       headers = {
         ["content-type"] = "application/json",
       },
@@ -82,6 +79,7 @@ local function make_config()
                       ["orig"] = "age",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -90,6 +88,7 @@ local function make_config()
                       ["orig"] = "country",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                     {
                       ["active"] = true,
@@ -98,6 +97,7 @@ local function make_config()
                       ["orig"] = "cusa",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 2,
                     },
                     {
                       ["active"] = true,
@@ -106,6 +106,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 3,
                     },
                   },
                   ["query"] = {
@@ -370,6 +371,7 @@ local function make_config()
                       ["orig"] = "age",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -378,6 +380,7 @@ local function make_config()
                       ["orig"] = "country",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                     {
                       ["active"] = true,
@@ -386,6 +389,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 2,
                     },
                     {
                       ["active"] = true,
@@ -394,6 +398,7 @@ local function make_config()
                       ["orig"] = "search_string",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 3,
                     },
                   },
                   ["query"] = {
@@ -587,6 +592,7 @@ local function make_config()
                       ["orig"] = "age",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -595,6 +601,7 @@ local function make_config()
                       ["orig"] = "country",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                     {
                       ["active"] = true,
@@ -603,6 +610,7 @@ local function make_config()
                       ["orig"] = "cusa",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 2,
                     },
                     {
                       ["active"] = true,
@@ -611,6 +619,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 3,
                     },
                   },
                   ["query"] = {
@@ -792,6 +801,7 @@ local function make_config()
                       ["orig"] = "age",
                       ["reqd"] = true,
                       ["type"] = "`$INTEGER`",
+                      ["index$"] = 0,
                     },
                     {
                       ["active"] = true,
@@ -800,6 +810,7 @@ local function make_config()
                       ["orig"] = "country",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 1,
                     },
                     {
                       ["active"] = true,
@@ -808,6 +819,7 @@ local function make_config()
                       ["orig"] = "cusa",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 2,
                     },
                     {
                       ["active"] = true,
@@ -816,6 +828,7 @@ local function make_config()
                       ["orig"] = "language",
                       ["reqd"] = true,
                       ["type"] = "`$STRING`",
+                      ["index$"] = 3,
                     },
                   },
                   ["query"] = {

@@ -48,7 +48,7 @@ class TestStoreDirect:
         else:
             params["search_string"] = "direct01"
 
-        result, err = client.direct({
+        result = client.direct({
             "path": "store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{search_string}",
             "method": "GET",
             "params": params,
@@ -57,8 +57,8 @@ class TestStoreDirect:
             # Live mode is lenient: synthetic IDs frequently 4xx and the
             # list-response shape varies wildly across public APIs. Skip
             # rather than fail when the call doesn't return a usable list.
-            if err is not None:
-                pytest.skip(f"list call failed (likely synthetic IDs against live API): {err}")
+            if result.get("err") is not None:
+                pytest.skip(f"list call failed (likely synthetic IDs against live API): {result.get('err')}")
                 return
             if not result.get("ok"):
                 pytest.skip("list call not ok (likely synthetic IDs against live API)")
@@ -68,7 +68,6 @@ class TestStoreDirect:
                 pytest.skip(f"expected 2xx status, got {status}")
                 return
         else:
-            assert err is None
             assert result["ok"] is True
             assert helpers.to_int(result["status"]) == 200
             assert isinstance(result["data"], list)
@@ -97,7 +96,7 @@ class TestStoreDirect:
             params["cusa"] = "direct03"
             params["language"] = "direct04"
 
-        result, err = client.direct({
+        result = client.direct({
             "path": "store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
             "method": "GET",
             "params": params,
@@ -107,8 +106,8 @@ class TestStoreDirect:
             # Live mode is lenient: synthetic IDs frequently 4xx. Skip
             # rather than fail when the load endpoint isn't reachable
             # with the IDs we can construct from setup.idmap.
-            if err is not None:
-                pytest.skip(f"load call failed (likely synthetic IDs against live API): {err}")
+            if result.get("err") is not None:
+                pytest.skip(f"load call failed (likely synthetic IDs against live API): {result.get('err')}")
                 return
             if not result.get("ok"):
                 pytest.skip("load call not ok (likely synthetic IDs against live API)")
@@ -118,7 +117,6 @@ class TestStoreDirect:
                 pytest.skip(f"expected 2xx status, got {status}")
                 return
         else:
-            assert err is None
             assert result["ok"] is True
             assert helpers.to_int(result["status"]) == 200
             assert result["data"] is not None
@@ -136,14 +134,12 @@ def _store_direct_setup(mockres):
     env = runner.env_override({
         "PLAYSTATIONSTORE_TEST_STORE_ENTID": {},
         "PLAYSTATIONSTORE_TEST_LIVE": "FALSE",
-        "PLAYSTATIONSTORE_APIKEY": "NONE",
     })
 
     live = env.get("PLAYSTATIONSTORE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("PLAYSTATIONSTORE_APIKEY"),
         }
         client = PlaystationStoreSDK(merged_opts)
         return {

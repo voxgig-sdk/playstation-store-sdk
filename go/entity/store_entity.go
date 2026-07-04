@@ -85,6 +85,27 @@ func (e *StoreEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Store; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *StoreEntity) DataTyped(data ...Store) Store {
+	if len(data) > 0 {
+		return typedFrom[Store](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Store](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Store (all fields
+// optional at the wire level).
+func (e *StoreEntity) MatchTyped(match ...Store) Store {
+	if len(match) > 0 {
+		return typedFrom[Store](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Store](e.Match())
+}
+
 
 func (e *StoreEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *StoreEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// StoreLoadMatch and returns an Store. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *StoreEntity) LoadTyped(reqmatch StoreLoadMatch, ctrl map[string]any) (Store, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Store{}, err
+	}
+	return typedFrom[Store](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *StoreEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// StoreListMatch and returns []Store. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *StoreEntity) ListTyped(reqmatch StoreListMatch, ctrl map[string]any) ([]Store, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Store](res), nil
 }
 
 

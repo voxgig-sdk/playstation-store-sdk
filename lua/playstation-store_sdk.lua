@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:geo():list() / client:geo():load({ id = ... })
+function PlaystationStoreSDK:geo(data)
+  local EntityMod = require("entity.geo_entity")
+  if data == nil then
+    if self._geo == nil then
+      self._geo = EntityMod.new(self, nil)
+    end
+    return self._geo
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:geo() instead.
 function PlaystationStoreSDK:Geo(data)
   local EntityMod = require("entity.geo_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
+function PlaystationStoreSDK:image(data)
+  local EntityMod = require("entity.image_entity")
+  if data == nil then
+    if self._image == nil then
+      self._image = EntityMod.new(self, nil)
+    end
+    return self._image
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:image() instead.
 function PlaystationStoreSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:store():list() / client:store():load({ id = ... })
+function PlaystationStoreSDK:store(data)
+  local EntityMod = require("entity.store_entity")
+  if data == nil then
+    if self._store == nil then
+      self._store = EntityMod.new(self, nil)
+    end
+    return self._store
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:store() instead.
 function PlaystationStoreSDK:Store(data)
   local EntityMod = require("entity.store_entity")
   return EntityMod.new(self, data)

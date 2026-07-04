@@ -55,16 +55,14 @@ class TestStoreEntity:
             "search_string": setup["idmap"]["search_string01"],
         }
 
-        store_ref01_list_result, err = store_ref01_ent.list(store_ref01_match, None)
-        assert err is None
+        store_ref01_list_result = store_ref01_ent.list(store_ref01_match, None)
         assert isinstance(store_ref01_list_result, list)
 
         # LOAD
         store_ref01_match_dt0 = {
             "id": store_ref01_data["id"],
         }
-        store_ref01_data_dt0_loaded, err = store_ref01_ent.load(store_ref01_match_dt0, None)
-        assert err is None
+        store_ref01_data_dt0_loaded = store_ref01_ent.load(store_ref01_match_dt0, None)
         store_ref01_data_dt0_load_result = helpers.to_map(store_ref01_data_dt0_loaded)
         assert store_ref01_data_dt0_load_result is not None
         assert store_ref01_data_dt0_load_result["id"] == store_ref01_data["id"]
@@ -107,7 +105,6 @@ def _store_basic_setup(extra):
         "PLAYSTATIONSTORE_TEST_STORE_ENTID": idmap,
         "PLAYSTATIONSTORE_TEST_LIVE": "FALSE",
         "PLAYSTATIONSTORE_TEST_EXPLAIN": "FALSE",
-        "PLAYSTATIONSTORE_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -118,7 +115,6 @@ def _store_basic_setup(extra):
     if env.get("PLAYSTATIONSTORE_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PLAYSTATIONSTORE_APIKEY"),
             },
             extra or {},
         ])

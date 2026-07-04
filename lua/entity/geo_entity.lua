@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GeoLoadMatch
+---@param ctrl? table
+---@return Geo
+---@return string? err
 function GeoEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

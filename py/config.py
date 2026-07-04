@@ -15,9 +15,6 @@ def make_config():
         },
         "options": {
             "base": "https://store.playstation.com/",
-            "auth": {
-                "prefix": "Bearer",
-            },
             "headers": {
         "content-type": "application/json",
       },
@@ -83,6 +80,7 @@ def make_config():
                       "orig": "age",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -91,6 +89,7 @@ def make_config():
                       "orig": "country",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                     {
                       "active": True,
@@ -99,6 +98,7 @@ def make_config():
                       "orig": "cusa",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 2,
                     },
                     {
                       "active": True,
@@ -107,6 +107,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 3,
                     },
                   ],
                   "query": [
@@ -371,6 +372,7 @@ def make_config():
                       "orig": "age",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -379,6 +381,7 @@ def make_config():
                       "orig": "country",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                     {
                       "active": True,
@@ -387,6 +390,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 2,
                     },
                     {
                       "active": True,
@@ -395,6 +399,7 @@ def make_config():
                       "orig": "search_string",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 3,
                     },
                   ],
                   "query": [
@@ -588,6 +593,7 @@ def make_config():
                       "orig": "age",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -596,6 +602,7 @@ def make_config():
                       "orig": "country",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                     {
                       "active": True,
@@ -604,6 +611,7 @@ def make_config():
                       "orig": "cusa",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 2,
                     },
                     {
                       "active": True,
@@ -612,6 +620,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 3,
                     },
                   ],
                   "query": [
@@ -793,6 +802,7 @@ def make_config():
                       "orig": "age",
                       "reqd": True,
                       "type": "`$INTEGER`",
+                      "index$": 0,
                     },
                     {
                       "active": True,
@@ -801,6 +811,7 @@ def make_config():
                       "orig": "country",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 1,
                     },
                     {
                       "active": True,
@@ -809,6 +820,7 @@ def make_config():
                       "orig": "cusa",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 2,
                     },
                     {
                       "active": True,
@@ -817,6 +829,7 @@ def make_config():
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
+                      "index$": 3,
                     },
                   ],
                   "query": [
