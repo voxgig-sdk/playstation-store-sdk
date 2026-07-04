@@ -133,7 +133,7 @@ Alias for `PlaystationStoreSDK.test()`.
 ## GeoEntity
 
 ```ts
-const geo = client.geo
+const geo = client.Geo()
 ```
 
 ### Operations
@@ -143,7 +143,7 @@ const geo = client.geo
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.geo.load({ id: 'geo_id' })
+const result = await client.Geo().load({ id: 'geo_id' })
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.image
+const image = client.Image()
 ```
 
 ### Operations
@@ -187,7 +187,7 @@ const image = client.image
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.image.load({ id: 'image_id' })
+const result = await client.Image().load({ id: 'image_id' })
 ```
 
 ### Common Methods
@@ -221,7 +221,7 @@ Return a copy of the entity options.
 ## StoreEntity
 
 ```ts
-const store = client.store
+const store = client.Store()
 ```
 
 ### Fields
@@ -257,7 +257,7 @@ const store = client.store
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.store.list()
+const results = await client.Store().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -265,7 +265,7 @@ const results = await client.store.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.store.load({ id: 'store_id' })
+const result = await client.Store().load({ id: 'store_id' })
 ```
 
 ### Common Methods

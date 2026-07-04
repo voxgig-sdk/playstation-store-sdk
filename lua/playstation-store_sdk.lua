@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:geo():list() / client:geo():load({ id = ... })
-function PlaystationStoreSDK:geo(data)
+-- Idiomatic facade: client:Geo():list() / client:Geo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PlaystationStoreSDK:Geo(data)
   local EntityMod = require("entity.geo_entity")
   if data == nil then
     if self._geo == nil then
@@ -256,15 +257,10 @@ function PlaystationStoreSDK:geo(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:geo() instead.
-function PlaystationStoreSDK:Geo(data)
-  local EntityMod = require("entity.geo_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
-function PlaystationStoreSDK:image(data)
+-- Idiomatic facade: client:Image():list() / client:Image():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PlaystationStoreSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   if data == nil then
     if self._image == nil then
@@ -275,15 +271,10 @@ function PlaystationStoreSDK:image(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:image() instead.
-function PlaystationStoreSDK:Image(data)
-  local EntityMod = require("entity.image_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:store():list() / client:store():load({ id = ... })
-function PlaystationStoreSDK:store(data)
+-- Idiomatic facade: client:Store():list() / client:Store():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PlaystationStoreSDK:Store(data)
   local EntityMod = require("entity.store_entity")
   if data == nil then
     if self._store == nil then
@@ -291,12 +282,6 @@ function PlaystationStoreSDK:store(data)
     end
     return self._store
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:store() instead.
-function PlaystationStoreSDK:Store(data)
-  local EntityMod = require("entity.store_entity")
   return EntityMod.new(self, data)
 end
 

@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GeoEntity
 
 ```php
-$geo = $client->geo();
+$geo = $client->Geo();
 ```
 
 ### Operations
@@ -103,7 +103,7 @@ $geo = $client->geo();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->geo()->load(["id" => "geo_id"]);
+$result = $client->Geo()->load(["id" => "geo_id"]);
 ```
 
 ### Common Methods
@@ -139,7 +139,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->image();
+$image = $client->Image();
 ```
 
 ### Operations
@@ -149,7 +149,7 @@ $image = $client->image();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->image()->load(["id" => "image_id"]);
+$result = $client->Image()->load(["id" => "image_id"]);
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return the entity name.
 ## StoreEntity
 
 ```php
-$store = $client->store();
+$store = $client->Store();
 ```
 
 ### Fields
@@ -221,7 +221,7 @@ $store = $client->store();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->store()->list([]);
+$results = $client->Store()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -229,7 +229,7 @@ $results = $client->store()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->store()->load(["id" => "store_id"]);
+$result = $client->Store()->load(["id" => "store_id"]);
 ```
 
 ### Common Methods

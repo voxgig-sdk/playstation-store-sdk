@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/playstation-store-sdk/go=../playstati
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/playstation-store-sdk/go"
-    "github.com/voxgig-sdk/playstation-store-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a geo
-
-```go
-    result, err = client.Geo(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single geo — the value is the loaded record.
+    geo, err := client.Geo(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(geo)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Geo(nil).Load(
+geo, err := client.Geo(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(geo) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -191,7 +188,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Geo` | `(data map[string]any) PlaystationStoreEntity` | Create a Geo entity instance. |
-| `Image` | `(data map[string]any) PlaystationStoreEntity` | Create a Image entity instance. |
+| `Image` | `(data map[string]any) PlaystationStoreEntity` | Create an Image entity instance. |
 | `Store` | `(data map[string]any) PlaystationStoreEntity` | Create a Store entity instance. |
 
 ### Entity interface (PlaystationStoreEntity)
@@ -212,17 +209,24 @@ All entities implement the `PlaystationStoreEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    geo, err := client.Geo(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // geo is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -292,7 +296,11 @@ Create an instance: `geo := client.Geo(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Geo(nil).Load(map[string]any{"id": "geo_id"}, nil)
+geo, err := client.Geo(nil).Load(map[string]any{"id": "geo_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(geo) // the loaded record
 ```
 
 
@@ -309,7 +317,11 @@ Create an instance: `image := client.Image(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+image, err := client.Image(nil).Load(map[string]any{"id": "image_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(image) // the loaded record
 ```
 
 
@@ -353,13 +365,21 @@ Create an instance: `store := client.Store(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Store(nil).Load(map[string]any{"id": "store_id"}, nil)
+store, err := client.Store(nil).Load(map[string]any{"id": "store_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(store) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Store(nil).List(nil, nil)
+stores, err := client.Store(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(stores) // the array of records
 ```
 
 

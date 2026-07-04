@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## GeoEntity
 
 ```python
-geo = client.geo
+geo = client.Geo()
 ```
 
 ### Operations
@@ -98,7 +98,7 @@ geo = client.geo
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.geo.load({"id": "geo_id"})
+result = client.Geo().load({"id": "geo_id"})
 ```
 
 ### Common Methods
@@ -133,7 +133,7 @@ Return the entity name.
 ## ImageEntity
 
 ```python
-image = client.image
+image = client.Image()
 ```
 
 ### Operations
@@ -143,7 +143,7 @@ image = client.image
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.image.load({"id": "image_id"})
+result = client.Image().load({"id": "image_id"})
 ```
 
 ### Common Methods
@@ -178,7 +178,7 @@ Return the entity name.
 ## StoreEntity
 
 ```python
-store = client.store
+store = client.Store()
 ```
 
 ### Fields
@@ -214,7 +214,9 @@ store = client.store
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.store.list({})
+results = client.Store().list({})
+for store in results:
+    print(store)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -222,7 +224,7 @@ results = client.store.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.store.load({"id": "store_id"})
+result = client.Store().load({"id": "store_id"})
 ```
 
 ### Common Methods

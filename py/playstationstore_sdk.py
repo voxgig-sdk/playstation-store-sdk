@@ -220,57 +220,27 @@ class PlaystationStoreSDK:
         }
 
 
-    @property
-    def geo(self):
-        """Idiomatic facade: client.geo.list() / client.geo.load({"id": ...})."""
-        from entity.geo_entity import GeoEntity
-        cached = getattr(self, "_geo", None)
-        if cached is None:
-            cached = GeoEntity(self, None)
-            self._geo = cached
-        return cached
-
-    def Geo(self, data=None):
-        # Deprecated: use client.geo instead.
+    def Geo(self, data=None) -> "GeoEntity":
+        """Entity factory: client.Geo().list({}) / client.Geo().load({"id": ...})."""
         from entity.geo_entity import GeoEntity
         return GeoEntity(self, data)
 
 
-    @property
-    def image(self):
-        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
-        from entity.image_entity import ImageEntity
-        cached = getattr(self, "_image", None)
-        if cached is None:
-            cached = ImageEntity(self, None)
-            self._image = cached
-        return cached
-
-    def Image(self, data=None):
-        # Deprecated: use client.image instead.
+    def Image(self, data=None) -> "ImageEntity":
+        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
-    @property
-    def store(self):
-        """Idiomatic facade: client.store.list() / client.store.load({"id": ...})."""
-        from entity.store_entity import StoreEntity
-        cached = getattr(self, "_store", None)
-        if cached is None:
-            cached = StoreEntity(self, None)
-            self._store = cached
-        return cached
-
-    def Store(self, data=None):
-        # Deprecated: use client.store instead.
+    def Store(self, data=None) -> "StoreEntity":
+        """Entity factory: client.Store().list({}) / client.Store().load({"id": ...})."""
         from entity.store_entity import StoreEntity
         return StoreEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PlaystationStoreSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class PlaystationStoreSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.geo_entity import GeoEntity
+    from entity.image_entity import ImageEntity
+    from entity.store_entity import StoreEntity

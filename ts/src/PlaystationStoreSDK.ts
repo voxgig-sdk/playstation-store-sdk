@@ -206,42 +206,21 @@ class PlaystationStoreSDK {
 
 
 
-  _geo?: GeoEntity
-
-  // Idiomatic facade: `client.geo.list()` / `client.geo.load({ id })`.
-  get geo(): GeoEntity {
-    return (this._geo ??= new GeoEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.geo` instead. */
+  // Entity access: `client.Geo().list()` / `client.Geo().load({ id })`.
   Geo(data?: any) {
     const self = this
     return new GeoEntity(self,data)
   }
 
 
-  _image?: ImageEntity
-
-  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
-  get image(): ImageEntity {
-    return (this._image ??= new ImageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.image` instead. */
+  // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
-  _store?: StoreEntity
-
-  // Idiomatic facade: `client.store.list()` / `client.store.load({ id })`.
-  get store(): StoreEntity {
-    return (this._store ??= new StoreEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.store` instead. */
+  // Entity access: `client.Store().list()` / `client.Store().load({ id })`.
   Store(data?: any) {
     const self = this
     return new StoreEntity(self,data)

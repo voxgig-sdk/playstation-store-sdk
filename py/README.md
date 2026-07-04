@@ -33,10 +33,12 @@ client = PlaystationStoreSDK()
 
 ### 3. Load a geo
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.geo.load({"id": "example_id"})
-    print(result)
+    geo = client.Geo().load({"id": "example_id"})
+    print(geo)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PlaystationStoreSDK.test()
 
-result = client.geo.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+geo = client.Geo().load({"id": "test01"})
+# geo contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -162,7 +165,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Geo` | `(data) -> GeoEntity` | Create a Geo entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Store` | `(data) -> StoreEntity` | Create a Store entity instance. |
 
 ### Entity interface
@@ -258,7 +261,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.geo`
+Create an instance: `geo = client.Geo()`
 
 #### Operations
 
@@ -268,14 +271,14 @@ Create an instance: `const geo = client.geo`
 
 #### Example: Load
 
-```ts
-const geo = await client.geo.load({ id: 'geo_id' })
+```python
+geo = client.Geo().load({"id": "geo_id"})
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image()`
 
 #### Operations
 
@@ -285,14 +288,14 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```python
+image = client.Image().load({"id": "image_id"})
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.store`
+Create an instance: `store = client.Store()`
 
 #### Operations
 
@@ -329,14 +332,14 @@ Create an instance: `const store = client.store`
 
 #### Example: Load
 
-```ts
-const store = await client.store.load({ id: 'store_id' })
+```python
+store = client.Store().load({"id": "store_id"})
 ```
 
 #### Example: List
 
-```ts
-const stores = await client.store.list()
+```python
+stores = client.Store().list({})
 ```
 
 
@@ -410,7 +413,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-geo = client.geo
+geo = client.Geo()
 geo.load({"id": "example_id"})
 
 # geo.data_get() now returns the loaded geo data

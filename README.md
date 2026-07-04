@@ -26,9 +26,9 @@ import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
 
 const client = new PlaystationStoreSDK()
 
-// Load geo data
-const geo = await client.geo.load({})
-console.log(geo.data)
+// Load geo data (returns a Geo)
+const geo = await client.Geo().load()
+console.log(geo)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -86,8 +86,8 @@ from playstationstore_sdk import PlaystationStoreSDK
 client = PlaystationStoreSDK()
 
 
-# Load a specific geo
-geo = client.geo.load({"id": "example_id"})
+# Load a specific geo (returns the record, raises on error)
+geo = client.Geo().load({"id": "example_id"})
 print(geo)
 ```
 
@@ -100,8 +100,8 @@ require_once 'playstationstore_sdk.php';
 $client = new PlaystationStoreSDK();
 
 
-// Load a specific geo
-$geo = $client->geo()->load(["id" => "example_id"]);
+// Load a specific geo (returns the bare record; throws on error)
+$geo = $client->Geo()->load(["id" => "example_id"]);
 print_r($geo);
 ```
 
@@ -125,8 +125,8 @@ require_relative "PlaystationStore_sdk"
 client = PlaystationStoreSDK.new
 
 
-# Load a specific geo
-geo = client.geo.load({ "id" => "example_id" })
+# Load a specific geo (returns the bare record; raises on error)
+geo = client.Geo.load({ "id" => "example_id" })
 puts geo
 ```
 
@@ -139,7 +139,7 @@ local client = sdk.new()
 
 
 -- Load a specific geo
-local geo, err = client:geo():load({ id = "example_id" })
+local geo, err = client:Geo():load({ id = "example_id" })
 print(geo)
 ```
 
@@ -152,22 +152,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PlaystationStoreSDK.test()
-const result = await client.geo.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const geo = await client.Geo().load({ id: 'test01' })
+// geo is a bare Geo populated with mock data
+console.log(geo)
 ```
 
 ### Python
 
 ```python
 client = PlaystationStoreSDK.test()
-result = client.geo.load({"id": "test01"})
+geo = client.Geo().load({"id": "test01"})
+print(geo)
 ```
 
 ### PHP
 
 ```php
-$client = PlaystationStoreSDK::test();
-$result = $client->geo()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = PlaystationStoreSDK::test([
+    "entity" => ["geo" => ["test01" => ["id" => "test01"]]],
+]);
+$geo = $client->Geo()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -182,15 +187,18 @@ result, err := client.Geo(nil).Load(
 ### Ruby
 
 ```ruby
-client = PlaystationStoreSDK.test
-result = client.geo.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = PlaystationStoreSDK.test({
+  "entity" => { "geo" => { "test01" => { "id" => "test01" } } },
+})
+geo = client.Geo.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:geo():load({ id = "test01" })
+local result, err = client:Geo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -238,6 +246,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

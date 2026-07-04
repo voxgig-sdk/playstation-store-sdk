@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## GeoEntity
 
 ```lua
-local geo = client:geo(nil)
+local geo = client:Geo(nil)
 ```
 
 ### Operations
@@ -101,7 +101,7 @@ local geo = client:geo(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:geo():load({ id = "geo_id" })
+local result, err = client:Geo():load({ id = "geo_id" })
 ```
 
 ### Common Methods
@@ -137,7 +137,7 @@ Return the entity name.
 ## ImageEntity
 
 ```lua
-local image = client:image(nil)
+local image = client:Image(nil)
 ```
 
 ### Operations
@@ -147,7 +147,7 @@ local image = client:image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:image():load({ id = "image_id" })
+local result, err = client:Image():load({ id = "image_id" })
 ```
 
 ### Common Methods
@@ -183,7 +183,7 @@ Return the entity name.
 ## StoreEntity
 
 ```lua
-local store = client:store(nil)
+local store = client:Store(nil)
 ```
 
 ### Fields
@@ -219,7 +219,7 @@ local store = client:store(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:store():list()
+local results, err = client:Store():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -227,7 +227,7 @@ local results, err = client:store():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:store():load({ id = "store_id" })
+local result, err = client:Store():load({ id = "store_id" })
 ```
 
 ### Common Methods

@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a geo
 
 ```lua
-local result, err = client:geo():load({ id = "example_id" })
+local geo, err = client:Geo():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(geo)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:geo():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Geo():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -162,7 +162,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Geo` | `(data) -> GeoEntity` | Create a Geo entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Store` | `(data) -> StoreEntity` | Create a Store entity instance. |
 
 ### Entity interface
@@ -185,17 +185,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local geo, err = client:Geo():load({ id = "example_id" })
+    if err then error(err) end
+    -- geo is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -254,7 +259,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.geo`
+Create an instance: `local geo = client:Geo(nil)`
 
 #### Operations
 
@@ -264,14 +269,14 @@ Create an instance: `const geo = client.geo`
 
 #### Example: Load
 
-```ts
-const geo = await client.geo.load({ id: 'geo_id' })
+```lua
+local geo, err = client:Geo():load({ id = "geo_id" })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -281,14 +286,14 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```lua
+local image, err = client:Image():load({ id = "image_id" })
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.store`
+Create an instance: `local store = client:Store(nil)`
 
 #### Operations
 
@@ -325,14 +330,14 @@ Create an instance: `const store = client.store`
 
 #### Example: Load
 
-```ts
-const store = await client.store.load({ id: 'store_id' })
+```lua
+local store, err = client:Store():load({ id = "store_id" })
 ```
 
 #### Example: List
 
-```ts
-const stores = await client.store.list()
+```lua
+local stores, err = client:Store():list()
 ```
 
 
@@ -407,7 +412,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local geo = client:geo()
+local geo = client:Geo()
 geo:load({ id = "example_id" })
 
 -- geo:data_get() now returns the loaded geo data

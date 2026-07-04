@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## GeoEntity
 
 ```ruby
-geo = client.geo
+geo = client.Geo
 ```
 
 ### Operations
@@ -104,7 +104,7 @@ geo = client.geo
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.geo.load({ "id" => "geo_id" })
+result = client.Geo.load({ "id" => "geo_id" })
 ```
 
 ### Common Methods
@@ -140,7 +140,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.image
+image = client.Image
 ```
 
 ### Operations
@@ -150,7 +150,7 @@ image = client.image
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.image.load({ "id" => "image_id" })
+result = client.Image.load({ "id" => "image_id" })
 ```
 
 ### Common Methods
@@ -186,7 +186,7 @@ Return the entity name.
 ## StoreEntity
 
 ```ruby
-store = client.store
+store = client.Store
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ store = client.store
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.store.list(nil)
+results = client.Store.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -230,7 +230,7 @@ results = client.store.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.store.load({ "id" => "store_id" })
+result = client.Store.load({ "id" => "store_id" })
 ```
 
 ### Common Methods

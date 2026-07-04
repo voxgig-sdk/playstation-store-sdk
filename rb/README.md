@@ -32,8 +32,9 @@ client = PlaystationStoreSDK.new
 
 ```ruby
 begin
-  result = client.geo.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Geo record (raises on error).
+  geo = client.Geo.load({ "id" => "example_id" })
+  puts geo
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PlaystationStoreSDK.test
+client = PlaystationStoreSDK.test({
+  "entity" => { "geo" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.geo.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+geo = client.Geo.load({ "id" => "test01" })
+puts geo
 ```
 
 ### Use a custom fetch function
@@ -163,7 +168,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Geo` | `(data) -> GeoEntity` | Create a Geo entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Store` | `(data) -> StoreEntity` | Create a Store entity instance. |
 
 ### Entity interface
@@ -258,7 +263,7 @@ API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{sear
 
 ### Geo
 
-Create an instance: `const geo = client.geo`
+Create an instance: `geo = client.Geo`
 
 #### Operations
 
@@ -268,14 +273,15 @@ Create an instance: `const geo = client.geo`
 
 #### Example: Load
 
-```ts
-const geo = await client.geo.load({ id: 'geo_id' })
+```ruby
+# load returns the bare Geo record (raises on error).
+geo = client.Geo.load({ "id" => "geo_id" })
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image`
 
 #### Operations
 
@@ -285,14 +291,15 @@ Create an instance: `const image = client.image`
 
 #### Example: Load
 
-```ts
-const image = await client.image.load({ id: 'image_id' })
+```ruby
+# load returns the bare Image record (raises on error).
+image = client.Image.load({ "id" => "image_id" })
 ```
 
 
 ### Store
 
-Create an instance: `const store = client.store`
+Create an instance: `store = client.Store`
 
 #### Operations
 
@@ -329,14 +336,16 @@ Create an instance: `const store = client.store`
 
 #### Example: Load
 
-```ts
-const store = await client.store.load({ id: 'store_id' })
+```ruby
+# load returns the bare Store record (raises on error).
+store = client.Store.load({ "id" => "store_id" })
 ```
 
 #### Example: List
 
-```ts
-const stores = await client.store.list()
+```ruby
+# list returns an Array of Store records (raises on error).
+stores = client.Store.list
 ```
 
 
@@ -411,7 +420,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-geo = client.geo
+geo = client.Geo
 geo.load({ "id" => "example_id" })
 
 # geo.data_get now returns the loaded geo data

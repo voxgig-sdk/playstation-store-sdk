@@ -208,39 +208,21 @@ class PlaystationStoreSDK
   end
 
 
-  # Idiomatic facade: client.geo.list / client.geo.load({ "id" => ... })
-  def geo
-    require_relative 'entity/geo_entity'
-    @geo ||= GeoEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.geo instead.
+  # Canonical facade: client.Geo.list / client.Geo.load({ "id" => ... })
   def Geo(data = nil)
     require_relative 'entity/geo_entity'
     GeoEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
-  def image
-    require_relative 'entity/image_entity'
-    @image ||= ImageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.image instead.
+  # Canonical facade: client.Image.list / client.Image.load({ "id" => ... })
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.store.list / client.store.load({ "id" => ... })
-  def store
-    require_relative 'entity/store_entity'
-    @store ||= StoreEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.store instead.
+  # Canonical facade: client.Store.list / client.Store.load({ "id" => ... })
   def Store(data = nil)
     require_relative 'entity/store_entity'
     StoreEntity.new(self, data)

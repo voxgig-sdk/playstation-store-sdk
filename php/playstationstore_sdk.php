@@ -233,10 +233,10 @@ class PlaystationStoreSDK
 
     private $_geo = null;
 
-    // Idiomatic facade: $client->geo()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Geo() (PHP method
-    // names are case-insensitive).
-    public function geo($data = null)
+    // Canonical facade: $client->Geo()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->geo()
+    // resolves here too.
+    public function Geo($data = null)
     {
         require_once __DIR__ . '/entity/geo_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class PlaystationStoreSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class PlaystationStoreSDK
 
     private $_store = null;
 
-    // Idiomatic facade: $client->store()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Store() (PHP method
-    // names are case-insensitive).
-    public function store($data = null)
+    // Canonical facade: $client->Store()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->store()
+    // resolves here too.
+    public function Store($data = null)
     {
         require_once __DIR__ . '/entity/store_entity.php';
         if ($data === null) {
