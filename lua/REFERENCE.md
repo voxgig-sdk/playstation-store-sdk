@@ -101,7 +101,7 @@ local geo = client:Geo(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Geo():load({ id = "geo_id" })
+local result, err = client:Geo():load()
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image():load({ id = "image_id" })
+local result, err = client:Image():load()
 ```
 
 ### Common Methods
@@ -190,27 +190,27 @@ local store = client:Store(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | ``$STRING`` | Yes |  |
-| `bundle_child_type_id` | ``$NUMBER`` | No |  |
-| `cloud_only_platform` | ``$ARRAY`` | No |  |
-| `container_type` | ``$STRING`` | Yes |  |
-| `content_type` | ``$STRING`` | Yes |  |
-| `default_sku` | ``$OBJECT`` | Yes |  |
-| `game_content_type` | ``$STRING`` | No |  |
-| `game_content_types_list` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `image` | ``$ARRAY`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `parent_name` | ``$STRING`` | No |  |
-| `playable_platform` | ``$ARRAY`` | Yes |  |
-| `provider_name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | Yes |  |
-| `restricted` | ``$BOOLEAN`` | Yes |  |
-| `revision` | ``$NUMBER`` | Yes |  |
-| `short_name` | ``$STRING`` | Yes |  |
-| `timestamp` | ``$NUMBER`` | Yes |  |
-| `top_category` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
+| `bucket` | `string` | Yes |  |
+| `bundle_child_type_id` | `number` | No |  |
+| `cloud_only_platform` | `table` | No |  |
+| `container_type` | `string` | Yes |  |
+| `content_type` | `string` | Yes |  |
+| `default_sku` | `table` | Yes |  |
+| `game_content_type` | `string` | No |  |
+| `game_content_types_list` | `table` | No |  |
+| `id` | `string` | Yes |  |
+| `image` | `table` | Yes |  |
+| `name` | `string` | Yes |  |
+| `parent_name` | `string` | No |  |
+| `playable_platform` | `table` | Yes |  |
+| `provider_name` | `string` | No |  |
+| `release_date` | `string` | Yes |  |
+| `restricted` | `boolean` | Yes |  |
+| `revision` | `number` | Yes |  |
+| `short_name` | `string` | Yes |  |
+| `timestamp` | `number` | Yes |  |
+| `top_category` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -227,7 +227,7 @@ local results, err = client:Store():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Store():load({ id = "store_id" })
+local result, err = client:Store():load()
 ```
 
 ### Common Methods

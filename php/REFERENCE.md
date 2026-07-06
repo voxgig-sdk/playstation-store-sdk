@@ -8,7 +8,7 @@ Complete API reference for the PlaystationStore PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/playstation-store_sdk.php';
+require_once __DIR__ . '/playstationstore_sdk.php';
 
 $client = new PlaystationStoreSDK($options);
 ```
@@ -53,11 +53,11 @@ Create a new `ImageEntity` instance. Pass `null` for no initial data.
 
 Create a new `StoreEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): PlaystationStoreUtility`
 
 Return a copy of the SDK utility object.
 
@@ -103,24 +103,24 @@ $geo = $client->Geo();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Geo()->load(["id" => "geo_id"]);
+$result = $client->Geo()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -129,7 +129,7 @@ Set the entity match criteria.
 Create a new `GeoEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -149,24 +149,24 @@ $image = $client->Image();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Image()->load(["id" => "image_id"]);
+$result = $client->Image()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -175,7 +175,7 @@ Set the entity match criteria.
 Create a new `ImageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -192,36 +192,36 @@ $store = $client->Store();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | ``$STRING`` | Yes |  |
-| `bundle_child_type_id` | ``$NUMBER`` | No |  |
-| `cloud_only_platform` | ``$ARRAY`` | No |  |
-| `container_type` | ``$STRING`` | Yes |  |
-| `content_type` | ``$STRING`` | Yes |  |
-| `default_sku` | ``$OBJECT`` | Yes |  |
-| `game_content_type` | ``$STRING`` | No |  |
-| `game_content_types_list` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `image` | ``$ARRAY`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `parent_name` | ``$STRING`` | No |  |
-| `playable_platform` | ``$ARRAY`` | Yes |  |
-| `provider_name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | Yes |  |
-| `restricted` | ``$BOOLEAN`` | Yes |  |
-| `revision` | ``$NUMBER`` | Yes |  |
-| `short_name` | ``$STRING`` | Yes |  |
-| `timestamp` | ``$NUMBER`` | Yes |  |
-| `top_category` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
+| `bucket` | `string` | Yes |  |
+| `bundle_child_type_id` | `float` | No |  |
+| `cloud_only_platform` | `array` | No |  |
+| `container_type` | `string` | Yes |  |
+| `content_type` | `string` | Yes |  |
+| `default_sku` | `array` | Yes |  |
+| `game_content_type` | `string` | No |  |
+| `game_content_types_list` | `array` | No |  |
+| `id` | `string` | Yes |  |
+| `image` | `array` | Yes |  |
+| `name` | `string` | Yes |  |
+| `parent_name` | `string` | No |  |
+| `playable_platform` | `array` | Yes |  |
+| `provider_name` | `string` | No |  |
+| `release_date` | `string` | Yes |  |
+| `restricted` | `bool` | Yes |  |
+| `revision` | `float` | Yes |  |
+| `short_name` | `string` | Yes |  |
+| `timestamp` | `float` | Yes |  |
+| `top_category` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Store()->list([]);
+$results = $client->Store()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -229,24 +229,24 @@ $results = $client->Store()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Store()->load(["id" => "store_id"]);
+$result = $client->Store()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -255,7 +255,7 @@ Set the entity match criteria.
 Create a new `StoreEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

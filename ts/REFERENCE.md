@@ -143,7 +143,7 @@ const geo = client.Geo()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Geo().load({ id: 'geo_id' })
+const result = await client.Geo().load()
 ```
 
 ### Common Methods
@@ -187,7 +187,7 @@ const image = client.Image()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Image().load({ id: 'image_id' })
+const result = await client.Image().load()
 ```
 
 ### Common Methods
@@ -228,27 +228,27 @@ const store = client.Store()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | ``$STRING`` | Yes |  |
-| `bundle_child_type_id` | ``$NUMBER`` | No |  |
-| `cloud_only_platform` | ``$ARRAY`` | No |  |
-| `container_type` | ``$STRING`` | Yes |  |
-| `content_type` | ``$STRING`` | Yes |  |
-| `default_sku` | ``$OBJECT`` | Yes |  |
-| `game_content_type` | ``$STRING`` | No |  |
-| `game_content_types_list` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `image` | ``$ARRAY`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `parent_name` | ``$STRING`` | No |  |
-| `playable_platform` | ``$ARRAY`` | Yes |  |
-| `provider_name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | Yes |  |
-| `restricted` | ``$BOOLEAN`` | Yes |  |
-| `revision` | ``$NUMBER`` | Yes |  |
-| `short_name` | ``$STRING`` | Yes |  |
-| `timestamp` | ``$NUMBER`` | Yes |  |
-| `top_category` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
+| `bucket` | `string` | Yes |  |
+| `bundle_child_type_id` | `number` | No |  |
+| `cloud_only_platform` | `any[]` | No |  |
+| `container_type` | `string` | Yes |  |
+| `content_type` | `string` | Yes |  |
+| `default_sku` | `Record<string, any>` | Yes |  |
+| `game_content_type` | `string` | No |  |
+| `game_content_types_list` | `any[]` | No |  |
+| `id` | `string` | Yes |  |
+| `image` | `any[]` | Yes |  |
+| `name` | `string` | Yes |  |
+| `parent_name` | `string` | No |  |
+| `playable_platform` | `any[]` | Yes |  |
+| `provider_name` | `string` | No |  |
+| `release_date` | `string` | Yes |  |
+| `restricted` | `boolean` | Yes |  |
+| `revision` | `number` | Yes |  |
+| `short_name` | `string` | Yes |  |
+| `timestamp` | `number` | Yes |  |
+| `top_category` | `string` | Yes |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -265,7 +265,7 @@ const results = await client.Store().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Store().load({ id: 'store_id' })
+const result = await client.Store().load()
 ```
 
 ### Common Methods

@@ -4,6 +4,8 @@
 
 The Lua SDK for the PlaystationStore API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Geo()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,9 +36,31 @@ local client = sdk.new()
 ### 3. Load a geo
 
 ```lua
-local geo, err = client:Geo():load({ id = "example_id" })
+local geo, err = client:Geo():load()
 if err then error(err) end
 print(geo)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local geo, err = client:Geo():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -82,8 +106,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Geo():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:Geo():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -173,9 +197,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -190,12 +211,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local geo, err = client:Geo():load({ id = "example_id" })
+    local geo, err = client:Geo():load()
     if err then error(err) end
     -- geo is the loaded record
 
@@ -270,7 +291,7 @@ Create an instance: `local geo = client:Geo(nil)`
 #### Example: Load
 
 ```lua
-local geo, err = client:Geo():load({ id = "geo_id" })
+local geo, err = client:Geo():load()
 ```
 
 
@@ -287,7 +308,7 @@ Create an instance: `local image = client:Image(nil)`
 #### Example: Load
 
 ```lua
-local image, err = client:Image():load({ id = "image_id" })
+local image, err = client:Image():load()
 ```
 
 
@@ -306,32 +327,32 @@ Create an instance: `local store = client:Store(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | ``$STRING`` |  |
-| `bundle_child_type_id` | ``$NUMBER`` |  |
-| `cloud_only_platform` | ``$ARRAY`` |  |
-| `container_type` | ``$STRING`` |  |
-| `content_type` | ``$STRING`` |  |
-| `default_sku` | ``$OBJECT`` |  |
-| `game_content_type` | ``$STRING`` |  |
-| `game_content_types_list` | ``$ARRAY`` |  |
-| `id` | ``$STRING`` |  |
-| `image` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `parent_name` | ``$STRING`` |  |
-| `playable_platform` | ``$ARRAY`` |  |
-| `provider_name` | ``$STRING`` |  |
-| `release_date` | ``$STRING`` |  |
-| `restricted` | ``$BOOLEAN`` |  |
-| `revision` | ``$NUMBER`` |  |
-| `short_name` | ``$STRING`` |  |
-| `timestamp` | ``$NUMBER`` |  |
-| `top_category` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `bucket` | `string` |  |
+| `bundle_child_type_id` | `number` |  |
+| `cloud_only_platform` | `table` |  |
+| `container_type` | `string` |  |
+| `content_type` | `string` |  |
+| `default_sku` | `table` |  |
+| `game_content_type` | `string` |  |
+| `game_content_types_list` | `table` |  |
+| `id` | `string` |  |
+| `image` | `table` |  |
+| `name` | `string` |  |
+| `parent_name` | `string` |  |
+| `playable_platform` | `table` |  |
+| `provider_name` | `string` |  |
+| `release_date` | `string` |  |
+| `restricted` | `boolean` |  |
+| `revision` | `number` |  |
+| `short_name` | `string` |  |
+| `timestamp` | `number` |  |
+| `top_category` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: Load
 
 ```lua
-local store, err = client:Store():load({ id = "store_id" })
+local store, err = client:Store():load()
 ```
 
 #### Example: List
@@ -341,12 +362,16 @@ local stores, err = client:Store():list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -363,8 +388,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -413,9 +439,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local geo = client:Geo()
-geo:load({ id = "example_id" })
+geo:load()
 
--- geo:data_get() now returns the loaded geo data
+-- geo:data_get() now returns the geo data from the last load
 -- geo:match_get() returns the last match criteria
 ```
 

@@ -65,8 +65,13 @@ class StoreEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: StoreLoadMatch, ctrl=None) -> Store:
+    def load(self, reqmatch=None, ctrl=None) -> Store:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Store().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class StoreEntity:
 
 
     
-    def list(self, reqmatch: StoreListMatch, ctrl=None) -> list[Store]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Store]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Store().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

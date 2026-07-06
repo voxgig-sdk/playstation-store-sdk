@@ -8,7 +8,7 @@ Complete API reference for the PlaystationStore Python SDK.
 ### Constructor
 
 ```python
-from playstation-store_sdk import PlaystationStoreSDK
+from playstationstore_sdk import PlaystationStoreSDK
 
 client = PlaystationStoreSDK(options)
 ```
@@ -98,7 +98,7 @@ geo = client.Geo()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Geo().load({"id": "geo_id"})
+result = client.Geo().load()
 ```
 
 ### Common Methods
@@ -143,7 +143,7 @@ image = client.Image()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Image().load({"id": "image_id"})
+result = client.Image().load()
 ```
 
 ### Common Methods
@@ -185,36 +185,36 @@ store = client.Store()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | ``$STRING`` | Yes |  |
-| `bundle_child_type_id` | ``$NUMBER`` | No |  |
-| `cloud_only_platform` | ``$ARRAY`` | No |  |
-| `container_type` | ``$STRING`` | Yes |  |
-| `content_type` | ``$STRING`` | Yes |  |
-| `default_sku` | ``$OBJECT`` | Yes |  |
-| `game_content_type` | ``$STRING`` | No |  |
-| `game_content_types_list` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `image` | ``$ARRAY`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `parent_name` | ``$STRING`` | No |  |
-| `playable_platform` | ``$ARRAY`` | Yes |  |
-| `provider_name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | Yes |  |
-| `restricted` | ``$BOOLEAN`` | Yes |  |
-| `revision` | ``$NUMBER`` | Yes |  |
-| `short_name` | ``$STRING`` | Yes |  |
-| `timestamp` | ``$NUMBER`` | Yes |  |
-| `top_category` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
+| `bucket` | `str` | Yes |  |
+| `bundle_child_type_id` | `float` | No |  |
+| `cloud_only_platform` | `list` | No |  |
+| `container_type` | `str` | Yes |  |
+| `content_type` | `str` | Yes |  |
+| `default_sku` | `dict` | Yes |  |
+| `game_content_type` | `str` | No |  |
+| `game_content_types_list` | `list` | No |  |
+| `id` | `str` | Yes |  |
+| `image` | `list` | Yes |  |
+| `name` | `str` | Yes |  |
+| `parent_name` | `str` | No |  |
+| `playable_platform` | `list` | Yes |  |
+| `provider_name` | `str` | No |  |
+| `release_date` | `str` | Yes |  |
+| `restricted` | `bool` | Yes |  |
+| `revision` | `float` | Yes |  |
+| `short_name` | `str` | Yes |  |
+| `timestamp` | `float` | Yes |  |
+| `top_category` | `str` | Yes |  |
+| `url` | `str` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Store().list({})
+results = client.Store().list()
 for store in results:
     print(store)
 ```
@@ -224,7 +224,7 @@ for store in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Store().load({"id": "store_id"})
+result = client.Store().load()
 ```
 
 ### Common Methods

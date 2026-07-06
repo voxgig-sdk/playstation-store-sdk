@@ -8,7 +8,8 @@
 export interface Geo {
 }
 
-export type GeoLoadMatch = Partial<Geo>
+export interface GeoLoadMatch {
+}
 
 export interface Image {
 }

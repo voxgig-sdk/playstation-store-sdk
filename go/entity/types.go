@@ -12,8 +12,7 @@ import "encoding/json"
 type Geo struct {
 }
 
-// GeoLoadMatch mirrors the geo fields as an all-optional match
-// filter (Go analog of Partial<Geo>).
+// GeoLoadMatch is the typed request payload for Geo.LoadTyped.
 type GeoLoadMatch struct {
 }
 

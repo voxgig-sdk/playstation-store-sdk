@@ -12,7 +12,7 @@
 class Geo
 end
 
-# Match filter for Geo#load (any subset of Geo fields).
+# Request payload for Geo#load.
 class GeoLoadMatch
 end
 

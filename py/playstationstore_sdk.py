@@ -221,19 +221,19 @@ class PlaystationStoreSDK:
 
 
     def Geo(self, data=None) -> "GeoEntity":
-        """Entity factory: client.Geo().list({}) / client.Geo().load({"id": ...})."""
+        """Entity factory: client.Geo().list() / client.Geo().load({"id": ...})."""
         from entity.geo_entity import GeoEntity
         return GeoEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
     def Store(self, data=None) -> "StoreEntity":
-        """Entity factory: client.Store().list({}) / client.Store().load({"id": ...})."""
+        """Entity factory: client.Store().list() / client.Store().load({"id": ...})."""
         from entity.store_entity import StoreEntity
         return StoreEntity(self, data)
 

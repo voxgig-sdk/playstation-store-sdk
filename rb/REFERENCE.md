@@ -8,7 +8,7 @@ Complete API reference for the PlaystationStore Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'playstation-store_sdk'
+require_relative 'PlaystationStore_sdk'
 
 client = PlaystationStoreSDK.new(options)
 ```
@@ -104,7 +104,7 @@ geo = client.Geo
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Geo.load({ "id" => "geo_id" })
+result = client.Geo.load()
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ image = client.Image
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Image.load({ "id" => "image_id" })
+result = client.Image.load()
 ```
 
 ### Common Methods
@@ -193,36 +193,36 @@ store = client.Store
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | ``$STRING`` | Yes |  |
-| `bundle_child_type_id` | ``$NUMBER`` | No |  |
-| `cloud_only_platform` | ``$ARRAY`` | No |  |
-| `container_type` | ``$STRING`` | Yes |  |
-| `content_type` | ``$STRING`` | Yes |  |
-| `default_sku` | ``$OBJECT`` | Yes |  |
-| `game_content_type` | ``$STRING`` | No |  |
-| `game_content_types_list` | ``$ARRAY`` | No |  |
-| `id` | ``$STRING`` | Yes |  |
-| `image` | ``$ARRAY`` | Yes |  |
-| `name` | ``$STRING`` | Yes |  |
-| `parent_name` | ``$STRING`` | No |  |
-| `playable_platform` | ``$ARRAY`` | Yes |  |
-| `provider_name` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | Yes |  |
-| `restricted` | ``$BOOLEAN`` | Yes |  |
-| `revision` | ``$NUMBER`` | Yes |  |
-| `short_name` | ``$STRING`` | Yes |  |
-| `timestamp` | ``$NUMBER`` | Yes |  |
-| `top_category` | ``$STRING`` | Yes |  |
-| `url` | ``$STRING`` | Yes |  |
+| `bucket` | `String` | Yes |  |
+| `bundle_child_type_id` | `Float` | No |  |
+| `cloud_only_platform` | `Array` | No |  |
+| `container_type` | `String` | Yes |  |
+| `content_type` | `String` | Yes |  |
+| `default_sku` | `Hash` | Yes |  |
+| `game_content_type` | `String` | No |  |
+| `game_content_types_list` | `Array` | No |  |
+| `id` | `String` | Yes |  |
+| `image` | `Array` | Yes |  |
+| `name` | `String` | Yes |  |
+| `parent_name` | `String` | No |  |
+| `playable_platform` | `Array` | Yes |  |
+| `provider_name` | `String` | No |  |
+| `release_date` | `String` | Yes |  |
+| `restricted` | `Boolean` | Yes |  |
+| `revision` | `Float` | Yes |  |
+| `short_name` | `String` | Yes |  |
+| `timestamp` | `Float` | Yes |  |
+| `top_category` | `String` | Yes |  |
+| `url` | `String` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Store.list(nil)
+results = client.Store.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -230,7 +230,7 @@ results = client.Store.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Store.load({ "id" => "store_id" })
+result = client.Store.load()
 ```
 
 ### Common Methods
