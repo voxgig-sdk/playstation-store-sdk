@@ -33,12 +33,14 @@ local sdk = require("playstation-store_sdk")
 local client = sdk.new()
 ```
 
-### 3. Load a geo
+### 3. Load an image
+
+Image is nested under age, so provide the `age`.
 
 ```lua
-local geo, err = client:Geo():load()
+local image, err = client:Image():load({ age = 1, container_id = "example_container_id", cusa = "example_cusa", language = "example_language" })
 if err then error(err) end
-print(geo)
+print(image)
 ```
 
 
@@ -308,7 +310,7 @@ Create an instance: `local image = client:Image(nil)`
 #### Example: Load
 
 ```lua
-local image, err = client:Image():load()
+local image, err = client:Image():load({ age = 1, container_id = "container_id", cusa = "cusa", language = "language" })
 ```
 
 
@@ -352,7 +354,7 @@ Create an instance: `local store = client:Store(nil)`
 #### Example: Load
 
 ```lua
-local store, err = client:Store():load()
+local store, err = client:Store():load({ age = 1, country = "country", cusa = "cusa", language = "language" })
 ```
 
 #### Example: List

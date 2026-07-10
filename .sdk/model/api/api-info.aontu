@@ -23,9 +23,9 @@ main: {
           url: "https://store.playstation.com/"
         }
       ]
+      summary: "This is a sample Playstation Store server."
       title: "Playstation Store API"
       version: "1.0.5"
+      website: "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md"
     }
   }
-}
-

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1105,14 +1102,17 @@
         "license": {
           "name": "MIT"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Playstation Store server",
             "url": "https://store.playstation.com/"
           }
         ],
+        "summary": "This is a sample Playstation Store server.",
         "title": "Playstation Store API",
-        "version": "1.0.5"
+        "version": "1.0.5",
+        "website": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md"
       },
       "option": {},
       "target": {
@@ -1165,6 +1165,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1215,6 +1218,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

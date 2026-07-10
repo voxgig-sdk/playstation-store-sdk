@@ -345,7 +345,7 @@ Create an instance: `image := client.Image(nil)`
 #### Example: Load
 
 ```go
-image, err := client.Image(nil).Load(nil, nil)
+image, err := client.Image(nil).Load(map[string]any{"age": 1, "container_id": "container_id", "cusa": "cusa", "language": "language"}, nil)
 if err != nil {
     panic(err)
 }
@@ -393,7 +393,7 @@ Create an instance: `store := client.Store(nil)`
 #### Example: Load
 
 ```go
-store, err := client.Store(nil).Load(nil, nil)
+store, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "cusa": "cusa", "language": "language"}, nil)
 if err != nil {
     panic(err)
 }

@@ -33,14 +33,20 @@ import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
 const client = new PlaystationStoreSDK()
 ```
 
-### 3. Load a geo
+### 3. Load an image
 
+Image is nested under age, so provide the `age`.
 `load()` returns the entity directly and throws on failure:
 
 ```ts
 try {
-  const geo = await client.Geo().load()
-  console.log(geo)
+  const image = await client.Image().load({
+    age: 1,
+    container_id: 'example_container_id',
+    cusa: 'example_cusa',
+    language: 'example_language',
+  })
+  console.log(image)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -368,7 +374,7 @@ Create an instance: `const image = client.Image()`
 #### Example: Load
 
 ```ts
-const image = await client.Image().load()
+const image = await client.Image().load({ age: 1, container_id: 'container_id', cusa: 'cusa', language: 'language' })
 ```
 
 
@@ -412,7 +418,7 @@ Create an instance: `const store = client.Store()`
 #### Example: Load
 
 ```ts
-const store = await client.Store().load()
+const store = await client.Store().load({ age: 1, country: 'country', cusa: 'cusa', language: 'language' })
 ```
 
 #### Example: List

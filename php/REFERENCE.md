@@ -149,7 +149,7 @@ $image = $client->Image();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Image()->load();
+$result = $client->Image()->load(["age" => 1, "container_id" => "container_id", "cusa" => "cusa", "language" => "language"]);
 ```
 
 ### Common Methods
@@ -229,7 +229,7 @@ $results = $client->Store()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Store()->load();
+$result = $client->Store()->load(["age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language"]);
 ```
 
 ### Common Methods

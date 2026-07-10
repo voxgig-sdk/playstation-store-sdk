@@ -147,7 +147,7 @@ local image = client:Image(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Image():load()
+local result, err = client:Image():load({ age = 1, container_id = "container_id", cusa = "cusa", language = "language" })
 ```
 
 ### Common Methods
@@ -227,7 +227,7 @@ local results, err = client:Store():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Store():load()
+local result, err = client:Store():load({ age = 1, country = "country", cusa = "cusa", language = "language" })
 ```
 
 ### Common Methods

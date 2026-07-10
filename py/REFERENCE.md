@@ -143,7 +143,7 @@ image = client.Image()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Image().load()
+result = client.Image().load({"age": 1, "container_id": "container_id", "cusa": "cusa", "language": "language"})
 ```
 
 ### Common Methods
@@ -224,7 +224,7 @@ for store in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Store().load()
+result = client.Store().load({"age": 1, "country": "country", "cusa": "cusa", "language": "language"})
 ```
 
 ### Common Methods

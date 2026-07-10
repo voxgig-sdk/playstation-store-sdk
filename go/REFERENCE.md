@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 geo := client.Geo(nil)
+fmt.Println(geo.GetName()) // "geo"
 ```
 
 ### Operations
@@ -109,6 +110,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Geo(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -139,6 +144,7 @@ Return the entity name.
 
 ```go
 image := client.Image(nil)
+fmt.Println(image.GetName()) // "image"
 ```
 
 ### Operations
@@ -148,7 +154,11 @@ image := client.Image(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Image(nil).Load(nil, nil)
+result, err := client.Image(nil).Load(map[string]any{"age": 1, "container_id": "container_id", "cusa": "cusa", "language": "language"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -179,6 +189,7 @@ Return the entity name.
 
 ```go
 store := client.Store(nil)
+fmt.Println(store.GetName()) // "store"
 ```
 
 ### Fields
@@ -215,6 +226,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Store(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -222,7 +237,11 @@ results, err := client.Store(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Store(nil).Load(nil, nil)
+result, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "cusa": "cusa", "language": "language"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

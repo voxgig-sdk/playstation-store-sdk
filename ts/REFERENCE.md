@@ -187,7 +187,7 @@ const image = client.Image()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Image().load()
+const result = await client.Image().load({ age: 1, container_id: 'container_id', cusa: 'cusa', language: 'language' })
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ const results = await client.Store().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Store().load()
+const result = await client.Store().load({ age: 1, country: 'country', cusa: 'cusa', language: 'language' })
 ```
 
 ### Common Methods
