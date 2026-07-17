@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- PlaystationStore SDK exists test
 
 local sdk = require("playstation-store_sdk")
 
