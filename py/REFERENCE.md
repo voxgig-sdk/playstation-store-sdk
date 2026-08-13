@@ -186,15 +186,15 @@ store = client.Store()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `bucket` | `str` | Yes |  |
-| `bundle_child_type_id` | `float` | No |  |
+| `bundleChildTypeId` | `float` | No |  |
 | `cloud_only_platform` | `list` | No |  |
 | `container_type` | `str` | Yes |  |
 | `content_type` | `str` | Yes |  |
 | `default_sku` | `dict` | Yes |  |
-| `game_content_type` | `str` | No |  |
-| `game_content_types_list` | `list` | No |  |
+| `gameContentTypesList` | `list` | No |  |
+| `game_contentType` | `str` | No |  |
 | `id` | `str` | Yes |  |
-| `image` | `list` | Yes |  |
+| `images` | `list` | Yes |  |
 | `name` | `str` | Yes |  |
 | `parent_name` | `str` | No |  |
 | `playable_platform` | `list` | Yes |  |
@@ -214,7 +214,7 @@ store = client.Store()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Store().list()
+results = client.Store().list({"age": 1, "country": "example", "language": "example", "search_string": "example"})
 for store in results:
     print(store)
 ```

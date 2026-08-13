@@ -35,6 +35,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/kamaji/api/chihiro/00_09_000/geo",
 								"parts": []any{
@@ -52,7 +53,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -153,6 +153,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
 								"parts": []any{
@@ -192,7 +193,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -214,7 +214,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "bundle_child_type_id",
+						"name": "bundleChildTypeId",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 1,
@@ -249,16 +249,16 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "game_content_type",
+						"name": "gameContentTypesList",
 						"req": false,
-						"type": "`$STRING`",
+						"type": "`$ARRAY`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "game_content_types_list",
+						"name": "game_contentType",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$STRING`",
 						"index$": 7,
 					},
 					map[string]any{
@@ -270,7 +270,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "image",
+						"name": "images",
 						"req": true,
 						"type": "`$ARRAY`",
 						"index$": 9,
@@ -526,6 +526,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
 								"parts": []any{
@@ -574,7 +575,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -747,6 +747,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
 								"parts": []any{
@@ -868,6 +869,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
 								"parts": []any{
@@ -897,7 +899,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

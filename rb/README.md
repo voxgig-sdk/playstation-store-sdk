@@ -36,7 +36,7 @@ Image is nested under age, so provide the `age`.
 
 ```ruby
 begin
-  # load returns the bare Image record (raises on error).
+  # load returns the ENTITY — call data_get for the Image record (raises on error).
   image = client.Image.load({ "age" => 1, "container_id" => "example_container_id", "cusa" => "example_cusa", "language" => "example_language" })
   puts image
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  geo = client.Geo.load()
+  image = client.Image.load({ "age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = PlaystationStoreSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-geo = client.Geo.load()
-puts geo
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+image = client.Image.load({ "age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example" })
+puts image
 ```
 
 ### Use a custom fetch function
@@ -258,15 +259,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `bucket` |  |
-| `bundle_child_type_id` |  |
+| `bundleChildTypeId` |  |
 | `cloud_only_platform` |  |
 | `container_type` |  |
 | `content_type` |  |
 | `default_sku` |  |
-| `game_content_type` |  |
-| `game_content_types_list` |  |
+| `gameContentTypesList` |  |
+| `game_contentType` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
 | `parent_name` |  |
 | `playable_platform` |  |
@@ -301,7 +302,7 @@ Create an instance: `geo = client.Geo`
 #### Example: Load
 
 ```ruby
-# load returns the bare Geo record (raises on error).
+# load returns the ENTITY — call data_get for the Geo record (raises on error).
 geo = client.Geo.load()
 ```
 
@@ -319,7 +320,7 @@ Create an instance: `image = client.Image`
 #### Example: Load
 
 ```ruby
-# load returns the bare Image record (raises on error).
+# load returns the ENTITY — call data_get for the Image record (raises on error).
 image = client.Image.load({ "age" => 1, "container_id" => "container_id", "cusa" => "cusa", "language" => "language" })
 ```
 
@@ -340,15 +341,15 @@ Create an instance: `store = client.Store`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `String` |  |
-| `bundle_child_type_id` | `Float` |  |
+| `bundleChildTypeId` | `Float` |  |
 | `cloud_only_platform` | `Array` |  |
 | `container_type` | `String` |  |
 | `content_type` | `String` |  |
 | `default_sku` | `Hash` |  |
-| `game_content_type` | `String` |  |
-| `game_content_types_list` | `Array` |  |
+| `gameContentTypesList` | `Array` |  |
+| `game_contentType` | `String` |  |
 | `id` | `String` |  |
-| `image` | `Array` |  |
+| `images` | `Array` |  |
 | `name` | `String` |  |
 | `parent_name` | `String` |  |
 | `playable_platform` | `Array` |  |
@@ -364,7 +365,7 @@ Create an instance: `store = client.Store`
 #### Example: Load
 
 ```ruby
-# load returns the bare Store record (raises on error).
+# load returns the ENTITY — call data_get for the Store record (raises on error).
 store = client.Store.load({ "age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language" })
 ```
 
@@ -452,11 +453,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-geo = client.Geo
-geo.load()
+image = client.Image
+image.load({ "age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example" })
 
-# geo.data_get now returns the geo data from the last load
-# geo.match_get returns the last match criteria
+# image.data_get now returns the image data from the last load
+# image.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

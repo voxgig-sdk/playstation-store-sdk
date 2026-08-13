@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import PlaystationStoreControl
-from core.error import PlaystationStoreError
-from core.result import PlaystationStoreResult
-from core.spec import PlaystationStoreSpec
+from playstationstore_sdk.config import make_config
+from playstationstore_sdk.features import _make_feature
+from playstationstore_sdk.core.control import PlaystationStoreControl
+from playstationstore_sdk.core.error import PlaystationStoreError
+from playstationstore_sdk.core.result import PlaystationStoreResult
+from playstationstore_sdk.core.spec import PlaystationStoreSpec
 
 
 # True when this SDK was generated with the named feature.

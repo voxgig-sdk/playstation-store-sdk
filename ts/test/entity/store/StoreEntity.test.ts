@@ -26,8 +26,8 @@ import {
 describe('StoreEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PLAYSTATIONSTORE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PLAYSTATIONSTORE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PLAYSTATION_STORE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PLAYSTATION_STORE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PlaystationStoreSDK.test()
@@ -67,13 +67,13 @@ describe('StoreEntity', async () => {
     store_ref01_match['language'] = setup.idmap['language01']
     store_ref01_match['search_string'] = setup.idmap['search_string01']
 
-    const store_ref01_list = await store_ref01_ent.list(store_ref01_match)
+    const store_ref01_list = (await store_ref01_ent.list(store_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const store_ref01_match_dt0: any = {}
     store_ref01_match_dt0.id = store_ref01_data.id
-    const store_ref01_data_dt0 = await store_ref01_ent.load(store_ref01_match_dt0)
+    const store_ref01_data_dt0 = (await store_ref01_ent.load(store_ref01_match_dt0)).data()
     assert(store_ref01_data_dt0.id === store_ref01_data.id)
 
 

@@ -147,11 +147,11 @@ function store_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["PLAYSTATIONSTORE_TEST_STORE_ENTID"] = {},
-    ["PLAYSTATIONSTORE_TEST_LIVE"] = "FALSE",
+    ["PLAYSTATION_STORE_TEST_STORE_ENTID"] = {},
+    ["PLAYSTATION_STORE_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["PLAYSTATIONSTORE_TEST_LIVE"] == "TRUE"
+  local live = env["PLAYSTATION_STORE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

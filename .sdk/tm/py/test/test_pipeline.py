@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import PlaystationStoreSDK
-from core.error import PlaystationStoreError
-from core.result import PlaystationStoreResult
-from core.response import PlaystationStoreResponse
-from core.spec import PlaystationStoreSpec
-from feature.base_feature import PlaystationStoreBaseFeature
+from projectname_sdk.core.error import PlaystationStoreError
+from projectname_sdk.core.result import PlaystationStoreResult
+from projectname_sdk.core.response import PlaystationStoreResponse
+from projectname_sdk.core.spec import PlaystationStoreSpec
+from projectname_sdk.feature.base_feature import PlaystationStoreBaseFeature
 
 
 def _client():

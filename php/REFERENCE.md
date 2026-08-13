@@ -193,15 +193,15 @@ $store = $client->Store();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `bucket` | `string` | Yes |  |
-| `bundle_child_type_id` | `float` | No |  |
+| `bundleChildTypeId` | `float` | No |  |
 | `cloud_only_platform` | `array` | No |  |
 | `container_type` | `string` | Yes |  |
 | `content_type` | `string` | Yes |  |
 | `default_sku` | `array` | Yes |  |
-| `game_content_type` | `string` | No |  |
-| `game_content_types_list` | `array` | No |  |
+| `gameContentTypesList` | `array` | No |  |
+| `game_contentType` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `image` | `array` | Yes |  |
+| `images` | `array` | Yes |  |
 | `name` | `string` | Yes |  |
 | `parent_name` | `string` | No |  |
 | `playable_platform` | `array` | Yes |  |

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# PlaystationStore SDK exists test
 
 import pytest
 from playstationstore_sdk import PlaystationStoreSDK

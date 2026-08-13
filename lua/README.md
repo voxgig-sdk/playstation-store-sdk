@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local geo, err = client:Geo():load()
+local image, err = client:Image():load({ age = 1, container_id = "example", cusa = "example", language = "example" })
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Geo():load()
+local result, err = client:Image():load({ age = 1, container_id = "example", cusa = "example", language = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -250,15 +250,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `bucket` |  |
-| `bundle_child_type_id` |  |
+| `bundleChildTypeId` |  |
 | `cloud_only_platform` |  |
 | `container_type` |  |
 | `content_type` |  |
 | `default_sku` |  |
-| `game_content_type` |  |
-| `game_content_types_list` |  |
+| `gameContentTypesList` |  |
+| `game_contentType` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
 | `parent_name` |  |
 | `playable_platform` |  |
@@ -330,15 +330,15 @@ Create an instance: `local store = client:Store(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `string` |  |
-| `bundle_child_type_id` | `number` |  |
+| `bundleChildTypeId` | `number` |  |
 | `cloud_only_platform` | `table` |  |
 | `container_type` | `string` |  |
 | `content_type` | `string` |  |
 | `default_sku` | `table` |  |
-| `game_content_type` | `string` |  |
-| `game_content_types_list` | `table` |  |
+| `gameContentTypesList` | `table` |  |
+| `game_contentType` | `string` |  |
 | `id` | `string` |  |
-| `image` | `table` |  |
+| `images` | `table` |  |
 | `name` | `string` |  |
 | `parent_name` | `string` |  |
 | `playable_platform` | `table` |  |
@@ -440,11 +440,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local geo = client:Geo()
-geo:load()
+local image = client:Image()
+image:load({ age = 1, container_id = "example", cusa = "example", language = "example" })
 
--- geo:data_get() now returns the geo data from the last load
--- geo:match_get() returns the last match criteria
+-- image:data_get() now returns the image data from the last load
+-- image:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

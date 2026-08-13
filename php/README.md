@@ -37,7 +37,7 @@ Image is nested under age, so provide the `age`.
 
 ```php
 try {
-    // load() returns the bare Image record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Image record (throws on error).
     $image = $client->Image()->load(["age" => 1, "container_id" => "example_container_id", "cusa" => "example_cusa", "language" => "example_language"]);
     print_r($image);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $geo = $client->Geo()->load();
+    $image = $client->Image()->load(["age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PlaystationStoreSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$geo = $client->Geo()->load();
-print_r($geo);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$image = $client->Image()->load(["age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example"]);
+print_r($image);
 ```
 
 ### Use a custom fetch function
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -268,15 +269,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `bucket` |  |
-| `bundle_child_type_id` |  |
+| `bundleChildTypeId` |  |
 | `cloud_only_platform` |  |
 | `container_type` |  |
 | `content_type` |  |
 | `default_sku` |  |
-| `game_content_type` |  |
-| `game_content_types_list` |  |
+| `gameContentTypesList` |  |
+| `game_contentType` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
 | `parent_name` |  |
 | `playable_platform` |  |
@@ -311,7 +312,7 @@ Create an instance: `$geo = $client->Geo();`
 #### Example: Load
 
 ```php
-// load() returns the bare Geo record (throws on error).
+// load() returns the ENTITY — call data_get() for the Geo record (throws on error).
 $geo = $client->Geo()->load();
 ```
 
@@ -329,7 +330,7 @@ Create an instance: `$image = $client->Image();`
 #### Example: Load
 
 ```php
-// load() returns the bare Image record (throws on error).
+// load() returns the ENTITY — call data_get() for the Image record (throws on error).
 $image = $client->Image()->load(["age" => 1, "container_id" => "container_id", "cusa" => "cusa", "language" => "language"]);
 ```
 
@@ -350,15 +351,15 @@ Create an instance: `$store = $client->Store();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `string` |  |
-| `bundle_child_type_id` | `float` |  |
+| `bundleChildTypeId` | `float` |  |
 | `cloud_only_platform` | `array` |  |
 | `container_type` | `string` |  |
 | `content_type` | `string` |  |
 | `default_sku` | `array` |  |
-| `game_content_type` | `string` |  |
-| `game_content_types_list` | `array` |  |
+| `gameContentTypesList` | `array` |  |
+| `game_contentType` | `string` |  |
 | `id` | `string` |  |
-| `image` | `array` |  |
+| `images` | `array` |  |
 | `name` | `string` |  |
 | `parent_name` | `string` |  |
 | `playable_platform` | `array` |  |
@@ -374,7 +375,7 @@ Create an instance: `$store = $client->Store();`
 #### Example: Load
 
 ```php
-// load() returns the bare Store record (throws on error).
+// load() returns the ENTITY — call data_get() for the Store record (throws on error).
 $store = $client->Store()->load(["age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language"]);
 ```
 
@@ -462,11 +463,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$geo = $client->Geo();
-$geo->load();
+$image = $client->Image();
+$image->load(["age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example"]);
 
-// $geo->data_get() now returns the geo data from the last load
-// $geo->match_get() returns the last match criteria
+// $image->data_get() now returns the image data from the last load
+// $image->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

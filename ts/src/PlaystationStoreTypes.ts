@@ -23,15 +23,15 @@ export interface ImageLoadMatch {
 
 export interface Store {
   bucket: string
-  bundle_child_type_id?: number
+  bundleChildTypeId?: number
   cloud_only_platform?: any[]
   container_type: string
   content_type: string
   default_sku: Record<string, any>
-  game_content_type?: string
-  game_content_types_list?: any[]
+  gameContentTypesList?: any[]
+  game_contentType?: string
   id: string
-  image: any[]
+  images: any[]
   name: string
   parent_name?: string
   playable_platform: any[]

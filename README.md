@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PlaystationStoreSDK.test()
-const geo = await client.Geo().load()
-// geo is a bare Geo populated with mock data
-console.log(geo)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PlaystationStoreSDK.test({
+  entity: {
+    image: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const image = await client.Image().load({ age: 1, container_id: 'example_container_id', cusa: 'example_cusa', language: 'example_language' })
+// image is the Image entity, populated with mock data
+// — call image.data() for the record itself
+console.log(image)
 ```
 
 ### Python
 
 ```python
 client = PlaystationStoreSDK.test()
-geo = client.Geo().load()
-print(geo)
+image = client.Image().load({"age": 1, "container_id": "example", "cusa": "example", "language": "example"})
+print(image)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(geo)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = PlaystationStoreSDK::test([
-    "entity" => ["geo" => ["test01" => []]],
+    "entity" => ["image" => ["test01" => []]],
 ]);
-$geo = $client->Geo()->load();
+$image = $client->Image()->load(["age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Geo(nil).Load(
+result, err := client.Image(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Geo(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = PlaystationStoreSDK.test({
-  "entity" => { "geo" => { "test01" => {} } },
+  "entity" => { "image" => { "test01" => {} } },
 })
-geo = client.Geo.load()
+image = client.Image.load({ "age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Geo():load()
+local result, err = client:Image():load({ age = 1, container_id = "example", cusa = "example", language = "example" })
 ```
 
 ## Packages
@@ -190,7 +199,7 @@ require_once 'playstationstore_sdk.php';
 $client = new PlaystationStoreSDK();
 
 
-// Load a specific geo (returns the bare record; throws on error)
+// Load a specific geo (returns the ENTITY; call data_get() for the record; throws on error)
 $geo = $client->Geo()->load();
 print_r($geo);
 ```
@@ -221,7 +230,7 @@ require_relative "PlaystationStore_sdk"
 client = PlaystationStoreSDK.new
 
 
-# Load a specific geo (returns the bare record; raises on error)
+# Load a specific geo (returns the ENTITY; call data_get for the record)
 geo = client.Geo.load()
 puts geo
 ```
@@ -355,6 +364,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://store.playstation.com/](https://store.playstation.com/)
 

@@ -36,6 +36,7 @@ module PlaystationStoreConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/kamaji/api/chihiro/00_09_000/geo",
                   "parts" => [
@@ -154,6 +155,7 @@ module PlaystationStoreConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
                   "parts" => [
@@ -215,7 +217,7 @@ module PlaystationStoreConfig
             },
             {
               "active" => true,
-              "name" => "bundle_child_type_id",
+              "name" => "bundleChildTypeId",
               "req" => false,
               "type" => "`$NUMBER`",
               "index$" => 1,
@@ -250,16 +252,16 @@ module PlaystationStoreConfig
             },
             {
               "active" => true,
-              "name" => "game_content_type",
+              "name" => "gameContentTypesList",
               "req" => false,
-              "type" => "`$STRING`",
+              "type" => "`$ARRAY`",
               "index$" => 6,
             },
             {
               "active" => true,
-              "name" => "game_content_types_list",
+              "name" => "game_contentType",
               "req" => false,
-              "type" => "`$ARRAY`",
+              "type" => "`$STRING`",
               "index$" => 7,
             },
             {
@@ -271,7 +273,7 @@ module PlaystationStoreConfig
             },
             {
               "active" => true,
-              "name" => "image",
+              "name" => "images",
               "req" => true,
               "type" => "`$ARRAY`",
               "index$" => 9,
@@ -527,6 +529,7 @@ module PlaystationStoreConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
                   "parts" => [
@@ -748,6 +751,7 @@ module PlaystationStoreConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
                   "parts" => [
@@ -869,6 +873,7 @@ module PlaystationStoreConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
                   "parts" => [

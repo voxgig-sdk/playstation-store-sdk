@@ -39,7 +39,7 @@ client = PlaystationStoreSDK()
 ### 3. Load an image
 
 Image is nested under age, so provide the `age`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -56,8 +56,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    geo = client.Geo().load()
-    print(geo)
+    image = client.Image().load({"age": 1, "container_id": "example", "cusa": "example", "language": "example"})
+    print(image)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PlaystationStoreSDK.test()
 
-# Entity ops return the bare record and raise on error.
-geo = client.Geo().load()
-# geo contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+image = client.Image().load({"age": 1, "container_id": "example", "cusa": "example", "language": "example"})
+# image contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -222,7 +223,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -263,15 +264,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `bucket` |  |
-| `bundle_child_type_id` |  |
+| `bundleChildTypeId` |  |
 | `cloud_only_platform` |  |
 | `container_type` |  |
 | `content_type` |  |
 | `default_sku` |  |
-| `game_content_type` |  |
-| `game_content_types_list` |  |
+| `gameContentTypesList` |  |
+| `game_contentType` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
 | `parent_name` |  |
 | `playable_platform` |  |
@@ -343,15 +344,15 @@ Create an instance: `store = client.Store()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `str` |  |
-| `bundle_child_type_id` | `float` |  |
+| `bundleChildTypeId` | `float` |  |
 | `cloud_only_platform` | `list` |  |
 | `container_type` | `str` |  |
 | `content_type` | `str` |  |
 | `default_sku` | `dict` |  |
-| `game_content_type` | `str` |  |
-| `game_content_types_list` | `list` |  |
+| `gameContentTypesList` | `list` |  |
+| `game_contentType` | `str` |  |
 | `id` | `str` |  |
-| `image` | `list` |  |
+| `images` | `list` |  |
 | `name` | `str` |  |
 | `parent_name` | `str` |  |
 | `playable_platform` | `list` |  |
@@ -373,7 +374,7 @@ store = client.Store().load({"age": 1, "country": "country", "cusa": "cusa", "la
 #### Example: List
 
 ```python
-stores = client.Store().list()
+stores = client.Store().list({"age": 1, "country": "example", "language": "example", "search_string": "example"})
 ```
 
 
@@ -452,11 +453,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-geo = client.Geo()
-geo.load()
+image = client.Image()
+image.load({"age": 1, "container_id": "example", "cusa": "example", "language": "example"})
 
-# geo.data_get() now returns the geo data from the last load
-# geo.match_get() returns the last match criteria
+# image.data_get() now returns the image data from the last load
+# image.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

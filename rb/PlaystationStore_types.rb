@@ -46,7 +46,7 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] bucket
 #   @return [String]
 #
-# @!attribute [rw] bundle_child_type_id
+# @!attribute [rw] bundleChildTypeId
 #   @return [Float, nil]
 #
 # @!attribute [rw] cloud_only_platform
@@ -61,16 +61,16 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] default_sku
 #   @return [Hash]
 #
-# @!attribute [rw] game_content_type
-#   @return [String, nil]
-#
-# @!attribute [rw] game_content_types_list
+# @!attribute [rw] gameContentTypesList
 #   @return [Array, nil]
+#
+# @!attribute [rw] game_contentType
+#   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String]
 #
-# @!attribute [rw] image
+# @!attribute [rw] images
 #   @return [Array]
 #
 # @!attribute [rw] name
@@ -107,15 +107,15 @@ ImageLoadMatch = Struct.new(
 #   @return [String]
 Store = Struct.new(
   :bucket,
-  :bundle_child_type_id,
+  :bundleChildTypeId,
   :cloud_only_platform,
   :container_type,
   :content_type,
   :default_sku,
-  :game_content_type,
-  :game_content_types_list,
+  :gameContentTypesList,
+  :game_contentType,
   :id,
-  :image,
+  :images,
   :name,
   :parent_name,
   :playable_platform,

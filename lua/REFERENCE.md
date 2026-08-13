@@ -191,15 +191,15 @@ local store = client:Store(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `bucket` | `string` | Yes |  |
-| `bundle_child_type_id` | `number` | No |  |
+| `bundleChildTypeId` | `number` | No |  |
 | `cloud_only_platform` | `table` | No |  |
 | `container_type` | `string` | Yes |  |
 | `content_type` | `string` | Yes |  |
 | `default_sku` | `table` | Yes |  |
-| `game_content_type` | `string` | No |  |
-| `game_content_types_list` | `table` | No |  |
+| `gameContentTypesList` | `table` | No |  |
+| `game_contentType` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `image` | `table` | Yes |  |
+| `images` | `table` | Yes |  |
 | `name` | `string` | Yes |  |
 | `parent_name` | `string` | No |  |
 | `playable_platform` | `table` | Yes |  |

@@ -146,11 +146,11 @@ def store_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "PLAYSTATIONSTORE_TEST_STORE_ENTID" => {},
-    "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
+    "PLAYSTATION_STORE_TEST_STORE_ENTID" => {},
+    "PLAYSTATION_STORE_TEST_LIVE" => "FALSE",
   })
 
-  live = env["PLAYSTATIONSTORE_TEST_LIVE"] == "TRUE"
+  live = env["PLAYSTATION_STORE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

@@ -194,15 +194,15 @@ store = client.Store
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `bucket` | `String` | Yes |  |
-| `bundle_child_type_id` | `Float` | No |  |
+| `bundleChildTypeId` | `Float` | No |  |
 | `cloud_only_platform` | `Array` | No |  |
 | `container_type` | `String` | Yes |  |
 | `content_type` | `String` | Yes |  |
 | `default_sku` | `Hash` | Yes |  |
-| `game_content_type` | `String` | No |  |
-| `game_content_types_list` | `Array` | No |  |
+| `gameContentTypesList` | `Array` | No |  |
+| `game_contentType` | `String` | No |  |
 | `id` | `String` | Yes |  |
-| `image` | `Array` | Yes |  |
+| `images` | `Array` | Yes |  |
 | `name` | `String` | Yes |  |
 | `parent_name` | `String` | No |  |
 | `playable_platform` | `Array` | Yes |  |

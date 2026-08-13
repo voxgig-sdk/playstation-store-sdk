@@ -11,7 +11,7 @@ main: kit: entity: store: {
       type: "`$STRING`"
     }
     {
-      name: "bundle_child_type_id"
+      name: "bundleChildTypeId"
       req: false
       type: "`$NUMBER`"
     }
@@ -36,14 +36,14 @@ main: kit: entity: store: {
       type: "`$OBJECT`"
     }
     {
-      name: "game_content_type"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "game_content_types_list"
+      name: "gameContentTypesList"
       req: false
       type: "`$ARRAY`"
+    }
+    {
+      name: "game_contentType"
+      req: false
+      type: "`$STRING`"
     }
     {
       name: "id"
@@ -51,7 +51,7 @@ main: kit: entity: store: {
       type: "`$STRING`"
     }
     {
-      name: "image"
+      name: "images"
       req: true
       type: "`$ARRAY`"
     }

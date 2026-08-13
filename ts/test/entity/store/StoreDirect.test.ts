@@ -19,11 +19,15 @@ import {
 describe('StoreDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PLAYSTATIONSTORE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PLAYSTATIONSTORE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PLAYSTATION_STORE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PLAYSTATION_STORE_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new PlaystationStoreSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -163,17 +167,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'PLAYSTATIONSTORE_TEST_STORE_ENTID': {},
-    'PLAYSTATIONSTORE_TEST_LIVE': 'FALSE',
+    'PLAYSTATION_STORE_TEST_STORE_ENTID': {},
+    'PLAYSTATION_STORE_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.PLAYSTATIONSTORE_TEST_LIVE
+  const live = 'TRUE' === env.PLAYSTATION_STORE_TEST_LIVE
 
   if (live) {
     const client = new PlaystationStoreSDK({
     })
 
-    let idmap: any = env['PLAYSTATIONSTORE_TEST_STORE_ENTID']
+    let idmap: any = env['PLAYSTATION_STORE_TEST_STORE_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

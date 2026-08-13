@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-geo, err := client.Geo(nil).Load(nil, nil)
+image, err := client.Image(nil).Load(map[string]any{"age": 1, "container_id": "example", "cusa": "example", "language": "example"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = geo
+_ = image
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-geo, err := client.Geo(nil).Load(
-    nil, nil,
+image, err := client.Image(nil).Load(
+    map[string]any{"age": 1, "container_id": "example", "cusa": "example", "language": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(geo) // the returned mock data
+fmt.Println(image) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -281,15 +281,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `"bucket"` |  |
-| `"bundle_child_type_id"` |  |
+| `"bundleChildTypeId"` |  |
 | `"cloud_only_platform"` |  |
 | `"container_type"` |  |
 | `"content_type"` |  |
 | `"default_sku"` |  |
-| `"game_content_type"` |  |
-| `"game_content_types_list"` |  |
+| `"gameContentTypesList"` |  |
+| `"game_contentType"` |  |
 | `"id"` |  |
-| `"image"` |  |
+| `"images"` |  |
 | `"name"` |  |
 | `"parent_name"` |  |
 | `"playable_platform"` |  |
@@ -369,15 +369,15 @@ Create an instance: `store := client.Store(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `string` |  |
-| `bundle_child_type_id` | `float64` |  |
+| `bundleChildTypeId` | `float64` |  |
 | `cloud_only_platform` | `[]any` |  |
 | `container_type` | `string` |  |
 | `content_type` | `string` |  |
 | `default_sku` | `map[string]any` |  |
-| `game_content_type` | `string` |  |
-| `game_content_types_list` | `[]any` |  |
+| `gameContentTypesList` | `[]any` |  |
+| `game_contentType` | `string` |  |
 | `id` | `string` |  |
-| `image` | `[]any` |  |
+| `images` | `[]any` |  |
 | `name` | `string` |  |
 | `parent_name` | `string` |  |
 | `playable_platform` | `[]any` |  |
@@ -484,11 +484,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-geo := client.Geo(nil)
-geo.Load(nil, nil)
+image := client.Image(nil)
+image.Load(map[string]any{"age": 1, "container_id": "example", "cusa": "example", "language": "example"}, nil)
 
-// geo.Data() now returns the geo data from the last load
-// geo.Match() returns the last match criteria
+// image.Data() now returns the image data from the last load
+// image.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

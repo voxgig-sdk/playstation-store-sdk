@@ -23,8 +23,8 @@ module PlaystationStoreTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("PLAYSTATIONSTORE_TEST_LIVE")
-    override = getenv("PLAYSTATIONSTORE_TEST_OVERRIDE")
+    live = getenv("PLAYSTATION_STORE_TEST_LIVE")
+    override = getenv("PLAYSTATION_STORE_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module PlaystationStoreTestRunner
       end
     end
 
-    explain = getenv("PLAYSTATIONSTORE_TEST_EXPLAIN")
-    m["PLAYSTATIONSTORE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("PLAYSTATION_STORE_TEST_EXPLAIN")
+    m["PLAYSTATION_STORE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

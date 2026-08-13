@@ -20,15 +20,15 @@
 
 ---@class Store
 ---@field bucket string
----@field bundle_child_type_id? number
+---@field bundleChildTypeId? number
 ---@field cloud_only_platform? table
 ---@field container_type string
 ---@field content_type string
 ---@field default_sku table
----@field game_content_type? string
----@field game_content_types_list? table
+---@field gameContentTypesList? table
+---@field game_contentType? string
 ---@field id string
----@field image table
+---@field images table
 ---@field name string
 ---@field parent_name? string
 ---@field playable_platform table

@@ -40,15 +40,15 @@ class ImageLoadMatch
 class Store
 {
     public string $bucket;
-    public ?float $bundle_child_type_id = null;
+    public ?float $bundleChildTypeId = null;
     public ?array $cloud_only_platform = null;
     public string $container_type;
     public string $content_type;
     public array $default_sku;
-    public ?string $game_content_type = null;
-    public ?array $game_content_types_list = null;
+    public ?array $gameContentTypesList = null;
+    public ?string $game_contentType = null;
     public string $id;
-    public array $image;
+    public array $images;
     public string $name;
     public ?string $parent_name = null;
     public array $playable_platform;

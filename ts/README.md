@@ -59,8 +59,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const geo = await client.Geo().load()
-  console.log(geo)
+  const image = await client.Image().load({ age: 1, container_id: "example", cusa: "example", language: "example" })
+  console.log(image)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -126,9 +126,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PlaystationStoreSDK.test()
 
-const geo = await client.Geo().load()
-// geo is a bare entity populated with mock response data
-console.log(geo)
+const image = await client.Image().load({ age: 1, container_id: 'example_container_id', cusa: 'example_cusa', language: 'example_language' })
+// image is the entity, populated with mock response data
+// — call image.data() for the record itself
+console.log(image)
 ```
 
 You can also use the instance method:
@@ -143,10 +144,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Geo()
+const entity = client.Image()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ age: 1, container_id: 'example_container_id', cusa: 'example_cusa', language: 'example_language' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -314,15 +315,15 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 | Field | Description |
 | --- | --- |
 | `bucket` |  |
-| `bundle_child_type_id` |  |
+| `bundleChildTypeId` |  |
 | `cloud_only_platform` |  |
 | `container_type` |  |
 | `content_type` |  |
 | `default_sku` |  |
-| `game_content_type` |  |
-| `game_content_types_list` |  |
+| `gameContentTypesList` |  |
+| `game_contentType` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
 | `parent_name` |  |
 | `playable_platform` |  |
@@ -394,15 +395,15 @@ Create an instance: `const store = client.Store()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `bucket` | `string` |  |
-| `bundle_child_type_id` | `number` |  |
+| `bundleChildTypeId` | `number` |  |
 | `cloud_only_platform` | `any[]` |  |
 | `container_type` | `string` |  |
 | `content_type` | `string` |  |
 | `default_sku` | `Record<string, any>` |  |
-| `game_content_type` | `string` |  |
-| `game_content_types_list` | `any[]` |  |
+| `gameContentTypesList` | `any[]` |  |
+| `game_contentType` | `string` |  |
 | `id` | `string` |  |
-| `image` | `any[]` |  |
+| `images` | `any[]` |  |
 | `name` | `string` |  |
 | `parent_name` | `string` |  |
 | `playable_platform` | `any[]` |  |
@@ -424,7 +425,7 @@ const store = await client.Store().load({ age: 1, country: 'country', cusa: 'cus
 #### Example: List
 
 ```ts
-const stores = await client.Store().list()
+const stores = await client.Store().list({ age: 1, country: "example", language: "example", search_string: "example" })
 ```
 
 
@@ -497,11 +498,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const geo = client.Geo()
-await geo.load()
+const image = client.Image()
+await image.load({ age: 1, container_id: "example", cusa: "example", language: "example" })
 
-// geo.data() now returns the geo data from the last `load`
-// geo.match() returns the last match criteria
+// image.data() now returns the image data from the last `load`
+// image.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

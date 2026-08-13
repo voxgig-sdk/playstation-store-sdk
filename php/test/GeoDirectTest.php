@@ -65,11 +65,11 @@ function geo_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "PLAYSTATIONSTORE_TEST_GEO_ENTID" => [],
-        "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
+        "PLAYSTATION_STORE_TEST_GEO_ENTID" => [],
+        "PLAYSTATION_STORE_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE";
+    $live = $env["PLAYSTATION_STORE_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

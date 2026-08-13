@@ -26,8 +26,8 @@ import {
 describe('GeoEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PLAYSTATIONSTORE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PLAYSTATIONSTORE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PLAYSTATION_STORE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PLAYSTATION_STORE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PlaystationStoreSDK.test()
@@ -62,7 +62,7 @@ describe('GeoEntity', async () => {
     // LOAD
     const geo_ref01_ent = client.Geo()
     const geo_ref01_match_dt0: any = {}
-    const geo_ref01_data_dt0 = await geo_ref01_ent.load(geo_ref01_match_dt0)
+    const geo_ref01_data_dt0 = (await geo_ref01_ent.load(geo_ref01_match_dt0)).data()
     assert(null != geo_ref01_data_dt0)
 
 

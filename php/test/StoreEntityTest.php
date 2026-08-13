@@ -72,7 +72,7 @@ class StoreEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set PLAYSTATIONSTORE_TEST_STORE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set PLAYSTATION_STORE_TEST_STORE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -102,7 +102,7 @@ class StoreEntityTest extends TestCase
             "id" => $store_ref01_data["id"],
         ];
         $store_ref01_data_dt0_loaded = $store_ref01_ent->load($store_ref01_match_dt0, null);
-        $store_ref01_data_dt0_load_result = Helpers::to_map($store_ref01_data_dt0_loaded);
+        $store_ref01_data_dt0_load_result = Helpers::to_map(is_object($store_ref01_data_dt0_loaded) && method_exists($store_ref01_data_dt0_loaded, 'data_get') ? $store_ref01_data_dt0_loaded->data_get() : $store_ref01_data_dt0_loaded);
         $this->assertNotNull($store_ref01_data_dt0_load_result);
         $this->assertEquals($store_ref01_data_dt0_load_result["id"], $store_ref01_data["id"]);
 
@@ -131,22 +131,22 @@ function store_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("PLAYSTATIONSTORE_TEST_STORE_ENTID");
+    $entid_env_raw = getenv("PLAYSTATION_STORE_TEST_STORE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "PLAYSTATIONSTORE_TEST_STORE_ENTID" => $idmap,
-        "PLAYSTATIONSTORE_TEST_LIVE" => "FALSE",
-        "PLAYSTATIONSTORE_TEST_EXPLAIN" => "FALSE",
+        "PLAYSTATION_STORE_TEST_STORE_ENTID" => $idmap,
+        "PLAYSTATION_STORE_TEST_LIVE" => "FALSE",
+        "PLAYSTATION_STORE_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["PLAYSTATIONSTORE_TEST_STORE_ENTID"]);
+        $env["PLAYSTATION_STORE_TEST_STORE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE") {
+    if ($env["PLAYSTATION_STORE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -155,13 +155,13 @@ function store_basic_setup($extra)
         $client = new PlaystationStoreSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["PLAYSTATIONSTORE_TEST_LIVE"] === "TRUE";
+    $live = $env["PLAYSTATION_STORE_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["PLAYSTATIONSTORE_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["PLAYSTATION_STORE_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

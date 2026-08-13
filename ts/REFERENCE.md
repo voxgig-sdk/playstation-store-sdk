@@ -229,15 +229,15 @@ const store = client.Store()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `bucket` | `string` | Yes |  |
-| `bundle_child_type_id` | `number` | No |  |
+| `bundleChildTypeId` | `number` | No |  |
 | `cloud_only_platform` | `any[]` | No |  |
 | `container_type` | `string` | Yes |  |
 | `content_type` | `string` | Yes |  |
 | `default_sku` | `Record<string, any>` | Yes |  |
-| `game_content_type` | `string` | No |  |
-| `game_content_types_list` | `any[]` | No |  |
+| `gameContentTypesList` | `any[]` | No |  |
+| `game_contentType` | `string` | No |  |
 | `id` | `string` | Yes |  |
-| `image` | `any[]` | Yes |  |
+| `images` | `any[]` | Yes |  |
 | `name` | `string` | Yes |  |
 | `parent_name` | `string` | No |  |
 | `playable_platform` | `any[]` | Yes |  |
@@ -257,7 +257,7 @@ const store = client.Store()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Store().list()
+const results = await client.Store().list({ age: 1, country: "example", language: "example", search_string: "example" })
 ```
 
 #### `load(match: object, ctrl?: object)`
