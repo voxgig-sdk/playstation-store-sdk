@@ -39,7 +39,7 @@ describe('StoreEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.PLAYSTATION_STORE_TEST_LIVE
-    for (const op of ['list', 'load']) {
+    for (const op of ['load']) {
       if (maybeSkipControl(t, 'entityOp', 'store.' + op, live)) return
     }
 
@@ -59,18 +59,8 @@ describe('StoreEntity', async () => {
 
     let store_ref01_data = Object.values(setup.data.existing.store)[0] as any
 
-    // LIST
-    const store_ref01_ent = client.Store()
-    const store_ref01_match: any = {}
-    store_ref01_match['age'] = setup.idmap['age01']
-    store_ref01_match['country'] = setup.idmap['country01']
-    store_ref01_match['language'] = setup.idmap['language01']
-    store_ref01_match['search_string'] = setup.idmap['search_string01']
-
-    const store_ref01_list = (await store_ref01_ent.list(store_ref01_match)).map((e: any) => e.data())
-
-
     // LOAD
+    const store_ref01_ent = client.Store()
     const store_ref01_match_dt0: any = {}
     store_ref01_match_dt0.id = store_ref01_data.id
     const store_ref01_data_dt0 = (await store_ref01_ent.load(store_ref01_match_dt0)).data()

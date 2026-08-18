@@ -11,69 +11,6 @@ from test import runner
 
 class TestStoreDirect:
 
-    def test_should_direct_list_store(self):
-        setup = _store_direct_setup([
-            {"id": "direct01"},
-            {"id": "direct02"},
-        ])
-        _skip, _reason = runner.is_control_skipped("direct", "direct-list-store", "live" if setup["live"] else "unit")
-        if _skip:
-            # pytest already imported at module scope
-            pytest.skip(_reason or "skipped via sdk-test-control.json")
-            return
-        if setup["live"]:
-            for _live_key in ["age01", "country01", "language01", "search_string01"]:
-                if setup["idmap"].get(_live_key) is None:
-                    # pytest already imported at module scope
-                    pytest.skip(f"live test needs {_live_key} via *_ENTID env var (synthetic IDs only)")
-                    return
-
-        client = setup["client"]
-
-        params = {}
-        if setup["live"]:
-            params["age"] = setup["idmap"]["age01"]
-        else:
-            params["age"] = "direct01"
-        if setup["live"]:
-            params["country"] = setup["idmap"]["country01"]
-        else:
-            params["country"] = "direct01"
-        if setup["live"]:
-            params["language"] = setup["idmap"]["language01"]
-        else:
-            params["language"] = "direct01"
-        if setup["live"]:
-            params["search_string"] = setup["idmap"]["search_string01"]
-        else:
-            params["search_string"] = "direct01"
-
-        result = client.direct({
-            "path": "store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{search_string}",
-            "method": "GET",
-            "params": params,
-        })
-        if setup["live"]:
-            # Live mode is lenient: synthetic IDs frequently 4xx and the
-            # list-response shape varies wildly across public APIs. Skip
-            # rather than fail when the call doesn't return a usable list.
-            if result.get("err") is not None:
-                pytest.skip(f"list call failed (likely synthetic IDs against live API): {result.get('err')}")
-                return
-            if not result.get("ok"):
-                pytest.skip("list call not ok (likely synthetic IDs against live API)")
-                return
-            status = helpers.to_int(result["status"])
-            if status < 200 or status >= 300:
-                pytest.skip(f"expected 2xx status, got {status}")
-                return
-        else:
-            assert result["ok"] is True
-            assert helpers.to_int(result["status"]) == 200
-            assert isinstance(result["data"], list)
-            assert len(result["data"]) == 2
-            assert len(setup["calls"]) == 1
-
     def test_should_direct_load_store(self):
         setup = _store_direct_setup({"id": "direct01"})
         _skip, _reason = runner.is_control_skipped("direct", "direct-load-store", "live" if setup["live"] else "unit")

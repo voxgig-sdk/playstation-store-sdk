@@ -193,44 +193,37 @@ store = client.Store
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `String` | Yes |  |
-| `bundleChildTypeId` | `Float` | No |  |
-| `cloud_only_platform` | `Array` | No |  |
+| `age_limit` | `Float` | Yes |  |
+| `attributes` | `Hash` | Yes |  |
 | `container_type` | `String` | Yes |  |
-| `content_type` | `String` | Yes |  |
-| `default_sku` | `Hash` | Yes |  |
-| `gameContentTypesList` | `Array` | No |  |
-| `game_contentType` | `String` | No |  |
+| `content_origin` | `Float` | Yes |  |
+| `dob_required` | `Boolean` | Yes |  |
 | `id` | `String` | Yes |  |
 | `images` | `Array` | Yes |  |
+| `links` | `Array` | Yes |  |
+| `long_desc` | `String` | Yes |  |
+| `metadata` | `Hash` | Yes |  |
 | `name` | `String` | Yes |  |
-| `parent_name` | `String` | No |  |
-| `playable_platform` | `Array` | Yes |  |
-| `provider_name` | `String` | No |  |
-| `release_date` | `String` | Yes |  |
+| `promomedia` | `Array` | Yes |  |
 | `restricted` | `Boolean` | Yes |  |
 | `revision` | `Float` | Yes |  |
-| `short_name` | `String` | Yes |  |
+| `scene_layout` | `Hash` | Yes |  |
+| `size` | `Float` | Yes |  |
+| `sku_links` | `Array` | Yes |  |
+| `sort` | `String` | Yes |  |
+| `start` | `Float` | Yes |  |
+| `template_def` | `Hash` | Yes |  |
 | `timestamp` | `Float` | Yes |  |
-| `top_category` | `String` | Yes |  |
-| `url` | `String` | Yes |  |
+| `total_results` | `Float` | Yes |  |
 
 ### Operations
-
-#### `list(reqmatch = nil, ctrl = nil) -> Array`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
-
-```ruby
-results = client.Store.list
-```
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Store.load({ "age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language" })
+result = client.Store.load({ "age" => 1, "country" => "country", "language" => "language" })
 ```
 
 ### Common Methods

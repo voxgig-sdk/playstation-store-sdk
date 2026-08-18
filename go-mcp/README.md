@@ -27,8 +27,8 @@ Tool-call arguments (what an agent sends):
 
 ```jsonc
 // playstation-store_list: first page of records
-{ "entity": "store" }
-{ "entity": "store", "query": { } }
+{ "entity": "geo" }
+{ "entity": "geo", "query": { } }
 
 // playstation-store_load: one record by id
 { "entity": "geo", "query": { "id": 1 } }
@@ -60,8 +60,8 @@ Tool-call arguments (what an agent sends):
    ```
 
 4. **Restart Claude Code.** The `playstation-store_list` and `playstation-store_load` tools now appear
-   in new sessions. Ask the agent to *"list store using playstation-store"*
-   and it calls `playstation-store_list` with `{"entity":"store"}`.
+   in new sessions. Ask the agent to *"list geo using playstation-store"*
+   and it calls `playstation-store_list` with `{"entity":"geo"}`.
 
 ## How-to guides
 
@@ -92,7 +92,7 @@ Args: `entity` (required), `query` (optional filter map). Returns the first
 page of records as JSON:
 
 ```jsonc
-{ "entity": "store" }
+{ "entity": "geo" }
 ```
 
 ### Call the `playstation-store_load` tool

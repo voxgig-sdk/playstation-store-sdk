@@ -5,7 +5,7 @@
 The Python SDK for the PlaystationStore API — an entity-oriented client following Pythonic conventions.
 
 The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Geo()` — each
-carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+carrying a small, uniform set of operations (`load`) instead of raw URL
 paths and query strings. You work with named resources and verbs, which
 keeps the cognitive load low.
 
@@ -213,7 +213,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -263,31 +262,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `bucket` |  |
-| `bundleChildTypeId` |  |
-| `cloud_only_platform` |  |
+| `age_limit` |  |
+| `attributes` |  |
 | `container_type` |  |
-| `content_type` |  |
-| `default_sku` |  |
-| `gameContentTypesList` |  |
-| `game_contentType` |  |
+| `content_origin` |  |
+| `dob_required` |  |
 | `id` |  |
 | `images` |  |
+| `links` |  |
+| `long_desc` |  |
+| `metadata` |  |
 | `name` |  |
-| `parent_name` |  |
-| `playable_platform` |  |
-| `provider_name` |  |
-| `release_date` |  |
+| `promomedia` |  |
 | `restricted` |  |
 | `revision` |  |
-| `short_name` |  |
+| `scene_layout` |  |
+| `size` |  |
+| `sku_links` |  |
+| `sort` |  |
+| `start` |  |
+| `template_def` |  |
 | `timestamp` |  |
-| `top_category` |  |
-| `url` |  |
+| `total_results` |  |
 
-Operations: List, Load.
+Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -336,45 +336,39 @@ Create an instance: `store = client.Store()`
 
 | Method | Description |
 | --- | --- |
-| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `str` |  |
-| `bundleChildTypeId` | `float` |  |
-| `cloud_only_platform` | `list` |  |
+| `age_limit` | `float` |  |
+| `attributes` | `dict` |  |
 | `container_type` | `str` |  |
-| `content_type` | `str` |  |
-| `default_sku` | `dict` |  |
-| `gameContentTypesList` | `list` |  |
-| `game_contentType` | `str` |  |
+| `content_origin` | `float` |  |
+| `dob_required` | `bool` |  |
 | `id` | `str` |  |
 | `images` | `list` |  |
+| `links` | `list` |  |
+| `long_desc` | `str` |  |
+| `metadata` | `dict` |  |
 | `name` | `str` |  |
-| `parent_name` | `str` |  |
-| `playable_platform` | `list` |  |
-| `provider_name` | `str` |  |
-| `release_date` | `str` |  |
+| `promomedia` | `list` |  |
 | `restricted` | `bool` |  |
 | `revision` | `float` |  |
-| `short_name` | `str` |  |
+| `scene_layout` | `dict` |  |
+| `size` | `float` |  |
+| `sku_links` | `list` |  |
+| `sort` | `str` |  |
+| `start` | `float` |  |
+| `template_def` | `dict` |  |
 | `timestamp` | `float` |  |
-| `top_category` | `str` |  |
-| `url` | `str` |  |
+| `total_results` | `float` |  |
 
 #### Example: Load
 
 ```python
-store = client.Store().load({"age": 1, "country": "country", "cusa": "cusa", "language": "language"})
-```
-
-#### Example: List
-
-```python
-stores = client.Store().list({"age": 1, "country": "example", "language": "example", "search_string": "example"})
+store = client.Store().load({"age": 1, "country": "country", "language": "language"})
 ```
 
 

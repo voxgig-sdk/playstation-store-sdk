@@ -192,44 +192,37 @@ $store = $client->Store();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `string` | Yes |  |
-| `bundleChildTypeId` | `float` | No |  |
-| `cloud_only_platform` | `array` | No |  |
+| `age_limit` | `float` | Yes |  |
+| `attributes` | `array` | Yes |  |
 | `container_type` | `string` | Yes |  |
-| `content_type` | `string` | Yes |  |
-| `default_sku` | `array` | Yes |  |
-| `gameContentTypesList` | `array` | No |  |
-| `game_contentType` | `string` | No |  |
+| `content_origin` | `float` | Yes |  |
+| `dob_required` | `bool` | Yes |  |
 | `id` | `string` | Yes |  |
 | `images` | `array` | Yes |  |
+| `links` | `array` | Yes |  |
+| `long_desc` | `string` | Yes |  |
+| `metadata` | `array` | Yes |  |
 | `name` | `string` | Yes |  |
-| `parent_name` | `string` | No |  |
-| `playable_platform` | `array` | Yes |  |
-| `provider_name` | `string` | No |  |
-| `release_date` | `string` | Yes |  |
+| `promomedia` | `array` | Yes |  |
 | `restricted` | `bool` | Yes |  |
 | `revision` | `float` | Yes |  |
-| `short_name` | `string` | Yes |  |
+| `scene_layout` | `array` | Yes |  |
+| `size` | `float` | Yes |  |
+| `sku_links` | `array` | Yes |  |
+| `sort` | `string` | Yes |  |
+| `start` | `float` | Yes |  |
+| `template_def` | `array` | Yes |  |
 | `timestamp` | `float` | Yes |  |
-| `top_category` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
+| `total_results` | `float` | Yes |  |
 
 ### Operations
-
-#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
-
-List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
-
-```php
-$results = $client->Store()->list();
-```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Store()->load(["age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language"]);
+$result = $client->Store()->load(["age" => 1, "country" => "country", "language" => "language"]);
 ```
 
 ### Common Methods

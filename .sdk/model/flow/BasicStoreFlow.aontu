@@ -7,25 +7,6 @@ main: kit: flow: BasicStoreFlow:
   name: "BasicStoreFlow",
   step: [
     {
-      match: {
-        age: "age01",
-        country: "country01",
-        language: "language01",
-        search_string: "search_string01"
-      }
-
-      op: "list",
-      valid: [
-        {
-          apply: "ItemExists",
-          def: {
-            ref: "store_ref01"
-          }
-        }
-      ]
-    }
-
-    {
       input: {
         ref: "store_ref01",
         srcdatavar: "store_ref01_data",

@@ -27,7 +27,7 @@ guide: {
     }
     path: "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}": {
       rename: param: "searchString": *"search_string"
-      op: list: method: *GET
+      op: load: method: *GET
     }
   }
 

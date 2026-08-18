@@ -190,44 +190,37 @@ local store = client:Store(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `string` | Yes |  |
-| `bundleChildTypeId` | `number` | No |  |
-| `cloud_only_platform` | `table` | No |  |
+| `age_limit` | `number` | Yes |  |
+| `attributes` | `table` | Yes |  |
 | `container_type` | `string` | Yes |  |
-| `content_type` | `string` | Yes |  |
-| `default_sku` | `table` | Yes |  |
-| `gameContentTypesList` | `table` | No |  |
-| `game_contentType` | `string` | No |  |
+| `content_origin` | `number` | Yes |  |
+| `dob_required` | `boolean` | Yes |  |
 | `id` | `string` | Yes |  |
 | `images` | `table` | Yes |  |
+| `links` | `table` | Yes |  |
+| `long_desc` | `string` | Yes |  |
+| `metadata` | `table` | Yes |  |
 | `name` | `string` | Yes |  |
-| `parent_name` | `string` | No |  |
-| `playable_platform` | `table` | Yes |  |
-| `provider_name` | `string` | No |  |
-| `release_date` | `string` | Yes |  |
+| `promomedia` | `table` | Yes |  |
 | `restricted` | `boolean` | Yes |  |
 | `revision` | `number` | Yes |  |
-| `short_name` | `string` | Yes |  |
+| `scene_layout` | `table` | Yes |  |
+| `size` | `number` | Yes |  |
+| `sku_links` | `table` | Yes |  |
+| `sort` | `string` | Yes |  |
+| `start` | `number` | Yes |  |
+| `template_def` | `table` | Yes |  |
 | `timestamp` | `number` | Yes |  |
-| `top_category` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
+| `total_results` | `number` | Yes |  |
 
 ### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:Store():list()
-```
 
 #### `load(reqmatch, ctrl) -> any, err`
 
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Store():load({ age = 1, country = "country", cusa = "cusa", language = "language" })
+local result, err = client:Store():load({ age = 1, country = "country", language = "language" })
 ```
 
 ### Common Methods

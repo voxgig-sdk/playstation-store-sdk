@@ -4,7 +4,7 @@
 
 The Lua SDK for the PlaystationStore API — an entity-oriented client using Lua conventions.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client:Geo()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:Geo()` — each with the same small set of operations (`load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -198,7 +198,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -214,7 +213,6 @@ data **directly** — there is no wrapper:
 | Operation | `value` |
 | --- | --- |
 | `load` | the entity record (a `table`) |
-| `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
@@ -249,31 +247,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `bucket` |  |
-| `bundleChildTypeId` |  |
-| `cloud_only_platform` |  |
+| `age_limit` |  |
+| `attributes` |  |
 | `container_type` |  |
-| `content_type` |  |
-| `default_sku` |  |
-| `gameContentTypesList` |  |
-| `game_contentType` |  |
+| `content_origin` |  |
+| `dob_required` |  |
 | `id` |  |
 | `images` |  |
+| `links` |  |
+| `long_desc` |  |
+| `metadata` |  |
 | `name` |  |
-| `parent_name` |  |
-| `playable_platform` |  |
-| `provider_name` |  |
-| `release_date` |  |
+| `promomedia` |  |
 | `restricted` |  |
 | `revision` |  |
-| `short_name` |  |
+| `scene_layout` |  |
+| `size` |  |
+| `sku_links` |  |
+| `sort` |  |
+| `start` |  |
+| `template_def` |  |
 | `timestamp` |  |
-| `top_category` |  |
-| `url` |  |
+| `total_results` |  |
 
-Operations: List, Load.
+Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -322,45 +321,39 @@ Create an instance: `local store = client:Store(nil)`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `string` |  |
-| `bundleChildTypeId` | `number` |  |
-| `cloud_only_platform` | `table` |  |
+| `age_limit` | `number` |  |
+| `attributes` | `table` |  |
 | `container_type` | `string` |  |
-| `content_type` | `string` |  |
-| `default_sku` | `table` |  |
-| `gameContentTypesList` | `table` |  |
-| `game_contentType` | `string` |  |
+| `content_origin` | `number` |  |
+| `dob_required` | `boolean` |  |
 | `id` | `string` |  |
 | `images` | `table` |  |
+| `links` | `table` |  |
+| `long_desc` | `string` |  |
+| `metadata` | `table` |  |
 | `name` | `string` |  |
-| `parent_name` | `string` |  |
-| `playable_platform` | `table` |  |
-| `provider_name` | `string` |  |
-| `release_date` | `string` |  |
+| `promomedia` | `table` |  |
 | `restricted` | `boolean` |  |
 | `revision` | `number` |  |
-| `short_name` | `string` |  |
+| `scene_layout` | `table` |  |
+| `size` | `number` |  |
+| `sku_links` | `table` |  |
+| `sort` | `string` |  |
+| `start` | `number` |  |
+| `template_def` | `table` |  |
 | `timestamp` | `number` |  |
-| `top_category` | `string` |  |
-| `url` | `string` |  |
+| `total_results` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local store, err = client:Store():load({ age = 1, country = "country", cusa = "cusa", language = "language" })
-```
-
-#### Example: List
-
-```lua
-local stores, err = client:Store():list()
+local store, err = client:Store():load({ age = 1, country = "country", language = "language" })
 ```
 
 

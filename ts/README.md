@@ -5,7 +5,7 @@
 The TypeScript SDK for the PlaystationStore API — a type-safe, entity-oriented client with full async/await support.
 
 The API is exposed as capitalised, semantic **Entities** — e.g.
-`client.Geo()` — each with a small set of operations (`list`, `load`)
+`client.Geo()` — each with a small set of operations (`load`)
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
@@ -242,7 +242,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
 | `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
 | `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
@@ -255,8 +254,6 @@ Entity operations resolve to the entity data directly — there is no
 result envelope:
 
 - `load` resolves to a single entity object.
-- `list` resolves to an **array** of entity objects (iterate it directly;
-  there is no `.data` and no `.ok`).
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -314,31 +311,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `bucket` |  |
-| `bundleChildTypeId` |  |
-| `cloud_only_platform` |  |
+| `age_limit` |  |
+| `attributes` |  |
 | `container_type` |  |
-| `content_type` |  |
-| `default_sku` |  |
-| `gameContentTypesList` |  |
-| `game_contentType` |  |
+| `content_origin` |  |
+| `dob_required` |  |
 | `id` |  |
 | `images` |  |
+| `links` |  |
+| `long_desc` |  |
+| `metadata` |  |
 | `name` |  |
-| `parent_name` |  |
-| `playable_platform` |  |
-| `provider_name` |  |
-| `release_date` |  |
+| `promomedia` |  |
 | `restricted` |  |
 | `revision` |  |
-| `short_name` |  |
+| `scene_layout` |  |
+| `size` |  |
+| `sku_links` |  |
+| `sort` |  |
+| `start` |  |
+| `template_def` |  |
 | `timestamp` |  |
-| `top_category` |  |
-| `url` |  |
+| `total_results` |  |
 
-Operations: list, load.
+Operations: load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -387,45 +385,39 @@ Create an instance: `const store = client.Store()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `string` |  |
-| `bundleChildTypeId` | `number` |  |
-| `cloud_only_platform` | `any[]` |  |
+| `age_limit` | `number` |  |
+| `attributes` | `Record<string, any>` |  |
 | `container_type` | `string` |  |
-| `content_type` | `string` |  |
-| `default_sku` | `Record<string, any>` |  |
-| `gameContentTypesList` | `any[]` |  |
-| `game_contentType` | `string` |  |
+| `content_origin` | `number` |  |
+| `dob_required` | `boolean` |  |
 | `id` | `string` |  |
 | `images` | `any[]` |  |
+| `links` | `any[]` |  |
+| `long_desc` | `string` |  |
+| `metadata` | `Record<string, any>` |  |
 | `name` | `string` |  |
-| `parent_name` | `string` |  |
-| `playable_platform` | `any[]` |  |
-| `provider_name` | `string` |  |
-| `release_date` | `string` |  |
+| `promomedia` | `any[]` |  |
 | `restricted` | `boolean` |  |
 | `revision` | `number` |  |
-| `short_name` | `string` |  |
+| `scene_layout` | `Record<string, any>` |  |
+| `size` | `number` |  |
+| `sku_links` | `any[]` |  |
+| `sort` | `string` |  |
+| `start` | `number` |  |
+| `template_def` | `Record<string, any>` |  |
 | `timestamp` | `number` |  |
-| `top_category` | `string` |  |
-| `url` | `string` |  |
+| `total_results` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const store = await client.Store().load({ age: 1, country: 'country', cusa: 'cusa', language: 'language' })
-```
-
-#### Example: List
-
-```ts
-const stores = await client.Store().list({ age: 1, country: "example", language: "example", search_string: "example" })
+const store = await client.Store().load({ age: 1, country: 'country', language: 'language' })
 ```
 
 

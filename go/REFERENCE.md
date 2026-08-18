@@ -196,48 +196,37 @@ fmt.Println(store.GetName()) // "store"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `string` | Yes |  |
-| `bundleChildTypeId` | `float64` | No |  |
-| `cloud_only_platform` | `[]any` | No |  |
+| `age_limit` | `float64` | Yes |  |
+| `attributes` | `map[string]any` | Yes |  |
 | `container_type` | `string` | Yes |  |
-| `content_type` | `string` | Yes |  |
-| `default_sku` | `map[string]any` | Yes |  |
-| `gameContentTypesList` | `[]any` | No |  |
-| `game_contentType` | `string` | No |  |
+| `content_origin` | `float64` | Yes |  |
+| `dob_required` | `bool` | Yes |  |
 | `id` | `string` | Yes |  |
 | `images` | `[]any` | Yes |  |
+| `links` | `[]any` | Yes |  |
+| `long_desc` | `string` | Yes |  |
+| `metadata` | `map[string]any` | Yes |  |
 | `name` | `string` | Yes |  |
-| `parent_name` | `string` | No |  |
-| `playable_platform` | `[]any` | Yes |  |
-| `provider_name` | `string` | No |  |
-| `release_date` | `string` | Yes |  |
+| `promomedia` | `[]any` | Yes |  |
 | `restricted` | `bool` | Yes |  |
 | `revision` | `float64` | Yes |  |
-| `short_name` | `string` | Yes |  |
+| `scene_layout` | `map[string]any` | Yes |  |
+| `size` | `float64` | Yes |  |
+| `sku_links` | `[]any` | Yes |  |
+| `sort` | `string` | Yes |  |
+| `start` | `float64` | Yes |  |
+| `template_def` | `map[string]any` | Yes |  |
 | `timestamp` | `float64` | Yes |  |
-| `top_category` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
+| `total_results` | `float64` | Yes |  |
 
 ### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.Store(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(results)
-```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
 
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "cusa": "cusa", "language": "language"}, nil)
+result, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "language": "language"}, nil)
 if err != nil {
     panic(err)
 }

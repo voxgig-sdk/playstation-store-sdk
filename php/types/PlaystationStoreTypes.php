@@ -39,27 +39,28 @@ class ImageLoadMatch
 /** Store entity data model. */
 class Store
 {
-    public string $bucket;
-    public ?float $bundleChildTypeId = null;
-    public ?array $cloud_only_platform = null;
+    public float $age_limit;
+    public array $attributes;
     public string $container_type;
-    public string $content_type;
-    public array $default_sku;
-    public ?array $gameContentTypesList = null;
-    public ?string $game_contentType = null;
+    public float $content_origin;
+    public bool $dob_required;
     public string $id;
     public array $images;
+    public array $links;
+    public string $long_desc;
+    public array $metadata;
     public string $name;
-    public ?string $parent_name = null;
-    public array $playable_platform;
-    public ?string $provider_name = null;
-    public string $release_date;
+    public array $promomedia;
     public bool $restricted;
     public float $revision;
-    public string $short_name;
+    public array $scene_layout;
+    public float $size;
+    public array $sku_links;
+    public string $sort;
+    public float $start;
+    public array $template_def;
     public float $timestamp;
-    public string $top_category;
-    public string $url;
+    public float $total_results;
 }
 
 /** Request payload for Store#load. */
@@ -67,16 +68,8 @@ class StoreLoadMatch
 {
     public int $age;
     public string $country;
-    public string $cusa;
+    public ?string $cusa = null;
     public string $language;
-}
-
-/** Request payload for Store#list. */
-class StoreListMatch
-{
-    public int $age;
-    public string $country;
-    public string $language;
-    public string $search_string;
+    public ?string $search_string = null;
 }
 

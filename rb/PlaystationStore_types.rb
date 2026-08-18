@@ -43,29 +43,20 @@ ImageLoadMatch = Struct.new(
 
 # Store entity data model.
 #
-# @!attribute [rw] bucket
-#   @return [String]
+# @!attribute [rw] age_limit
+#   @return [Float]
 #
-# @!attribute [rw] bundleChildTypeId
-#   @return [Float, nil]
-#
-# @!attribute [rw] cloud_only_platform
-#   @return [Array, nil]
+# @!attribute [rw] attributes
+#   @return [Hash]
 #
 # @!attribute [rw] container_type
 #   @return [String]
 #
-# @!attribute [rw] content_type
-#   @return [String]
+# @!attribute [rw] content_origin
+#   @return [Float]
 #
-# @!attribute [rw] default_sku
-#   @return [Hash]
-#
-# @!attribute [rw] gameContentTypesList
-#   @return [Array, nil]
-#
-# @!attribute [rw] game_contentType
-#   @return [String, nil]
+# @!attribute [rw] dob_required
+#   @return [Boolean]
 #
 # @!attribute [rw] id
 #   @return [String]
@@ -73,20 +64,20 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] images
 #   @return [Array]
 #
+# @!attribute [rw] links
+#   @return [Array]
+#
+# @!attribute [rw] long_desc
+#   @return [String]
+#
+# @!attribute [rw] metadata
+#   @return [Hash]
+#
 # @!attribute [rw] name
 #   @return [String]
 #
-# @!attribute [rw] parent_name
-#   @return [String, nil]
-#
-# @!attribute [rw] playable_platform
+# @!attribute [rw] promomedia
 #   @return [Array]
-#
-# @!attribute [rw] provider_name
-#   @return [String, nil]
-#
-# @!attribute [rw] release_date
-#   @return [String]
 #
 # @!attribute [rw] restricted
 #   @return [Boolean]
@@ -94,39 +85,52 @@ ImageLoadMatch = Struct.new(
 # @!attribute [rw] revision
 #   @return [Float]
 #
-# @!attribute [rw] short_name
+# @!attribute [rw] scene_layout
+#   @return [Hash]
+#
+# @!attribute [rw] size
+#   @return [Float]
+#
+# @!attribute [rw] sku_links
+#   @return [Array]
+#
+# @!attribute [rw] sort
 #   @return [String]
+#
+# @!attribute [rw] start
+#   @return [Float]
+#
+# @!attribute [rw] template_def
+#   @return [Hash]
 #
 # @!attribute [rw] timestamp
 #   @return [Float]
 #
-# @!attribute [rw] top_category
-#   @return [String]
-#
-# @!attribute [rw] url
-#   @return [String]
+# @!attribute [rw] total_results
+#   @return [Float]
 Store = Struct.new(
-  :bucket,
-  :bundleChildTypeId,
-  :cloud_only_platform,
+  :age_limit,
+  :attributes,
   :container_type,
-  :content_type,
-  :default_sku,
-  :gameContentTypesList,
-  :game_contentType,
+  :content_origin,
+  :dob_required,
   :id,
   :images,
+  :links,
+  :long_desc,
+  :metadata,
   :name,
-  :parent_name,
-  :playable_platform,
-  :provider_name,
-  :release_date,
+  :promomedia,
   :restricted,
   :revision,
-  :short_name,
+  :scene_layout,
+  :size,
+  :sku_links,
+  :sort,
+  :start,
+  :template_def,
   :timestamp,
-  :top_category,
-  :url,
+  :total_results,
   keyword_init: true
 )
 
@@ -139,34 +143,17 @@ Store = Struct.new(
 #   @return [String]
 #
 # @!attribute [rw] cusa
-#   @return [String]
-#
-# @!attribute [rw] language
-#   @return [String]
-StoreLoadMatch = Struct.new(
-  :age,
-  :country,
-  :cusa,
-  :language,
-  keyword_init: true
-)
-
-# Request payload for Store#list.
-#
-# @!attribute [rw] age
-#   @return [Integer]
-#
-# @!attribute [rw] country
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] language
 #   @return [String]
 #
 # @!attribute [rw] search_string
-#   @return [String]
-StoreListMatch = Struct.new(
+#   @return [String, nil]
+StoreLoadMatch = Struct.new(
   :age,
   :country,
+  :cusa,
   :language,
   :search_string,
   keyword_init: true

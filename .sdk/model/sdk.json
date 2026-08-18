@@ -20,9 +20,11 @@
         ],
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "repr": "auto"
       },
       "contributor": {},
+      "docs": {},
       "entity": {
         "geo": {
           "active": true,
@@ -213,21 +215,15 @@
           "fields": [
             {
               "active": true,
-              "name": "bucket",
+              "name": "age_limit",
               "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "bundleChildTypeId",
-              "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "cloud_only_platform",
-              "req": false,
-              "type": "`$ARRAY`"
+              "name": "attributes",
+              "req": true,
+              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -237,27 +233,15 @@
             },
             {
               "active": true,
-              "name": "content_type",
+              "name": "content_origin",
               "req": true,
-              "type": "`$STRING`"
+              "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "default_sku",
+              "name": "dob_required",
               "req": true,
-              "type": "`$OBJECT`"
-            },
-            {
-              "active": true,
-              "name": "gameContentTypesList",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "game_contentType",
-              "req": false,
-              "type": "`$STRING`"
+              "type": "`$BOOLEAN`"
             },
             {
               "active": true,
@@ -273,33 +257,33 @@
             },
             {
               "active": true,
+              "name": "links",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "long_desc",
+              "req": true,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "metadata",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
               "name": "name",
               "req": true,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "parent_name",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "playable_platform",
+              "name": "promomedia",
               "req": true,
               "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
-              "name": "provider_name",
-              "req": false,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "release_date",
-              "req": true,
-              "type": "`$STRING`"
             },
             {
               "active": true,
@@ -315,9 +299,39 @@
             },
             {
               "active": true,
-              "name": "short_name",
+              "name": "scene_layout",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "size",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "sku_links",
+              "req": true,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "sort",
               "req": true,
               "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "start",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "template_def",
+              "req": true,
+              "type": "`$OBJECT`"
             },
             {
               "active": true,
@@ -327,15 +341,9 @@
             },
             {
               "active": true,
-              "name": "top_category",
+              "name": "total_results",
               "req": true,
-              "type": "`$STRING`"
-            },
-            {
-              "active": true,
-              "name": "url",
-              "req": true,
-              "type": "`$STRING`"
+              "type": "`$NUMBER`"
             }
           ],
           "id": {
@@ -344,222 +352,6 @@
           },
           "name": "store",
           "op": {
-            "list": {
-              "input": "data",
-              "name": "list",
-              "points": [
-                {
-                  "active": true,
-                  "args": {
-                    "params": [
-                      {
-                        "active": true,
-                        "example": 999,
-                        "kind": "param",
-                        "name": "age",
-                        "orig": "age",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "country",
-                        "orig": "country",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "language",
-                        "orig": "language",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "param",
-                        "name": "search_string",
-                        "orig": "search_string",
-                        "reqd": true,
-                        "type": "`$STRING`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "direction",
-                        "orig": "direction",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "game_content_type",
-                        "orig": "game_content_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "game_demo",
-                        "orig": "game_demo",
-                        "reqd": false,
-                        "type": "`$BOOLEAN`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "game_type",
-                        "orig": "game_type",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "genre",
-                        "orig": "genre",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "platform",
-                        "orig": "platform",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "price",
-                        "orig": "price",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "relationship",
-                        "orig": "relationship",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "release_date",
-                        "orig": "release_date",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "size",
-                        "orig": "size",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "sort",
-                        "orig": "sort",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "start",
-                        "orig": "start",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "subtitle_lang",
-                        "orig": "subtitle_lang",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "top_category",
-                        "orig": "top_category",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      },
-                      {
-                        "active": true,
-                        "kind": "query",
-                        "name": "voice_lang",
-                        "orig": "voice_lang",
-                        "reqd": false,
-                        "type": "`$STRING`"
-                      }
-                    ]
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
-                  "parts": [
-                    "store",
-                    "api",
-                    "chihiro",
-                    "00_09_000",
-                    "tumbler",
-                    "{country}",
-                    "{language}",
-                    "{age}",
-                    "{search_string}"
-                  ],
-                  "rename": {
-                    "param": {
-                      "searchString": "search_string"
-                    }
-                  },
-                  "select": {
-                    "exist": [
-                      "age",
-                      "country",
-                      "direction",
-                      "game_content_type",
-                      "game_demo",
-                      "game_type",
-                      "genre",
-                      "language",
-                      "platform",
-                      "price",
-                      "relationship",
-                      "release_date",
-                      "search_string",
-                      "size",
-                      "sort",
-                      "start",
-                      "subtitle_lang",
-                      "top_category",
-                      "voice_lang"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                }
-              ]
-            },
             "load": {
               "input": "data",
               "name": "load",
@@ -793,6 +585,216 @@
                       {
                         "active": true,
                         "kind": "param",
+                        "name": "language",
+                        "orig": "language",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "search_string",
+                        "orig": "search_string",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "direction",
+                        "orig": "direction",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "game_content_type",
+                        "orig": "game_content_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "game_demo",
+                        "orig": "game_demo",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "game_type",
+                        "orig": "game_type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "genre",
+                        "orig": "genre",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "platform",
+                        "orig": "platform",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "price",
+                        "orig": "price",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "relationship",
+                        "orig": "relationship",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "release_date",
+                        "orig": "release_date",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 1,
+                        "kind": "query",
+                        "name": "size",
+                        "orig": "size",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "sort",
+                        "orig": "sort",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 0,
+                        "kind": "query",
+                        "name": "start",
+                        "orig": "start",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "subtitle_lang",
+                        "orig": "subtitle_lang",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "top_category",
+                        "orig": "top_category",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "voice_lang",
+                        "orig": "voice_lang",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "kind": "http",
+                  "method": "GET",
+                  "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
+                  "parts": [
+                    "store",
+                    "api",
+                    "chihiro",
+                    "00_09_000",
+                    "tumbler",
+                    "{country}",
+                    "{language}",
+                    "{age}",
+                    "{search_string}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "searchString": "search_string"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "age",
+                      "country",
+                      "direction",
+                      "game_content_type",
+                      "game_demo",
+                      "game_type",
+                      "genre",
+                      "language",
+                      "platform",
+                      "price",
+                      "relationship",
+                      "release_date",
+                      "search_string",
+                      "size",
+                      "sort",
+                      "start",
+                      "subtitle_lang",
+                      "top_category",
+                      "voice_lang"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "params": [
+                      {
+                        "active": true,
+                        "example": 999,
+                        "kind": "param",
+                        "name": "age",
+                        "orig": "age",
+                        "reqd": true,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "param",
+                        "name": "country",
+                        "orig": "country",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "param",
                         "name": "cusa",
                         "orig": "cusa",
                         "reqd": true,
@@ -893,6 +895,7 @@
       "feature": {
         "test": {
           "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
@@ -953,6 +956,8 @@
             }
           },
           "name": "test",
+          "origname": "",
+          "package": "@voxgig/sdkgen",
           "target": {
             "go": {
               "deps": {}
@@ -1060,27 +1065,6 @@
             {
               "active": true,
               "data": {},
-              "input": {},
-              "match": {
-                "age": "age01",
-                "country": "country01",
-                "language": "language01",
-                "search_string": "search_string01"
-              },
-              "op": "list",
-              "spec": [],
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "store_ref01"
-                  }
-                }
-              ]
-            },
-            {
-              "active": true,
-              "data": {},
               "input": {
                 "ref": "store_ref01",
                 "srcdatavar": "store_ref01_data",
@@ -1136,6 +1120,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -1154,12 +1139,14 @@
             "path": ""
           },
           "name": "go",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1193,6 +1180,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -1209,12 +1197,14 @@
             "path": ""
           },
           "name": "go-cli",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -1264,6 +1254,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -1280,12 +1271,14 @@
             "path": ""
           },
           "name": "go-mcp",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "phase": {
             "agentguide": {
               "active": false
@@ -1335,6 +1328,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "--"
           },
@@ -1357,12 +1351,14 @@
             "path": ""
           },
           "name": "lua",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1396,6 +1392,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
           },
@@ -1412,12 +1409,14 @@
             "path": ""
           },
           "name": "php",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1451,6 +1450,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -1473,12 +1473,14 @@
             "path": ""
           },
           "name": "py",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1512,6 +1514,7 @@
             "name": "",
             "url": ""
           },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "#"
           },
@@ -1539,12 +1542,14 @@
             "path": ""
           },
           "name": "rb",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,
@@ -1611,12 +1616,14 @@
             "path": ""
           },
           "name": "ts",
+          "origname": "",
           "output": {
             "adopt": false,
             "path": "",
             "repo": "",
             "sdkrel": ""
           },
+          "package": "@voxgig/sdkgen",
           "publish": {
             "registry": {
               "active": false,

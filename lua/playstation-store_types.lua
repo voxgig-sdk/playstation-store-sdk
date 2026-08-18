@@ -19,39 +19,35 @@
 ---@field language string
 
 ---@class Store
----@field bucket string
----@field bundleChildTypeId? number
----@field cloud_only_platform? table
+---@field age_limit number
+---@field attributes table
 ---@field container_type string
----@field content_type string
----@field default_sku table
----@field gameContentTypesList? table
----@field game_contentType? string
+---@field content_origin number
+---@field dob_required boolean
 ---@field id string
 ---@field images table
+---@field links table
+---@field long_desc string
+---@field metadata table
 ---@field name string
----@field parent_name? string
----@field playable_platform table
----@field provider_name? string
----@field release_date string
+---@field promomedia table
 ---@field restricted boolean
 ---@field revision number
----@field short_name string
+---@field scene_layout table
+---@field size number
+---@field sku_links table
+---@field sort string
+---@field start number
+---@field template_def table
 ---@field timestamp number
----@field top_category string
----@field url string
+---@field total_results number
 
 ---@class StoreLoadMatch
 ---@field age number
 ---@field country string
----@field cusa string
+---@field cusa? string
 ---@field language string
-
----@class StoreListMatch
----@field age number
----@field country string
----@field language string
----@field search_string string
+---@field search_string? string
 
 local M = {}
 

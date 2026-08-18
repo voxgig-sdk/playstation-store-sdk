@@ -40,7 +40,7 @@ class PlaystationStoreSDK
         $utility = new PlaystationStoreUtility();
         $this->_utility = $utility;
 
-        $config = PlaystationStoreConfig::make_config();
+        $config = PlaystationStoreConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

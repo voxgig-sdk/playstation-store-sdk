@@ -22,40 +22,35 @@ export interface ImageLoadMatch {
 }
 
 export interface Store {
-  bucket: string
-  bundleChildTypeId?: number
-  cloud_only_platform?: any[]
+  age_limit: number
+  attributes: Record<string, any>
   container_type: string
-  content_type: string
-  default_sku: Record<string, any>
-  gameContentTypesList?: any[]
-  game_contentType?: string
+  content_origin: number
+  dob_required: boolean
   id: string
   images: any[]
+  links: any[]
+  long_desc: string
+  metadata: Record<string, any>
   name: string
-  parent_name?: string
-  playable_platform: any[]
-  provider_name?: string
-  release_date: string
+  promomedia: any[]
   restricted: boolean
   revision: number
-  short_name: string
+  scene_layout: Record<string, any>
+  size: number
+  sku_links: any[]
+  sort: string
+  start: number
+  template_def: Record<string, any>
   timestamp: number
-  top_category: string
-  url: string
+  total_results: number
 }
 
 export interface StoreLoadMatch {
   age: number
   country: string
-  cusa: string
+  cusa?: string
   language: string
-}
-
-export interface StoreListMatch {
-  age: number
-  country: string
-  language: string
-  search_string: string
+  search_string?: string
 }
 

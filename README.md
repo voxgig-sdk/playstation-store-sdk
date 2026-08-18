@@ -19,7 +19,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 This SDK exposes the API as a small set of **semantic entities** — Geo, Image and Store — that you
 call directly, instead of assembling URL paths and query strings. Entities are
 **Capitalised** to mark them as the primary surface, each with the operations they
-support (`list`, `load`):
+support (`load`):
 
 ```ts
 const client = new PlaystationStoreSDK()
@@ -170,9 +170,9 @@ The API exposes 3 entities:
 | --- | --- | --- |
 | **Geo** | The Geo entity (load). | `/kamaji/api/chihiro/00_09_000/geo` |
 | **Image** | The Image entity (load). | `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image` |
-| **Store** | The Store entity (list, load). | `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}` |
+| **Store** | The Store entity (load). | `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}` |
 
-The operations available across these entities are **load**, **list** — see each entity's
+The operations available across these entities are **load** — see each entity's
 own list above for exactly which it supports.
 
 ## Quickstart in other languages

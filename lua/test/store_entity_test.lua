@@ -15,52 +15,11 @@ describe("StoreEntity", function()
     assert.is_not_nil(ent)
   end)
 
-  -- Feature #4: the entity stream(action, ...) method runs the op pipeline and
-  -- returns an iterator over result items. With the streaming feature active it
-  -- yields the feature's incremental output; otherwise it falls back to the
-  -- materialised list so stream always yields.
-  it("should stream", function()
-    local seed = {
-      entity = {
-        ["store"] = {
-          s1 = { id = "s1" },
-          s2 = { id = "s2" },
-          s3 = { id = "s3" },
-        },
-      },
-    }
-
-    -- Fallback: streaming inactive -> yields the materialised list items.
-    local base = sdk.test(seed, nil)
-    local seen = {}
-    for item in base:Store(nil):stream("list", nil, nil) do
-      table.insert(seen, item)
-    end
-    assert.are.equal(3, #seen)
-
-    -- Inbound: streaming active -> yields each item from the feature.
-    local config = require("config")()
-    if type(config.feature) == "table" and config.feature.streaming ~= nil then
-      local streamsdk = sdk.test(seed, { feature = { streaming = { active = true } } })
-      local got = {}
-      for item in streamsdk:Store(nil):stream("list", nil, nil) do
-        if vs.islist(item) then
-          for _, sub in ipairs(item) do
-            table.insert(got, sub)
-          end
-        else
-          table.insert(got, item)
-        end
-      end
-      assert.are.equal(3, #got)
-    end
-  end)
-
   it("should run basic flow", function()
     local setup = store_basic_setup(nil)
     -- Per-op sdk-test-control.json skip.
     local _live = setup.live or false
-    for _, _op in ipairs({"list", "load"}) do
+    for _, _op in ipairs({"load"}) do
       local _should_skip, _reason = runner.is_control_skipped("entityOp", "store." .. _op, _live and "live" or "unit")
       if _should_skip then
         pending(_reason or "skipped via sdk-test-control.json")
@@ -83,20 +42,8 @@ describe("StoreEntity", function()
       store_ref01_data = helpers.to_map(store_ref01_data_raw[1][2])
     end
 
-    -- LIST
-    local store_ref01_ent = client:Store(nil)
-    local store_ref01_match = {
-      ["age"] = setup.idmap["age01"],
-      ["country"] = setup.idmap["country01"],
-      ["language"] = setup.idmap["language01"],
-      ["search_string"] = setup.idmap["search_string01"],
-    }
-
-    local store_ref01_list_result, err = store_ref01_ent:list(store_ref01_match, nil)
-    assert.is_nil(err)
-    assert.is_table(store_ref01_list_result)
-
     -- LOAD
+    local store_ref01_ent = client:Store(nil)
     local store_ref01_match_dt0 = {
       id = store_ref01_data["id"],
     }
@@ -129,7 +76,7 @@ function store_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "store01", "store02", "store03", "viewfinder01", "viewfinder02", "viewfinder03", "container01", "container02", "container03", "tumbler01", "tumbler02", "tumbler03", "age01", "country01", "language01", "search_string01" },
+    { "store01", "store02", "store03", "viewfinder01", "viewfinder02", "viewfinder03", "container01", "container02", "container03", "tumbler01", "tumbler02", "tumbler03", "age01", "country01", "language01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

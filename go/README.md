@@ -4,7 +4,7 @@
 
 The Golang SDK for the PlaystationStore API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
-It exposes the API as capitalised, semantic **Entities** — e.g. `client.Geo(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Geo(nil)` — each with the same small set of operations (`Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -229,7 +229,6 @@ All entities implement the `PlaystationStoreEntity` interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -243,7 +242,6 @@ operation's data **directly** — there is no wrapper:
 | Operation | `value` |
 | --- | --- |
 | `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -280,31 +278,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `"bucket"` |  |
-| `"bundleChildTypeId"` |  |
-| `"cloud_only_platform"` |  |
+| `"age_limit"` |  |
+| `"attributes"` |  |
 | `"container_type"` |  |
-| `"content_type"` |  |
-| `"default_sku"` |  |
-| `"gameContentTypesList"` |  |
-| `"game_contentType"` |  |
+| `"content_origin"` |  |
+| `"dob_required"` |  |
 | `"id"` |  |
 | `"images"` |  |
+| `"links"` |  |
+| `"long_desc"` |  |
+| `"metadata"` |  |
 | `"name"` |  |
-| `"parent_name"` |  |
-| `"playable_platform"` |  |
-| `"provider_name"` |  |
-| `"release_date"` |  |
+| `"promomedia"` |  |
 | `"restricted"` |  |
 | `"revision"` |  |
-| `"short_name"` |  |
+| `"scene_layout"` |  |
+| `"size"` |  |
+| `"sku_links"` |  |
+| `"sort"` |  |
+| `"start"` |  |
+| `"template_def"` |  |
 | `"timestamp"` |  |
-| `"top_category"` |  |
-| `"url"` |  |
+| `"total_results"` |  |
 
-Operations: List, Load.
+Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -361,53 +360,43 @@ Create an instance: `store := client.Store(nil)`
 
 | Method | Description |
 | --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `string` |  |
-| `bundleChildTypeId` | `float64` |  |
-| `cloud_only_platform` | `[]any` |  |
+| `age_limit` | `float64` |  |
+| `attributes` | `map[string]any` |  |
 | `container_type` | `string` |  |
-| `content_type` | `string` |  |
-| `default_sku` | `map[string]any` |  |
-| `gameContentTypesList` | `[]any` |  |
-| `game_contentType` | `string` |  |
+| `content_origin` | `float64` |  |
+| `dob_required` | `bool` |  |
 | `id` | `string` |  |
 | `images` | `[]any` |  |
+| `links` | `[]any` |  |
+| `long_desc` | `string` |  |
+| `metadata` | `map[string]any` |  |
 | `name` | `string` |  |
-| `parent_name` | `string` |  |
-| `playable_platform` | `[]any` |  |
-| `provider_name` | `string` |  |
-| `release_date` | `string` |  |
+| `promomedia` | `[]any` |  |
 | `restricted` | `bool` |  |
 | `revision` | `float64` |  |
-| `short_name` | `string` |  |
+| `scene_layout` | `map[string]any` |  |
+| `size` | `float64` |  |
+| `sku_links` | `[]any` |  |
+| `sort` | `string` |  |
+| `start` | `float64` |  |
+| `template_def` | `map[string]any` |  |
 | `timestamp` | `float64` |  |
-| `top_category` | `string` |  |
-| `url` | `string` |  |
+| `total_results` | `float64` |  |
 
 #### Example: Load
 
 ```go
-store, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "cusa": "cusa", "language": "language"}, nil)
+store, err := client.Store(nil).Load(map[string]any{"age": 1, "country": "country", "language": "language"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(store) // the loaded record
-```
-
-#### Example: List
-
-```go
-stores, err := client.Store(nil).List(nil, nil)
-if err != nil {
-    panic(err)
-}
-fmt.Println(stores) // the array of records
 ```
 
 

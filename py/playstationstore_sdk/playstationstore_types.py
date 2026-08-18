@@ -35,42 +35,37 @@ class ImageLoadMatch(TypedDict):
     language: str
 
 
-class StoreRequired(TypedDict):
-    bucket: str
+class Store(TypedDict):
+    age_limit: float
+    attributes: dict
     container_type: str
-    content_type: str
-    default_sku: dict
+    content_origin: float
+    dob_required: bool
     id: str
     images: list
+    links: list
+    long_desc: str
+    metadata: dict
     name: str
-    playable_platform: list
-    release_date: str
+    promomedia: list
     restricted: bool
     revision: float
-    short_name: str
+    scene_layout: dict
+    size: float
+    sku_links: list
+    sort: str
+    start: float
+    template_def: dict
     timestamp: float
-    top_category: str
-    url: str
+    total_results: float
 
 
-class Store(StoreRequired, total=False):
-    bundleChildTypeId: float
-    cloud_only_platform: list
-    gameContentTypesList: list
-    game_contentType: str
-    parent_name: str
-    provider_name: str
-
-
-class StoreLoadMatch(TypedDict):
+class StoreLoadMatchRequired(TypedDict):
     age: int
     country: str
+    language: str
+
+
+class StoreLoadMatch(StoreLoadMatchRequired, total=False):
     cusa: str
-    language: str
-
-
-class StoreListMatch(TypedDict):
-    age: int
-    country: str
-    language: str
     search_string: str

@@ -6,19 +6,14 @@ main: kit: entity: store: {
 
   fields: [
     {
-      name: "bucket"
+      name: "age_limit"
       req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "bundleChildTypeId"
-      req: false
       type: "`$NUMBER`"
     }
     {
-      name: "cloud_only_platform"
-      req: false
-      type: "`$ARRAY`"
+      name: "attributes"
+      req: true
+      type: "`$OBJECT`"
     }
     {
       name: "container_type"
@@ -26,24 +21,14 @@ main: kit: entity: store: {
       type: "`$STRING`"
     }
     {
-      name: "content_type"
+      name: "content_origin"
       req: true
-      type: "`$STRING`"
+      type: "`$NUMBER`"
     }
     {
-      name: "default_sku"
+      name: "dob_required"
       req: true
-      type: "`$OBJECT`"
-    }
-    {
-      name: "gameContentTypesList"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "game_contentType"
-      req: false
-      type: "`$STRING`"
+      type: "`$BOOLEAN`"
     }
     {
       name: "id"
@@ -56,29 +41,29 @@ main: kit: entity: store: {
       type: "`$ARRAY`"
     }
     {
+      name: "links"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "long_desc"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "metadata"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
       name: "name"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "parent_name"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "playable_platform"
+      name: "promomedia"
       req: true
       type: "`$ARRAY`"
-    }
-    {
-      name: "provider_name"
-      req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "release_date"
-      req: true
-      type: "`$STRING`"
     }
     {
       name: "restricted"
@@ -91,9 +76,34 @@ main: kit: entity: store: {
       type: "`$NUMBER`"
     }
     {
-      name: "short_name"
+      name: "scene_layout"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "size"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "sku_links"
+      req: true
+      type: "`$ARRAY`"
+    }
+    {
+      name: "sort"
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "start"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "template_def"
+      req: true
+      type: "`$OBJECT`"
     }
     {
       name: "timestamp"
@@ -101,14 +111,9 @@ main: kit: entity: store: {
       type: "`$NUMBER`"
     }
     {
-      name: "top_category"
+      name: "total_results"
       req: true
-      type: "`$STRING`"
-    }
-    {
-      name: "url"
-      req: true
-      type: "`$STRING`"
+      type: "`$NUMBER`"
     }
   ]
 
@@ -119,9 +124,193 @@ main: kit: entity: store: {
 
   name: "store"
   op: {
-    list: {
-      name: "list"
+    load: {
+      name: "load"
       points: [
+        {
+          args: {
+            params: [
+              {
+                example: 999
+                kind: "param"
+                name: "age"
+                orig: "age"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "param"
+                name: "country"
+                orig: "country"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "cusa"
+                orig: "cusa"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "direction"
+                orig: "direction"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "game_content_type"
+                orig: "game_content_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "game_demo"
+                orig: "game_demo"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "game_type"
+                orig: "game_type"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "genre"
+                orig: "genre"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "platform"
+                orig: "platform"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "price"
+                orig: "price"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "relationship"
+                orig: "relationship"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "release_date"
+                orig: "release_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "size"
+                orig: "size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "start"
+                orig: "start"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "subtitle_lang"
+                orig: "subtitle_lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "top_category"
+                orig: "top_category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "voice_lang"
+                orig: "voice_lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
+          parts: [
+            "store"
+            "api"
+            "chihiro"
+            "00_09_000"
+            "container"
+            "{country}"
+            "{language}"
+            "{age}"
+            "{cusa}"
+          ]
+          select: {
+            exist: [
+              "age"
+              "country"
+              "cusa"
+              "direction"
+              "game_content_type"
+              "game_demo"
+              "game_type"
+              "genre"
+              "language"
+              "platform"
+              "price"
+              "relationship"
+              "release_date"
+              "size"
+              "sort"
+              "start"
+              "subtitle_lang"
+              "top_category"
+              "voice_lang"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
         {
           args: {
             params: [
@@ -298,195 +487,6 @@ main: kit: entity: store: {
               "relationship"
               "release_date"
               "search_string"
-              "size"
-              "sort"
-              "start"
-              "subtitle_lang"
-              "top_category"
-              "voice_lang"
-            ]
-          }
-          transform: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-      ]
-    }
-    load: {
-      name: "load"
-      points: [
-        {
-          args: {
-            params: [
-              {
-                example: 999
-                kind: "param"
-                name: "age"
-                orig: "age"
-                reqd: true
-                type: "`$INTEGER`"
-              }
-              {
-                kind: "param"
-                name: "country"
-                orig: "country"
-                reqd: true
-                type: "`$STRING`"
-              }
-              {
-                kind: "param"
-                name: "cusa"
-                orig: "cusa"
-                reqd: true
-                type: "`$STRING`"
-              }
-              {
-                kind: "param"
-                name: "language"
-                orig: "language"
-                reqd: true
-                type: "`$STRING`"
-              }
-            ]
-            query: [
-              {
-                kind: "query"
-                name: "direction"
-                orig: "direction"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "game_content_type"
-                orig: "game_content_type"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "game_demo"
-                orig: "game_demo"
-                reqd: false
-                type: "`$BOOLEAN`"
-              }
-              {
-                kind: "query"
-                name: "game_type"
-                orig: "game_type"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "genre"
-                orig: "genre"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "platform"
-                orig: "platform"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "price"
-                orig: "price"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "relationship"
-                orig: "relationship"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "release_date"
-                orig: "release_date"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                example: 1
-                kind: "query"
-                name: "size"
-                orig: "size"
-                reqd: false
-                type: "`$INTEGER`"
-              }
-              {
-                kind: "query"
-                name: "sort"
-                orig: "sort"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                example: 0
-                kind: "query"
-                name: "start"
-                orig: "start"
-                reqd: false
-                type: "`$INTEGER`"
-              }
-              {
-                kind: "query"
-                name: "subtitle_lang"
-                orig: "subtitle_lang"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "top_category"
-                orig: "top_category"
-                reqd: false
-                type: "`$STRING`"
-              }
-              {
-                kind: "query"
-                name: "voice_lang"
-                orig: "voice_lang"
-                reqd: false
-                type: "`$STRING`"
-              }
-            ]
-          }
-          method: "GET"
-          orig: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
-          parts: [
-            "store"
-            "api"
-            "chihiro"
-            "00_09_000"
-            "container"
-            "{country}"
-            "{language}"
-            "{age}"
-            "{cusa}"
-          ]
-          select: {
-            exist: [
-              "age"
-              "country"
-              "cusa"
-              "direction"
-              "game_content_type"
-              "game_demo"
-              "game_type"
-              "genre"
-              "language"
-              "platform"
-              "price"
-              "relationship"
-              "release_date"
               "size"
               "sort"
               "start"

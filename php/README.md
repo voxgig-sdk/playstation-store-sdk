@@ -4,7 +4,7 @@
 
 The PHP SDK for the PlaystationStore API — an entity-oriented client using PHP conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Geo()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->Geo()` — with named operations (`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -218,7 +218,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -268,31 +267,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `bucket` |  |
-| `bundleChildTypeId` |  |
-| `cloud_only_platform` |  |
+| `age_limit` |  |
+| `attributes` |  |
 | `container_type` |  |
-| `content_type` |  |
-| `default_sku` |  |
-| `gameContentTypesList` |  |
-| `game_contentType` |  |
+| `content_origin` |  |
+| `dob_required` |  |
 | `id` |  |
 | `images` |  |
+| `links` |  |
+| `long_desc` |  |
+| `metadata` |  |
 | `name` |  |
-| `parent_name` |  |
-| `playable_platform` |  |
-| `provider_name` |  |
-| `release_date` |  |
+| `promomedia` |  |
 | `restricted` |  |
 | `revision` |  |
-| `short_name` |  |
+| `scene_layout` |  |
+| `size` |  |
+| `sku_links` |  |
+| `sort` |  |
+| `start` |  |
+| `template_def` |  |
 | `timestamp` |  |
-| `top_category` |  |
-| `url` |  |
+| `total_results` |  |
 
-Operations: List, Load.
+Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -343,47 +343,40 @@ Create an instance: `$store = $client->Store();`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `string` |  |
-| `bundleChildTypeId` | `float` |  |
-| `cloud_only_platform` | `array` |  |
+| `age_limit` | `float` |  |
+| `attributes` | `array` |  |
 | `container_type` | `string` |  |
-| `content_type` | `string` |  |
-| `default_sku` | `array` |  |
-| `gameContentTypesList` | `array` |  |
-| `game_contentType` | `string` |  |
+| `content_origin` | `float` |  |
+| `dob_required` | `bool` |  |
 | `id` | `string` |  |
 | `images` | `array` |  |
+| `links` | `array` |  |
+| `long_desc` | `string` |  |
+| `metadata` | `array` |  |
 | `name` | `string` |  |
-| `parent_name` | `string` |  |
-| `playable_platform` | `array` |  |
-| `provider_name` | `string` |  |
-| `release_date` | `string` |  |
+| `promomedia` | `array` |  |
 | `restricted` | `bool` |  |
 | `revision` | `float` |  |
-| `short_name` | `string` |  |
+| `scene_layout` | `array` |  |
+| `size` | `float` |  |
+| `sku_links` | `array` |  |
+| `sort` | `string` |  |
+| `start` | `float` |  |
+| `template_def` | `array` |  |
 | `timestamp` | `float` |  |
-| `top_category` | `string` |  |
-| `url` | `string` |  |
+| `total_results` | `float` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the ENTITY — call data_get() for the Store record (throws on error).
-$store = $client->Store()->load(["age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language"]);
-```
-
-#### Example: List
-
-```php
-// list() returns an array of Store records (throws on error).
-$stores = $client->Store()->list();
+$store = $client->Store()->load(["age" => 1, "country" => "country", "language" => "language"]);
 ```
 
 

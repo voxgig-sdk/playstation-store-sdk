@@ -185,46 +185,37 @@ store = client.Store()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `str` | Yes |  |
-| `bundleChildTypeId` | `float` | No |  |
-| `cloud_only_platform` | `list` | No |  |
+| `age_limit` | `float` | Yes |  |
+| `attributes` | `dict` | Yes |  |
 | `container_type` | `str` | Yes |  |
-| `content_type` | `str` | Yes |  |
-| `default_sku` | `dict` | Yes |  |
-| `gameContentTypesList` | `list` | No |  |
-| `game_contentType` | `str` | No |  |
+| `content_origin` | `float` | Yes |  |
+| `dob_required` | `bool` | Yes |  |
 | `id` | `str` | Yes |  |
 | `images` | `list` | Yes |  |
+| `links` | `list` | Yes |  |
+| `long_desc` | `str` | Yes |  |
+| `metadata` | `dict` | Yes |  |
 | `name` | `str` | Yes |  |
-| `parent_name` | `str` | No |  |
-| `playable_platform` | `list` | Yes |  |
-| `provider_name` | `str` | No |  |
-| `release_date` | `str` | Yes |  |
+| `promomedia` | `list` | Yes |  |
 | `restricted` | `bool` | Yes |  |
 | `revision` | `float` | Yes |  |
-| `short_name` | `str` | Yes |  |
+| `scene_layout` | `dict` | Yes |  |
+| `size` | `float` | Yes |  |
+| `sku_links` | `list` | Yes |  |
+| `sort` | `str` | Yes |  |
+| `start` | `float` | Yes |  |
+| `template_def` | `dict` | Yes |  |
 | `timestamp` | `float` | Yes |  |
-| `top_category` | `str` | Yes |  |
-| `url` | `str` | Yes |  |
+| `total_results` | `float` | Yes |  |
 
 ### Operations
-
-#### `list(reqmatch=None, ctrl=None) -> list`
-
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
-
-```python
-results = client.Store().list({"age": 1, "country": "example", "language": "example", "search_string": "example"})
-for store in results:
-    print(store)
-```
 
 #### `load(reqmatch, ctrl=None) -> dict`
 
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Store().load({"age": 1, "country": "country", "cusa": "cusa", "language": "language"})
+result = client.Store().load({"age": 1, "country": "country", "language": "language"})
 ```
 
 ### Common Methods

@@ -4,7 +4,7 @@
 
 The Ruby SDK for the PlaystationStore API — an entity-oriented client using idiomatic Ruby conventions.
 
-The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Geo` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Geo` — with named operations (`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
 
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
@@ -209,7 +209,6 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -258,31 +257,32 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 | Field | Description |
 | --- | --- |
-| `bucket` |  |
-| `bundleChildTypeId` |  |
-| `cloud_only_platform` |  |
+| `age_limit` |  |
+| `attributes` |  |
 | `container_type` |  |
-| `content_type` |  |
-| `default_sku` |  |
-| `gameContentTypesList` |  |
-| `game_contentType` |  |
+| `content_origin` |  |
+| `dob_required` |  |
 | `id` |  |
 | `images` |  |
+| `links` |  |
+| `long_desc` |  |
+| `metadata` |  |
 | `name` |  |
-| `parent_name` |  |
-| `playable_platform` |  |
-| `provider_name` |  |
-| `release_date` |  |
+| `promomedia` |  |
 | `restricted` |  |
 | `revision` |  |
-| `short_name` |  |
+| `scene_layout` |  |
+| `size` |  |
+| `sku_links` |  |
+| `sort` |  |
+| `start` |  |
+| `template_def` |  |
 | `timestamp` |  |
-| `top_category` |  |
-| `url` |  |
+| `total_results` |  |
 
-Operations: List, Load.
+Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}`
+API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -333,47 +333,40 @@ Create an instance: `store = client.Store`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bucket` | `String` |  |
-| `bundleChildTypeId` | `Float` |  |
-| `cloud_only_platform` | `Array` |  |
+| `age_limit` | `Float` |  |
+| `attributes` | `Hash` |  |
 | `container_type` | `String` |  |
-| `content_type` | `String` |  |
-| `default_sku` | `Hash` |  |
-| `gameContentTypesList` | `Array` |  |
-| `game_contentType` | `String` |  |
+| `content_origin` | `Float` |  |
+| `dob_required` | `Boolean` |  |
 | `id` | `String` |  |
 | `images` | `Array` |  |
+| `links` | `Array` |  |
+| `long_desc` | `String` |  |
+| `metadata` | `Hash` |  |
 | `name` | `String` |  |
-| `parent_name` | `String` |  |
-| `playable_platform` | `Array` |  |
-| `provider_name` | `String` |  |
-| `release_date` | `String` |  |
+| `promomedia` | `Array` |  |
 | `restricted` | `Boolean` |  |
 | `revision` | `Float` |  |
-| `short_name` | `String` |  |
+| `scene_layout` | `Hash` |  |
+| `size` | `Float` |  |
+| `sku_links` | `Array` |  |
+| `sort` | `String` |  |
+| `start` | `Float` |  |
+| `template_def` | `Hash` |  |
 | `timestamp` | `Float` |  |
-| `top_category` | `String` |  |
-| `url` | `String` |  |
+| `total_results` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the ENTITY — call data_get for the Store record (raises on error).
-store = client.Store.load({ "age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language" })
-```
-
-#### Example: List
-
-```ruby
-# list returns an Array of Store records (raises on error).
-stores = client.Store.list
+store = client.Store.load({ "age" => 1, "country" => "country", "language" => "language" })
 ```
 
 

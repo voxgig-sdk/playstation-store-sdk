@@ -228,44 +228,37 @@ const store = client.Store()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bucket` | `string` | Yes |  |
-| `bundleChildTypeId` | `number` | No |  |
-| `cloud_only_platform` | `any[]` | No |  |
+| `age_limit` | `number` | Yes |  |
+| `attributes` | `Record<string, any>` | Yes |  |
 | `container_type` | `string` | Yes |  |
-| `content_type` | `string` | Yes |  |
-| `default_sku` | `Record<string, any>` | Yes |  |
-| `gameContentTypesList` | `any[]` | No |  |
-| `game_contentType` | `string` | No |  |
+| `content_origin` | `number` | Yes |  |
+| `dob_required` | `boolean` | Yes |  |
 | `id` | `string` | Yes |  |
 | `images` | `any[]` | Yes |  |
+| `links` | `any[]` | Yes |  |
+| `long_desc` | `string` | Yes |  |
+| `metadata` | `Record<string, any>` | Yes |  |
 | `name` | `string` | Yes |  |
-| `parent_name` | `string` | No |  |
-| `playable_platform` | `any[]` | Yes |  |
-| `provider_name` | `string` | No |  |
-| `release_date` | `string` | Yes |  |
+| `promomedia` | `any[]` | Yes |  |
 | `restricted` | `boolean` | Yes |  |
 | `revision` | `number` | Yes |  |
-| `short_name` | `string` | Yes |  |
+| `scene_layout` | `Record<string, any>` | Yes |  |
+| `size` | `number` | Yes |  |
+| `sku_links` | `any[]` | Yes |  |
+| `sort` | `string` | Yes |  |
+| `start` | `number` | Yes |  |
+| `template_def` | `Record<string, any>` | Yes |  |
 | `timestamp` | `number` | Yes |  |
-| `top_category` | `string` | Yes |  |
-| `url` | `string` | Yes |  |
+| `total_results` | `number` | Yes |  |
 
 ### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.Store().list({ age: 1, country: "example", language: "example", search_string: "example" })
-```
 
 #### `load(match: object, ctrl?: object)`
 
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Store().load({ age: 1, country: 'country', cusa: 'cusa', language: 'language' })
+const result = await client.Store().load({ age: 1, country: 'country', language: 'language' })
 ```
 
 ### Common Methods

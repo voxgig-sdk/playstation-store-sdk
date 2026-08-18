@@ -34,43 +34,37 @@ type ImageLoadMatch struct {
 
 // Store is the typed data model for the store entity.
 type Store struct {
-	Bucket string `json:"bucket"`
-	BundleChildTypeId *float64 `json:"bundleChildTypeId,omitempty"`
-	CloudOnlyPlatform *[]any `json:"cloud_only_platform,omitempty"`
+	AgeLimit float64 `json:"age_limit"`
+	Attributes map[string]any `json:"attributes"`
 	ContainerType string `json:"container_type"`
-	ContentType string `json:"content_type"`
-	DefaultSku map[string]any `json:"default_sku"`
-	GameContentTypesList *[]any `json:"gameContentTypesList,omitempty"`
-	GameContentType *string `json:"game_contentType,omitempty"`
+	ContentOrigin float64 `json:"content_origin"`
+	DobRequired bool `json:"dob_required"`
 	Id string `json:"id"`
 	Images []any `json:"images"`
+	Links []any `json:"links"`
+	LongDesc string `json:"long_desc"`
+	Metadata map[string]any `json:"metadata"`
 	Name string `json:"name"`
-	ParentName *string `json:"parent_name,omitempty"`
-	PlayablePlatform []any `json:"playable_platform"`
-	ProviderName *string `json:"provider_name,omitempty"`
-	ReleaseDate string `json:"release_date"`
+	Promomedia []any `json:"promomedia"`
 	Restricted bool `json:"restricted"`
 	Revision float64 `json:"revision"`
-	ShortName string `json:"short_name"`
+	SceneLayout map[string]any `json:"scene_layout"`
+	Size float64 `json:"size"`
+	SkuLinks []any `json:"sku_links"`
+	Sort string `json:"sort"`
+	Start float64 `json:"start"`
+	TemplateDef map[string]any `json:"template_def"`
 	Timestamp float64 `json:"timestamp"`
-	TopCategory string `json:"top_category"`
-	Url string `json:"url"`
+	TotalResults float64 `json:"total_results"`
 }
 
 // StoreLoadMatch is the typed request payload for Store.LoadTyped.
 type StoreLoadMatch struct {
 	Age int `json:"age"`
 	Country string `json:"country"`
-	Cusa string `json:"cusa"`
+	Cusa *string `json:"cusa,omitempty"`
 	Language string `json:"language"`
-}
-
-// StoreListMatch is the typed request payload for Store.ListTyped.
-type StoreListMatch struct {
-	Age int `json:"age"`
-	Country string `json:"country"`
-	Language string `json:"language"`
-	SearchString string `json:"search_string"`
+	SearchString *string `json:"search_string,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the
