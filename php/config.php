@@ -33,6 +33,9 @@ class PlaystationStoreConfig
         return [
             "main" => [
                 "name" => "PlaystationStore",
+                "slug" => "playstation-store",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

@@ -19,6 +19,9 @@ module PlaystationStoreConfig
     {
       "main" => {
         "name" => "PlaystationStore",
+        "slug" => "playstation-store",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
