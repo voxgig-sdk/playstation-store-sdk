@@ -28,6 +28,7 @@ module PlaystationStoreConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
