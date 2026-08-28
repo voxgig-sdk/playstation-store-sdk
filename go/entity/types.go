@@ -30,6 +30,11 @@ type ImageLoadMatch struct {
 	ContainerId string `json:"container_id"`
 	Cusa string `json:"cusa"`
 	Language string `json:"language"`
+	BgColor *int `json:"bg_color,omitempty"`
+	H *int `json:"h,omitempty"`
+	Opacity *int `json:"opacity,omitempty"`
+	Platform *string `json:"platform,omitempty"`
+	W *int `json:"w,omitempty"`
 }
 
 // Store is the typed data model for the store entity.
@@ -64,6 +69,21 @@ type StoreLoadMatch struct {
 	Country string `json:"country"`
 	Cusa *string `json:"cusa,omitempty"`
 	Language string `json:"language"`
+	Direction *string `json:"direction,omitempty"`
+	GameContentType *string `json:"game_content_type,omitempty"`
+	GameDemo *bool `json:"game_demo,omitempty"`
+	GameType *string `json:"game_type,omitempty"`
+	Genre *string `json:"genre,omitempty"`
+	Platform *string `json:"platform,omitempty"`
+	Price *string `json:"price,omitempty"`
+	Relationship *string `json:"relationship,omitempty"`
+	ReleaseDate *string `json:"release_date,omitempty"`
+	Size *int `json:"size,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Start *int `json:"start,omitempty"`
+	SubtitleLang *string `json:"subtitle_lang,omitempty"`
+	TopCategory *string `json:"top_category,omitempty"`
+	VoiceLang *string `json:"voice_lang,omitempty"`
 	SearchString *string `json:"search_string,omitempty"`
 }
 

@@ -17,6 +17,11 @@
 ---@field container_id string
 ---@field cusa string
 ---@field language string
+---@field bg_color? number
+---@field h? number
+---@field opacity? number
+---@field platform? string
+---@field w? number
 
 ---@class Store
 ---@field age_limit number
@@ -47,6 +52,21 @@
 ---@field country string
 ---@field cusa? string
 ---@field language string
+---@field direction? string
+---@field game_content_type? string
+---@field game_demo? boolean
+---@field game_type? string
+---@field genre? string
+---@field platform? string
+---@field price? string
+---@field relationship? string
+---@field release_date? string
+---@field size? number
+---@field sort? string
+---@field start? number
+---@field subtitle_lang? string
+---@field top_category? string
+---@field voice_lang? string
 ---@field search_string? string
 
 local M = {}

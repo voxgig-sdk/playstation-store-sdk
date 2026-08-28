@@ -19,6 +19,11 @@ export interface ImageLoadMatch {
   container_id: string
   cusa: string
   language: string
+  bg_color?: number
+  h?: number
+  opacity?: number
+  platform?: string
+  w?: number
 }
 
 export interface Store {
@@ -51,6 +56,21 @@ export interface StoreLoadMatch {
   country: string
   cusa?: string
   language: string
+  direction?: string
+  game_content_type?: string
+  game_demo?: boolean
+  game_type?: string
+  genre?: string
+  platform?: string
+  price?: string
+  relationship?: string
+  release_date?: string
+  size?: number
+  sort?: string
+  start?: number
+  subtitle_lang?: string
+  top_category?: string
+  voice_lang?: string
   search_string?: string
 }
 

@@ -34,6 +34,11 @@ class ImageLoadMatch
     public string $container_id;
     public string $cusa;
     public string $language;
+    public ?int $bg_color = null;
+    public ?int $h = null;
+    public ?int $opacity = null;
+    public ?string $platform = null;
+    public ?int $w = null;
 }
 
 /** Store entity data model. */
@@ -70,6 +75,21 @@ class StoreLoadMatch
     public string $country;
     public ?string $cusa = null;
     public string $language;
+    public ?string $direction = null;
+    public ?string $game_content_type = null;
+    public ?bool $game_demo = null;
+    public ?string $game_type = null;
+    public ?string $genre = null;
+    public ?string $platform = null;
+    public ?string $price = null;
+    public ?string $relationship = null;
+    public ?string $release_date = null;
+    public ?int $size = null;
+    public ?string $sort = null;
+    public ?int $start = null;
+    public ?string $subtitle_lang = null;
+    public ?string $top_category = null;
+    public ?string $voice_lang = null;
     public ?string $search_string = null;
 }
 

@@ -33,11 +33,31 @@ end
 #
 # @!attribute [rw] language
 #   @return [String]
+#
+# @!attribute [rw] bg_color
+#   @return [Integer, nil]
+#
+# @!attribute [rw] h
+#   @return [Integer, nil]
+#
+# @!attribute [rw] opacity
+#   @return [Integer, nil]
+#
+# @!attribute [rw] platform
+#   @return [String, nil]
+#
+# @!attribute [rw] w
+#   @return [Integer, nil]
 ImageLoadMatch = Struct.new(
   :age,
   :container_id,
   :cusa,
   :language,
+  :bg_color,
+  :h,
+  :opacity,
+  :platform,
+  :w,
   keyword_init: true
 )
 
@@ -148,6 +168,51 @@ Store = Struct.new(
 # @!attribute [rw] language
 #   @return [String]
 #
+# @!attribute [rw] direction
+#   @return [String, nil]
+#
+# @!attribute [rw] game_content_type
+#   @return [String, nil]
+#
+# @!attribute [rw] game_demo
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] game_type
+#   @return [String, nil]
+#
+# @!attribute [rw] genre
+#   @return [String, nil]
+#
+# @!attribute [rw] platform
+#   @return [String, nil]
+#
+# @!attribute [rw] price
+#   @return [String, nil]
+#
+# @!attribute [rw] relationship
+#   @return [String, nil]
+#
+# @!attribute [rw] release_date
+#   @return [String, nil]
+#
+# @!attribute [rw] size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [Integer, nil]
+#
+# @!attribute [rw] subtitle_lang
+#   @return [String, nil]
+#
+# @!attribute [rw] top_category
+#   @return [String, nil]
+#
+# @!attribute [rw] voice_lang
+#   @return [String, nil]
+#
 # @!attribute [rw] search_string
 #   @return [String, nil]
 StoreLoadMatch = Struct.new(
@@ -155,6 +220,21 @@ StoreLoadMatch = Struct.new(
   :country,
   :cusa,
   :language,
+  :direction,
+  :game_content_type,
+  :game_demo,
+  :game_type,
+  :genre,
+  :platform,
+  :price,
+  :relationship,
+  :release_date,
+  :size,
+  :sort,
+  :start,
+  :subtitle_lang,
+  :top_category,
+  :voice_lang,
   :search_string,
   keyword_init: true
 )
