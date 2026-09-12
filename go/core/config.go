@@ -48,17 +48,34 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/kamaji/api/chihiro/00_09_000/geo",
+								"segments": []any{
+									map[string]any{
+										"lit": "kamaji",
+									},
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "chihiro",
+									},
+									map[string]any{
+										"lit": "00_09_000",
+									},
+									map[string]any{
+										"lit": "geo",
+									},
+								},
+								"select": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"parts": []any{
 									"kamaji",
 									"api",
 									"chihiro",
 									"00_09_000",
 									"geo",
-								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
 								},
 							},
 						},
@@ -146,21 +163,41 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
-								"parts": []any{
-									"store",
-									"api",
-									"chihiro",
-									"00_09_000",
-									"container",
-									"{container_id}",
-									"{language}",
-									"{age}",
-									"{cusa}",
-									"image",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"country": "container_id",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "store",
+									},
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "chihiro",
+									},
+									map[string]any{
+										"lit": "00_09_000",
+									},
+									map[string]any{
+										"lit": "container",
+									},
+									map[string]any{
+										"var": "container_id",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"var": "age",
+									},
+									map[string]any{
+										"var": "cusa",
+									},
+									map[string]any{
+										"lit": "image",
 									},
 								},
 								"select": map[string]any{
@@ -179,6 +216,18 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"store",
+									"api",
+									"chihiro",
+									"00_09_000",
+									"container",
+									"{container_id}",
+									"{language}",
+									"{age}",
+									"{cusa}",
+									"image",
 								},
 							},
 						},
@@ -304,6 +353,17 @@ func MakeConfig() map[string]any {
 						"req": true,
 						"type": "`$NUMBER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+					"parts": []any{
+						"country",
+						"language",
+						"age",
+						"cusa",
+					},
+					"sep": "/",
 				},
 				"name": "store",
 				"op": map[string]any{
@@ -442,16 +502,34 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
-								"parts": []any{
-									"store",
-									"api",
-									"chihiro",
-									"00_09_000",
-									"container",
-									"{country}",
-									"{language}",
-									"{age}",
-									"{cusa}",
+								"segments": []any{
+									map[string]any{
+										"lit": "store",
+									},
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "chihiro",
+									},
+									map[string]any{
+										"lit": "00_09_000",
+									},
+									map[string]any{
+										"lit": "container",
+									},
+									map[string]any{
+										"var": "country",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"var": "age",
+									},
+									map[string]any{
+										"var": "cusa",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -479,6 +557,17 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"store",
+									"api",
+									"chihiro",
+									"00_09_000",
+									"container",
+									"{country}",
+									"{language}",
+									"{age}",
+									"{cusa}",
 								},
 							},
 							map[string]any{
@@ -612,20 +701,38 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
-								"parts": []any{
-									"store",
-									"api",
-									"chihiro",
-									"00_09_000",
-									"tumbler",
-									"{country}",
-									"{language}",
-									"{age}",
-									"{search_string}",
-								},
 								"rename": map[string]any{
 									"param": map[string]any{
 										"searchString": "search_string",
+									},
+								},
+								"segments": []any{
+									map[string]any{
+										"lit": "store",
+									},
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "chihiro",
+									},
+									map[string]any{
+										"lit": "00_09_000",
+									},
+									map[string]any{
+										"lit": "tumbler",
+									},
+									map[string]any{
+										"var": "country",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"var": "age",
+									},
+									map[string]any{
+										"var": "search_string",
 									},
 								},
 								"select": map[string]any{
@@ -654,6 +761,17 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"store",
+									"api",
+									"chihiro",
+									"00_09_000",
+									"tumbler",
+									"{country}",
+									"{language}",
+									"{age}",
+									"{search_string}",
 								},
 							},
 							map[string]any{
@@ -721,13 +839,25 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-								"parts": []any{
-									"chihiro-api",
-									"viewfinder",
-									"{country}",
-									"{language}",
-									"{age}",
-									"{cusa}",
+								"segments": []any{
+									map[string]any{
+										"lit": "chihiro-api",
+									},
+									map[string]any{
+										"lit": "viewfinder",
+									},
+									map[string]any{
+										"var": "country",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"var": "age",
+									},
+									map[string]any{
+										"var": "cusa",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -744,6 +874,14 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"chihiro-api",
+									"viewfinder",
+									"{country}",
+									"{language}",
+									"{age}",
+									"{cusa}",
 								},
 							},
 						},
@@ -765,6 +903,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

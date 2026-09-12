@@ -1,6 +1,14 @@
 # PlaystationStore SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -65,6 +73,28 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/kamaji/api/chihiro/00_09_000/geo",
+                "segments": [
+                  {
+                    "lit": "kamaji",
+                  },
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "chihiro",
+                  },
+                  {
+                    "lit": "00_09_000",
+                  },
+                  {
+                    "lit": "geo",
+                  },
+                ],
+                "select": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
                 "parts": [
                   "kamaji",
                   "api",
@@ -72,11 +102,6 @@ def make_config():
                   "00_09_000",
                   "geo",
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
               },
             ],
           },
@@ -163,23 +188,43 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
-                "parts": [
-                  "store",
-                  "api",
-                  "chihiro",
-                  "00_09_000",
-                  "container",
-                  "{container_id}",
-                  "{language}",
-                  "{age}",
-                  "{cusa}",
-                  "image",
-                ],
                 "rename": {
                   "param": {
                     "country": "container_id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "store",
+                  },
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "chihiro",
+                  },
+                  {
+                    "lit": "00_09_000",
+                  },
+                  {
+                    "lit": "container",
+                  },
+                  {
+                    "var": "container_id",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "var": "age",
+                  },
+                  {
+                    "var": "cusa",
+                  },
+                  {
+                    "lit": "image",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "age",
@@ -197,6 +242,18 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "store",
+                  "api",
+                  "chihiro",
+                  "00_09_000",
+                  "container",
+                  "{container_id}",
+                  "{language}",
+                  "{age}",
+                  "{cusa}",
+                  "image",
+                ],
               },
             ],
           },
@@ -322,6 +379,17 @@ def make_config():
             "type": "`$NUMBER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+          "parts": [
+            "country",
+            "language",
+            "age",
+            "cusa",
+          ],
+          "sep": "/",
+        },
         "name": "store",
         "op": {
           "load": {
@@ -459,16 +527,34 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
-                "parts": [
-                  "store",
-                  "api",
-                  "chihiro",
-                  "00_09_000",
-                  "container",
-                  "{country}",
-                  "{language}",
-                  "{age}",
-                  "{cusa}",
+                "segments": [
+                  {
+                    "lit": "store",
+                  },
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "chihiro",
+                  },
+                  {
+                    "lit": "00_09_000",
+                  },
+                  {
+                    "lit": "container",
+                  },
+                  {
+                    "var": "country",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "var": "age",
+                  },
+                  {
+                    "var": "cusa",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -497,6 +583,17 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "store",
+                  "api",
+                  "chihiro",
+                  "00_09_000",
+                  "container",
+                  "{country}",
+                  "{language}",
+                  "{age}",
+                  "{cusa}",
+                ],
               },
               {
                 "args": {
@@ -629,22 +726,40 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
-                "parts": [
-                  "store",
-                  "api",
-                  "chihiro",
-                  "00_09_000",
-                  "tumbler",
-                  "{country}",
-                  "{language}",
-                  "{age}",
-                  "{search_string}",
-                ],
                 "rename": {
                   "param": {
                     "searchString": "search_string",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "store",
+                  },
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "chihiro",
+                  },
+                  {
+                    "lit": "00_09_000",
+                  },
+                  {
+                    "lit": "tumbler",
+                  },
+                  {
+                    "var": "country",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "var": "age",
+                  },
+                  {
+                    "var": "search_string",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "age",
@@ -672,6 +787,17 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "store",
+                  "api",
+                  "chihiro",
+                  "00_09_000",
+                  "tumbler",
+                  "{country}",
+                  "{language}",
+                  "{age}",
+                  "{search_string}",
+                ],
               },
               {
                 "args": {
@@ -738,13 +864,25 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-                "parts": [
-                  "chihiro-api",
-                  "viewfinder",
-                  "{country}",
-                  "{language}",
-                  "{age}",
-                  "{cusa}",
+                "segments": [
+                  {
+                    "lit": "chihiro-api",
+                  },
+                  {
+                    "lit": "viewfinder",
+                  },
+                  {
+                    "var": "country",
+                  },
+                  {
+                    "var": "language",
+                  },
+                  {
+                    "var": "age",
+                  },
+                  {
+                    "var": "cusa",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -762,6 +900,14 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "chihiro-api",
+                  "viewfinder",
+                  "{country}",
+                  "{language}",
+                  "{age}",
+                  "{cusa}",
+                ],
               },
             ],
           },

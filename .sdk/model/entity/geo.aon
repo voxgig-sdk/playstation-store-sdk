@@ -12,12 +12,22 @@ main: kit: entity: geo: {
         {
           method: "GET"
           orig: "/kamaji/api/chihiro/00_09_000/geo"
-          parts: [
-            "kamaji"
-            "api"
-            "chihiro"
-            "00_09_000"
-            "geo"
+          segments: [
+            {
+              lit: "kamaji"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "geo"
+            }
           ]
           transform: {
             req: "`reqdata`"

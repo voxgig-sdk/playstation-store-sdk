@@ -83,23 +83,43 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image"
-          parts: [
-            "store"
-            "api"
-            "chihiro"
-            "00_09_000"
-            "container"
-            "{container_id}"
-            "{language}"
-            "{age}"
-            "{cusa}"
-            "image"
-          ]
           rename: {
             param: {
               country: "container_id"
             }
           }
+          segments: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "container"
+            }
+            {
+              var: "container_id"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
+            {
+              lit: "image"
+            }
+          ]
           select: {
             exist: [
               "age"

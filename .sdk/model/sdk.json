@@ -44,12 +44,22 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/kamaji/api/chihiro/00_09_000/geo",
-                  "parts": [
-                    "kamaji",
-                    "api",
-                    "chihiro",
-                    "00_09_000",
-                    "geo"
+                  "segments": [
+                    {
+                      "lit": "kamaji"
+                    },
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "chihiro"
+                    },
+                    {
+                      "lit": "00_09_000"
+                    },
+                    {
+                      "lit": "geo"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -161,23 +171,43 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
-                  "parts": [
-                    "store",
-                    "api",
-                    "chihiro",
-                    "00_09_000",
-                    "container",
-                    "{container_id}",
-                    "{language}",
-                    "{age}",
-                    "{cusa}",
-                    "image"
-                  ],
                   "rename": {
                     "param": {
                       "country": "container_id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "store"
+                    },
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "chihiro"
+                    },
+                    {
+                      "lit": "00_09_000"
+                    },
+                    {
+                      "lit": "container"
+                    },
+                    {
+                      "var": "container_id"
+                    },
+                    {
+                      "var": "language"
+                    },
+                    {
+                      "var": "age"
+                    },
+                    {
+                      "var": "cusa"
+                    },
+                    {
+                      "lit": "image"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "age",
@@ -348,7 +378,14 @@
           ],
           "id": {
             "field": "id",
-            "name": "id"
+            "name": "id",
+            "parts": [
+              "country",
+              "language",
+              "age",
+              "cusa"
+            ],
+            "sep": "/"
           },
           "name": "store",
           "op": {
@@ -522,16 +559,34 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
-                  "parts": [
-                    "store",
-                    "api",
-                    "chihiro",
-                    "00_09_000",
-                    "container",
-                    "{country}",
-                    "{language}",
-                    "{age}",
-                    "{cusa}"
+                  "segments": [
+                    {
+                      "lit": "store"
+                    },
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "chihiro"
+                    },
+                    {
+                      "lit": "00_09_000"
+                    },
+                    {
+                      "lit": "container"
+                    },
+                    {
+                      "var": "country"
+                    },
+                    {
+                      "var": "language"
+                    },
+                    {
+                      "var": "age"
+                    },
+                    {
+                      "var": "cusa"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -727,22 +782,40 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
-                  "parts": [
-                    "store",
-                    "api",
-                    "chihiro",
-                    "00_09_000",
-                    "tumbler",
-                    "{country}",
-                    "{language}",
-                    "{age}",
-                    "{search_string}"
-                  ],
                   "rename": {
                     "param": {
                       "searchString": "search_string"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "store"
+                    },
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "chihiro"
+                    },
+                    {
+                      "lit": "00_09_000"
+                    },
+                    {
+                      "lit": "tumbler"
+                    },
+                    {
+                      "var": "country"
+                    },
+                    {
+                      "var": "language"
+                    },
+                    {
+                      "var": "age"
+                    },
+                    {
+                      "var": "search_string"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "age",
@@ -849,13 +922,25 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-                  "parts": [
-                    "chihiro-api",
-                    "viewfinder",
-                    "{country}",
-                    "{language}",
-                    "{age}",
-                    "{cusa}"
+                  "segments": [
+                    {
+                      "lit": "chihiro-api"
+                    },
+                    {
+                      "lit": "viewfinder"
+                    },
+                    {
+                      "var": "country"
+                    },
+                    {
+                      "var": "language"
+                    },
+                    {
+                      "var": "age"
+                    },
+                    {
+                      "var": "cusa"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -956,8 +1041,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1149,6 +1237,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1174,6 +1265,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1225,6 +1320,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1249,6 +1345,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1300,6 +1397,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1324,6 +1422,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1364,6 +1463,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1389,6 +1491,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1423,6 +1528,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1448,6 +1556,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1488,6 +1599,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1513,6 +1627,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1558,6 +1675,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1583,6 +1703,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1600,11 +1723,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1633,6 +1751,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1657,6 +1778,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

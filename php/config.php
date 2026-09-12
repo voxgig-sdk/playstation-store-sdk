@@ -70,17 +70,34 @@ class PlaystationStoreConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/kamaji/api/chihiro/00_09_000/geo',
+                  'segments' => [
+                    [
+                      'lit' => 'kamaji',
+                    ],
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'chihiro',
+                    ],
+                    [
+                      'lit' => '00_09_000',
+                    ],
+                    [
+                      'lit' => 'geo',
+                    ],
+                  ],
+                  'select' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
                   'parts' => [
                     'kamaji',
                     'api',
                     'chihiro',
                     '00_09_000',
                     'geo',
-                  ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
                   ],
                 ],
               ],
@@ -168,21 +185,41 @@ class PlaystationStoreConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image',
-                  'parts' => [
-                    'store',
-                    'api',
-                    'chihiro',
-                    '00_09_000',
-                    'container',
-                    '{container_id}',
-                    '{language}',
-                    '{age}',
-                    '{cusa}',
-                    'image',
-                  ],
                   'rename' => [
                     'param' => [
                       'country' => 'container_id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'store',
+                    ],
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'chihiro',
+                    ],
+                    [
+                      'lit' => '00_09_000',
+                    ],
+                    [
+                      'lit' => 'container',
+                    ],
+                    [
+                      'var' => 'container_id',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'var' => 'age',
+                    ],
+                    [
+                      'var' => 'cusa',
+                    ],
+                    [
+                      'lit' => 'image',
                     ],
                   ],
                   'select' => [
@@ -201,6 +238,18 @@ class PlaystationStoreConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'store',
+                    'api',
+                    'chihiro',
+                    '00_09_000',
+                    'container',
+                    '{container_id}',
+                    '{language}',
+                    '{age}',
+                    '{cusa}',
+                    'image',
                   ],
                 ],
               ],
@@ -326,6 +375,17 @@ class PlaystationStoreConfig
               'req' => true,
               'type' => '`$NUMBER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+            'parts' => [
+              'country',
+              'language',
+              'age',
+              'cusa',
+            ],
+            'sep' => '/',
           ],
           'name' => 'store',
           'op' => [
@@ -464,16 +524,34 @@ class PlaystationStoreConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}',
-                  'parts' => [
-                    'store',
-                    'api',
-                    'chihiro',
-                    '00_09_000',
-                    'container',
-                    '{country}',
-                    '{language}',
-                    '{age}',
-                    '{cusa}',
+                  'segments' => [
+                    [
+                      'lit' => 'store',
+                    ],
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'chihiro',
+                    ],
+                    [
+                      'lit' => '00_09_000',
+                    ],
+                    [
+                      'lit' => 'container',
+                    ],
+                    [
+                      'var' => 'country',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'var' => 'age',
+                    ],
+                    [
+                      'var' => 'cusa',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -501,6 +579,17 @@ class PlaystationStoreConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'store',
+                    'api',
+                    'chihiro',
+                    '00_09_000',
+                    'container',
+                    '{country}',
+                    '{language}',
+                    '{age}',
+                    '{cusa}',
                   ],
                 ],
                 [
@@ -634,20 +723,38 @@ class PlaystationStoreConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}',
-                  'parts' => [
-                    'store',
-                    'api',
-                    'chihiro',
-                    '00_09_000',
-                    'tumbler',
-                    '{country}',
-                    '{language}',
-                    '{age}',
-                    '{search_string}',
-                  ],
                   'rename' => [
                     'param' => [
                       'searchString' => 'search_string',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'store',
+                    ],
+                    [
+                      'lit' => 'api',
+                    ],
+                    [
+                      'lit' => 'chihiro',
+                    ],
+                    [
+                      'lit' => '00_09_000',
+                    ],
+                    [
+                      'lit' => 'tumbler',
+                    ],
+                    [
+                      'var' => 'country',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'var' => 'age',
+                    ],
+                    [
+                      'var' => 'search_string',
                     ],
                   ],
                   'select' => [
@@ -676,6 +783,17 @@ class PlaystationStoreConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'store',
+                    'api',
+                    'chihiro',
+                    '00_09_000',
+                    'tumbler',
+                    '{country}',
+                    '{language}',
+                    '{age}',
+                    '{search_string}',
                   ],
                 ],
                 [
@@ -743,13 +861,25 @@ class PlaystationStoreConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}',
-                  'parts' => [
-                    'chihiro-api',
-                    'viewfinder',
-                    '{country}',
-                    '{language}',
-                    '{age}',
-                    '{cusa}',
+                  'segments' => [
+                    [
+                      'lit' => 'chihiro-api',
+                    ],
+                    [
+                      'lit' => 'viewfinder',
+                    ],
+                    [
+                      'var' => 'country',
+                    ],
+                    [
+                      'var' => 'language',
+                    ],
+                    [
+                      'var' => 'age',
+                    ],
+                    [
+                      'var' => 'cusa',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -766,6 +896,14 @@ class PlaystationStoreConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'chihiro-api',
+                    'viewfinder',
+                    '{country}',
+                    '{language}',
+                    '{age}',
+                    '{cusa}',
                   ],
                 ],
               ],

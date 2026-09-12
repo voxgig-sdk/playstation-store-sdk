@@ -120,6 +120,13 @@ main: kit: entity: store: {
   id: {
     field: "id"
     name: "id"
+    parts: [
+      "country"
+      "language"
+      "age"
+      "cusa"
+    ]
+    sep: "/"
   }
 
   name: "store"
@@ -272,16 +279,34 @@ main: kit: entity: store: {
           }
           method: "GET"
           orig: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
-          parts: [
-            "store"
-            "api"
-            "chihiro"
-            "00_09_000"
-            "container"
-            "{country}"
-            "{language}"
-            "{age}"
-            "{cusa}"
+          segments: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "container"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
           ]
           select: {
             exist: [
@@ -456,22 +481,40 @@ main: kit: entity: store: {
           }
           method: "GET"
           orig: "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}"
-          parts: [
-            "store"
-            "api"
-            "chihiro"
-            "00_09_000"
-            "tumbler"
-            "{country}"
-            "{language}"
-            "{age}"
-            "{search_string}"
-          ]
           rename: {
             param: {
               searchString: "search_string"
             }
           }
+          segments: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "tumbler"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "search_string"
+            }
+          ]
           select: {
             exist: [
               "age"
@@ -568,13 +611,25 @@ main: kit: entity: store: {
           }
           method: "GET"
           orig: "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
-          parts: [
-            "chihiro-api"
-            "viewfinder"
-            "{country}"
-            "{language}"
-            "{age}"
-            "{cusa}"
+          segments: [
+            {
+              lit: "chihiro-api"
+            }
+            {
+              lit: "viewfinder"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
           ]
           select: {
             exist: [
