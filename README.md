@@ -105,7 +105,7 @@ local result, err = client:Image():load({ age = 1, container_id = "example", cus
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/playstation-store` | publish pending — [install from git tag](https://github.com/voxgig-sdk/playstation-store-sdk/releases) |
+| TypeScript | `@voxgig-sdk/playstation-store-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/playstation-store-sdk/releases) |
 | Python | `voxgig-sdk-playstation-store` | publish pending — [install from git tag](https://github.com/voxgig-sdk/playstation-store-sdk/releases) |
 | PHP | `voxgig-sdk/playstation-store` | publish pending — [install from git tag](https://github.com/voxgig-sdk/playstation-store-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/playstation-store-sdk/go` | `go get github.com/voxgig-sdk/playstation-store-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Image():load({ age = 1, container_id = "example", cus
 ### TypeScript
 
 ```ts
-import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
+import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store-sdk'
 
 const client = new PlaystationStoreSDK()
 

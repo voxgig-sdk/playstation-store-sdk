@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
+import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store-sdk'
 
 const client = new PlaystationStoreSDK()
 ```
@@ -503,7 +503,7 @@ playstation-store/
 Import the SDK from the package root:
 
 ```ts
-import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store'
+import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store-sdk'
 ```
 
 ### Entity state
