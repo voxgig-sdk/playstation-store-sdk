@@ -10,6 +10,12 @@ main: kit: entity: geo: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /kamaji/api/chihiro/00_09_000/geo"
+            json: "{\"operationId\":\"GetGeo\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{},\"description\":\"Success\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Error Response\",\"properties\":{\"cause\":{\"type\":\"string\"},\"codeName\":{\"type\":\"string\"},\"errorUUID\":{\"type\":\"string\"}},\"required\":[\"codeName\"],\"type\":\"object\"}}},\"description\":\"Invalid\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/kamaji/api/chihiro/00_09_000/geo"
           segments: [

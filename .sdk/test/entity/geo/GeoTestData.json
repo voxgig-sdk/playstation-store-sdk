@@ -16,5 +16,47 @@
     "geo": {
       "geo_ref01": {}
     }
+  },
+  "requests": {
+    "GET /kamaji/api/chihiro/00_09_000/geo": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "GetGeo",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {},
+            "description": "Success"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Error Response",
+                  "properties": {
+                    "cause": {
+                      "type": "string"
+                    },
+                    "codeName": {
+                      "type": "string"
+                    },
+                    "errorUUID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "codeName"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

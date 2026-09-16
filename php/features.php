@@ -4,7 +4,10 @@ declare(strict_types=1);
 // PlaystationStore SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class PlaystationStoreFeatures
@@ -14,8 +17,14 @@ class PlaystationStoreFeatures
         switch ($name) {
             case "base":
                 return new PlaystationStoreBaseFeature();
+            case "ratelimit":
+                return new PlaystationStoreRatelimitFeature();
+            case "retry":
+                return new PlaystationStoreRetryFeature();
             case "test":
                 return new PlaystationStoreTestFeature();
+            case "timeout":
+                return new PlaystationStoreTimeoutFeature();
             default:
                 return new PlaystationStoreBaseFeature();
         }
@@ -31,7 +40,10 @@ class PlaystationStoreFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
