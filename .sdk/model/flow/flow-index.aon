@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicGeoFlow.aon"
-@"BasicImageFlow.aon"
-@"BasicStoreFlow.aon"
+@"./BasicGeoFlow.aon"
+@"./BasicImageFlow.aon"
+@"./BasicStoreFlow.aon"

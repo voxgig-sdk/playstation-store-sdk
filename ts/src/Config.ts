@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      geo: {
-      },
-
-      image: {
-      },
-
-      store: {
-      },
-
+        geo: {
+        },
+  
+        image: {
+        },
+  
+        store: {
+        },
+  
     }
   }
 

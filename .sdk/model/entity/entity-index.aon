@@ -1,5 +1,5 @@
 # Entity Models
 
-@"geo.aon"
-@"image.aon"
-@"store.aon"
+@"./geo.aon"
+@"./image.aon"
+@"./store.aon"
