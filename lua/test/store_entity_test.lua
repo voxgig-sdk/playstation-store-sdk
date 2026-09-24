@@ -76,7 +76,7 @@ function store_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "store01", "store02", "store03", "viewfinder01", "viewfinder02", "viewfinder03", "container01", "container02", "container03", "tumbler01", "tumbler02", "tumbler03", "age01", "country01", "language01" },
+    { "store01", "store02", "store03", "age01", "country01", "language01" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

@@ -31,15 +31,13 @@ require_once 'playstationstore_sdk.php';
 $client = new PlaystationStoreSDK();
 ```
 
-### 3. Load an image
-
-Image is nested under age, so provide the `age`.
+### 3. Load a geo
 
 ```php
 try {
-    // load() returns the ENTITY — call data_get() for the Image record (throws on error).
-    $image = $client->Image()->load(["age" => 1, "container_id" => "example_container_id", "cusa" => "example_cusa", "language" => "example_language"]);
-    print_r($image->data_get());
+    // load() returns the ENTITY — call data_get() for the Geo record (throws on error).
+    $geo = $client->Geo()->load();
+    print_r($geo->data_get());
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }

@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -123,15 +123,9 @@ import { PlaystationStoreSDK } from '@voxgig-sdk/playstation-store-sdk'
 
 const client = new PlaystationStoreSDK()
 
-
-// Load a specific image (returns a Image)
-const image = await client.Image().load({
-  age: 1,
-  container_id: 'example_container_id',
-  cusa: 'example_cusa',
-  language: 'example_language',
-})
-console.log(image)
+// Load geo data (returns a Geo)
+const geo = await client.Geo().load()
+console.log(geo)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -215,15 +209,12 @@ import sdk "github.com/voxgig-sdk/playstation-store-sdk/go"
 
 client := sdk.New()
 
-
-// Load a specific image
-image, err := client.Image(nil).Load(
-    map[string]any{"age": 1, "container_id": "example_container_id", "cusa": "example_cusa", "language": "example_language"}, nil,
-)
+// Load geo data
+geo, err := client.Geo(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(image)
+fmt.Println(geo)
 ```
 
 ### Ruby

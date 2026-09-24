@@ -1,0 +1,51 @@
+# Entity: geo
+
+main: kit: entity: geo: {
+
+  alias: field: {}
+
+  name: "geo"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /kamaji/api/chihiro/00_09_000/geo"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/kamaji/api/chihiro/00_09_000/geo"
+          s: [
+            {
+              lit: "kamaji"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "geo"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

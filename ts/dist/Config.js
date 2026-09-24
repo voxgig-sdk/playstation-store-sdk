@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -121,7 +114,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/kamaji/api/chihiro/00_09_000/geo",
@@ -142,18 +134,20 @@ class Config {
                                     "lit": "geo"
                                 }
                             ],
-                            "select": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
                             "parts": [
                                 "kamaji",
                                 "api",
                                 "chihiro",
                                 "00_09_000",
                                 "geo"
-                            ]
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -171,80 +165,9 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 999,
-                                        "kind": "param",
-                                        "name": "age",
-                                        "orig": "age",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "container_id",
-                                        "orig": "country",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "cusa",
-                                        "orig": "cusa",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "language",
-                                        "orig": "language",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "bg_color",
-                                        "orig": "bg_color",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "h",
-                                        "orig": "h",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": 100,
-                                        "kind": "query",
-                                        "name": "opacity",
-                                        "orig": "opacity",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "platform",
-                                        "orig": "platform",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "w",
-                                        "orig": "w",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image",
-                            "rename": {
-                                "param": {
-                                    "country": "container_id"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "store"
@@ -277,6 +200,93 @@ class Config {
                                     "lit": "image"
                                 }
                             ],
+                            "parts": [
+                                "store",
+                                "api",
+                                "chihiro",
+                                "00_09_000",
+                                "container",
+                                "{container_id}",
+                                "{language}",
+                                "{age}",
+                                "{cusa}",
+                                "image"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "country": "container_id"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "age",
+                                        "orig": "age",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 999
+                                    },
+                                    {
+                                        "name": "container_id",
+                                        "orig": "country",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "cusa",
+                                        "orig": "cusa",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "bg_color",
+                                        "orig": "bg_color",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "h",
+                                        "orig": "h",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "opacity",
+                                        "orig": "opacity",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 100
+                                    },
+                                    {
+                                        "name": "platform",
+                                        "orig": "platform",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "w",
+                                        "orig": "w",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "age",
@@ -289,146 +299,148 @@ class Config {
                                     "platform",
                                     "w"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "store",
-                                "api",
-                                "chihiro",
-                                "00_09_000",
-                                "container",
-                                "{container_id}",
-                                "{language}",
-                                "{age}",
-                                "{cusa}",
-                                "image"
-                            ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "container"
-                    ]
-                ]
+                "ancestors": []
             }
         },
         "store": {
             "fields": [
                 {
                     "name": "age_limit",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Age Limit",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "attributes",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Attributes",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "container_type",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Container Type",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "content_origin",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Content Origin",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "dob_required",
-                    "req": true,
-                    "type": "`$BOOLEAN`"
+                    "title": "Dob Required",
+                    "type": "`$BOOLEAN`",
+                    "req": true
                 },
                 {
                     "name": "id",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Id",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "images",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Images",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "links",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Links",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "long_desc",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Long Desc",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "metadata",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Metadata",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "name",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Name",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "promomedia",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Promomedia",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "restricted",
-                    "req": true,
-                    "type": "`$BOOLEAN`"
+                    "title": "Restricted",
+                    "type": "`$BOOLEAN`",
+                    "req": true
                 },
                 {
                     "name": "revision",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Revision",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "scene_layout",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Scene Layout",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "size",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Size",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "sku_links",
-                    "req": true,
-                    "type": "`$ARRAY`"
+                    "title": "Sku Links",
+                    "type": "`$ARRAY`",
+                    "req": true
                 },
                 {
                     "name": "sort",
-                    "req": true,
-                    "type": "`$STRING`"
+                    "title": "Sort",
+                    "type": "`$STRING`",
+                    "req": true
                 },
                 {
                     "name": "start",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Start",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "template_def",
-                    "req": true,
-                    "type": "`$OBJECT`"
+                    "title": "Template Def",
+                    "type": "`$OBJECT`",
+                    "req": true
                 },
                 {
                     "name": "timestamp",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Timestamp",
+                    "type": "`$NUMBER`",
+                    "req": true
                 },
                 {
                     "name": "total_results",
-                    "req": true,
-                    "type": "`$NUMBER`"
+                    "title": "Total Results",
+                    "type": "`$NUMBER`",
+                    "req": true
                 }
             ],
             "id": {
@@ -449,133 +461,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 999,
-                                        "kind": "param",
-                                        "name": "age",
-                                        "orig": "age",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "country",
-                                        "orig": "country",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "cusa",
-                                        "orig": "cusa",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "language",
-                                        "orig": "language",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "direction",
-                                        "orig": "direction",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_content_type",
-                                        "orig": "game_content_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_demo",
-                                        "orig": "game_demo",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_type",
-                                        "orig": "game_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "genre",
-                                        "orig": "genre",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "platform",
-                                        "orig": "platform",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "price",
-                                        "orig": "price",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "relationship",
-                                        "orig": "relationship",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "release_date",
-                                        "orig": "release_date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "size",
-                                        "orig": "size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "subtitle_lang",
-                                        "orig": "subtitle_lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "top_category",
-                                        "orig": "top_category",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "voice_lang",
-                                        "orig": "voice_lang",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
@@ -608,6 +493,149 @@ class Config {
                                     "var": "cusa"
                                 }
                             ],
+                            "parts": [
+                                "store",
+                                "api",
+                                "chihiro",
+                                "00_09_000",
+                                "container",
+                                "{country}",
+                                "{language}",
+                                "{age}",
+                                "{cusa}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "age",
+                                        "orig": "age",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 999
+                                    },
+                                    {
+                                        "name": "country",
+                                        "orig": "country",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "cusa",
+                                        "orig": "cusa",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "direction",
+                                        "orig": "direction",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_content_type",
+                                        "orig": "game_content_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_demo",
+                                        "orig": "game_demo",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_type",
+                                        "orig": "game_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "genre",
+                                        "orig": "genre",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "platform",
+                                        "orig": "platform",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "price",
+                                        "orig": "price",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "relationship",
+                                        "orig": "relationship",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "release_date",
+                                        "orig": "release_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "orig": "size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    },
+                                    {
+                                        "name": "subtitle_lang",
+                                        "orig": "subtitle_lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "top_category",
+                                        "orig": "top_category",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "voice_lang",
+                                        "orig": "voice_lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "age",
@@ -630,159 +658,12 @@ class Config {
                                     "top_category",
                                     "voice_lang"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "store",
-                                "api",
-                                "chihiro",
-                                "00_09_000",
-                                "container",
-                                "{country}",
-                                "{language}",
-                                "{age}",
-                                "{cusa}"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 999,
-                                        "kind": "param",
-                                        "name": "age",
-                                        "orig": "age",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "country",
-                                        "orig": "country",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "language",
-                                        "orig": "language",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "search_string",
-                                        "orig": "search_string",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "direction",
-                                        "orig": "direction",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_content_type",
-                                        "orig": "game_content_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_demo",
-                                        "orig": "game_demo",
-                                        "type": "`$BOOLEAN`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "game_type",
-                                        "orig": "game_type",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "genre",
-                                        "orig": "genre",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "platform",
-                                        "orig": "platform",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "price",
-                                        "orig": "price",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "relationship",
-                                        "orig": "relationship",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "release_date",
-                                        "orig": "release_date",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "size",
-                                        "orig": "size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "subtitle_lang",
-                                        "orig": "subtitle_lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "top_category",
-                                        "orig": "top_category",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "voice_lang",
-                                        "orig": "voice_lang",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}",
-                            "rename": {
-                                "param": {
-                                    "searchString": "search_string"
-                                }
-                            },
                             "segments": [
                                 {
                                     "lit": "store"
@@ -812,6 +693,153 @@ class Config {
                                     "var": "search_string"
                                 }
                             ],
+                            "parts": [
+                                "store",
+                                "api",
+                                "chihiro",
+                                "00_09_000",
+                                "tumbler",
+                                "{country}",
+                                "{language}",
+                                "{age}",
+                                "{search_string}"
+                            ],
+                            "rename": {
+                                "param": {
+                                    "searchString": "search_string"
+                                }
+                            },
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "age",
+                                        "orig": "age",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 999
+                                    },
+                                    {
+                                        "name": "country",
+                                        "orig": "country",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "search_string",
+                                        "orig": "search_string",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "direction",
+                                        "orig": "direction",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_content_type",
+                                        "orig": "game_content_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_demo",
+                                        "orig": "game_demo",
+                                        "type": "`$BOOLEAN`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "game_type",
+                                        "orig": "game_type",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "genre",
+                                        "orig": "genre",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "platform",
+                                        "orig": "platform",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "price",
+                                        "orig": "price",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "relationship",
+                                        "orig": "relationship",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "release_date",
+                                        "orig": "release_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "orig": "size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    },
+                                    {
+                                        "name": "subtitle_lang",
+                                        "orig": "subtitle_lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "top_category",
+                                        "orig": "top_category",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "voice_lang",
+                                        "orig": "voice_lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "age",
@@ -834,85 +862,9 @@ class Config {
                                     "top_category",
                                     "voice_lang"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "store",
-                                "api",
-                                "chihiro",
-                                "00_09_000",
-                                "tumbler",
-                                "{country}",
-                                "{language}",
-                                "{age}",
-                                "{search_string}"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": 999,
-                                        "kind": "param",
-                                        "name": "age",
-                                        "orig": "age",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "country",
-                                        "orig": "country",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "cusa",
-                                        "orig": "cusa",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "param",
-                                        "name": "language",
-                                        "orig": "language",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "direction",
-                                        "orig": "direction",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 1,
-                                        "kind": "query",
-                                        "name": "size",
-                                        "orig": "size",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
@@ -936,6 +888,80 @@ class Config {
                                     "var": "cusa"
                                 }
                             ],
+                            "parts": [
+                                "chihiro-api",
+                                "viewfinder",
+                                "{country}",
+                                "{language}",
+                                "{age}",
+                                "{cusa}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "age",
+                                        "orig": "age",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 999
+                                    },
+                                    {
+                                        "name": "country",
+                                        "orig": "country",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "cusa",
+                                        "orig": "cusa",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "direction",
+                                        "orig": "direction",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "orig": "size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "age",
@@ -947,35 +973,13 @@ class Config {
                                     "sort",
                                     "start"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "chihiro-api",
-                                "viewfinder",
-                                "{country}",
-                                "{language}",
-                                "{age}",
-                                "{cusa}"
-                            ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "viewfinder"
-                    ],
-                    [
-                        "container"
-                    ],
-                    [
-                        "tumbler"
-                    ]
-                ]
+                "ancestors": []
             }
         }
     };

@@ -36,15 +36,14 @@ from playstationstore_sdk import PlaystationStoreSDK
 client = PlaystationStoreSDK()
 ```
 
-### 3. Load an image
+### 3. Load a geo
 
-Image is nested under age, so provide the `age`.
 `load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
-    image = client.Image().load({"age": 1, "container_id": "example_container_id", "cusa": "example_cusa", "language": "example_language"})
-    print(image)
+    geo = client.Geo().load()
+    print(geo)
 except Exception as err:
     print(f"load failed: {err}")
 ```

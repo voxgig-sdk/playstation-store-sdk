@@ -30,15 +30,13 @@ require_relative "PlaystationStore_sdk"
 client = PlaystationStoreSDK.new
 ```
 
-### 3. Load an image
-
-Image is nested under age, so provide the `age`.
+### 3. Load a geo
 
 ```ruby
 begin
-  # load returns the ENTITY — call data_get for the Image record (raises on error).
-  image = client.Image.load({ "age" => 1, "container_id" => "example_container_id", "cusa" => "example_cusa", "language" => "example_language" })
-  puts image
+  # load returns the ENTITY — call data_get for the Geo record (raises on error).
+  geo = client.Geo.load()
+  puts geo
 rescue => err
   warn "load failed: #{err}"
 end

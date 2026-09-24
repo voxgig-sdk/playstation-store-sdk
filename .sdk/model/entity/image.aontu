@@ -1,0 +1,155 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  name: "image"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 999
+                k: "param"
+                n: "age"
+                or: "age"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "container_id"
+                or: "country"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "cusa"
+                or: "cusa"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "bg_color"
+                or: "bg_color"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "h"
+                or: "h"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "opacity"
+                or: "opacity"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "platform"
+                or: "platform"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "w"
+                or: "w"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image"
+          q: {
+            exist: [
+              "age"
+              "bg_color"
+              "container_id"
+              "cusa"
+              "h"
+              "language"
+              "opacity"
+              "platform"
+              "w"
+            ]
+          }
+          r: {
+            param: {
+              country: "container_id"
+            }
+          }
+          s: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "container"
+            }
+            {
+              var: "container_id"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
+            {
+              lit: "image"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

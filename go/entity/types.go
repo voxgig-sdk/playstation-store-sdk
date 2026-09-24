@@ -1,7 +1,7 @@
 // Typed models for the PlaystationStore SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -39,28 +39,6 @@ type ImageLoadMatch struct {
 
 // Store is the typed data model for the store entity.
 type Store struct {
-	AgeLimit float64 `json:"age_limit"`
-	Attributes map[string]any `json:"attributes"`
-	ContainerType string `json:"container_type"`
-	ContentOrigin float64 `json:"content_origin"`
-	DobRequired bool `json:"dob_required"`
-	Id string `json:"id"`
-	Images []any `json:"images"`
-	Links []any `json:"links"`
-	LongDesc string `json:"long_desc"`
-	Metadata map[string]any `json:"metadata"`
-	Name string `json:"name"`
-	Promomedia []any `json:"promomedia"`
-	Restricted bool `json:"restricted"`
-	Revision float64 `json:"revision"`
-	SceneLayout map[string]any `json:"scene_layout"`
-	Size float64 `json:"size"`
-	SkuLinks []any `json:"sku_links"`
-	Sort string `json:"sort"`
-	Start float64 `json:"start"`
-	TemplateDef map[string]any `json:"template_def"`
-	Timestamp float64 `json:"timestamp"`
-	TotalResults float64 `json:"total_results"`
 }
 
 // StoreLoadMatch is the typed request payload for Store.LoadTyped.

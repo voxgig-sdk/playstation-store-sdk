@@ -1,0 +1,694 @@
+# Entity: store
+
+main: kit: entity: store: {
+
+  alias: field: {}
+
+  fields: {
+    age_limit: {
+      h: "Age Limit"
+      n: "age_limit"
+      r: true
+      t: "`$NUMBER`"
+    }
+    attributes: {
+      h: "Attributes"
+      n: "attributes"
+      r: true
+      t: "`$OBJECT`"
+    }
+    container_type: {
+      h: "Container Type"
+      n: "container_type"
+      r: true
+      t: "`$STRING`"
+    }
+    content_origin: {
+      h: "Content Origin"
+      n: "content_origin"
+      r: true
+      t: "`$NUMBER`"
+    }
+    dob_required: {
+      h: "Dob Required"
+      n: "dob_required"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: true
+      t: "`$STRING`"
+    }
+    images: {
+      h: "Images"
+      n: "images"
+      r: true
+      t: "`$ARRAY`"
+    }
+    links: {
+      h: "Links"
+      n: "links"
+      r: true
+      t: "`$ARRAY`"
+    }
+    long_desc: {
+      h: "Long Desc"
+      n: "long_desc"
+      r: true
+      t: "`$STRING`"
+    }
+    metadata: {
+      h: "Metadata"
+      n: "metadata"
+      r: true
+      t: "`$OBJECT`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: true
+      t: "`$STRING`"
+    }
+    promomedia: {
+      h: "Promomedia"
+      n: "promomedia"
+      r: true
+      t: "`$ARRAY`"
+    }
+    restricted: {
+      h: "Restricted"
+      n: "restricted"
+      r: true
+      t: "`$BOOLEAN`"
+    }
+    revision: {
+      h: "Revision"
+      n: "revision"
+      r: true
+      t: "`$NUMBER`"
+    }
+    scene_layout: {
+      h: "Scene Layout"
+      n: "scene_layout"
+      r: true
+      t: "`$OBJECT`"
+    }
+    size: {
+      h: "Size"
+      n: "size"
+      r: true
+      t: "`$NUMBER`"
+    }
+    sku_links: {
+      h: "Sku Links"
+      n: "sku_links"
+      r: true
+      t: "`$ARRAY`"
+    }
+    sort: {
+      h: "Sort"
+      n: "sort"
+      r: true
+      t: "`$STRING`"
+    }
+    start: {
+      h: "Start"
+      n: "start"
+      r: true
+      t: "`$NUMBER`"
+    }
+    template_def: {
+      h: "Template Def"
+      n: "template_def"
+      r: true
+      t: "`$OBJECT`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: true
+      t: "`$NUMBER`"
+    }
+    total_results: {
+      h: "Total Results"
+      n: "total_results"
+      r: true
+      t: "`$NUMBER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+    parts: [
+      "country"
+      "language"
+      "age"
+      "cusa"
+    ]
+    sep: "/"
+  }
+
+  name: "store"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 999
+                k: "param"
+                n: "age"
+                or: "age"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "country"
+                or: "country"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "cusa"
+                or: "cusa"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "direction"
+                or: "direction"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "game_content_type"
+                or: "game_content_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "game_demo"
+                or: "game_demo"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "game_type"
+                or: "game_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "genre"
+                or: "genre"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "platform"
+                or: "platform"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "price"
+                or: "price"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "relationship"
+                or: "relationship"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "release_date"
+                or: "release_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "size"
+                or: "size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "subtitle_lang"
+                or: "subtitle_lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "top_category"
+                or: "top_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "voice_lang"
+                or: "voice_lang"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
+          q: {
+            exist: [
+              "age"
+              "country"
+              "cusa"
+              "direction"
+              "game_content_type"
+              "game_demo"
+              "game_type"
+              "genre"
+              "language"
+              "platform"
+              "price"
+              "relationship"
+              "release_date"
+              "size"
+              "sort"
+              "start"
+              "subtitle_lang"
+              "top_category"
+              "voice_lang"
+            ]
+          }
+          s: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "container"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 999
+                k: "param"
+                n: "age"
+                or: "age"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "country"
+                or: "country"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "search_string"
+                or: "search_string"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "direction"
+                or: "direction"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "game_content_type"
+                or: "game_content_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "game_demo"
+                or: "game_demo"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "game_type"
+                or: "game_type"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "genre"
+                or: "genre"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "platform"
+                or: "platform"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "price"
+                or: "price"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "relationship"
+                or: "relationship"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "release_date"
+                or: "release_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "size"
+                or: "size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "subtitle_lang"
+                or: "subtitle_lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "top_category"
+                or: "top_category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "voice_lang"
+                or: "voice_lang"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}"
+          q: {
+            exist: [
+              "age"
+              "country"
+              "direction"
+              "game_content_type"
+              "game_demo"
+              "game_type"
+              "genre"
+              "language"
+              "platform"
+              "price"
+              "relationship"
+              "release_date"
+              "search_string"
+              "size"
+              "sort"
+              "start"
+              "subtitle_lang"
+              "top_category"
+              "voice_lang"
+            ]
+          }
+          r: {
+            param: {
+              searchString: "search_string"
+            }
+          }
+          s: [
+            {
+              lit: "store"
+            }
+            {
+              lit: "api"
+            }
+            {
+              lit: "chihiro"
+            }
+            {
+              lit: "00_09_000"
+            }
+            {
+              lit: "tumbler"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "search_string"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 999
+                k: "param"
+                n: "age"
+                or: "age"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "country"
+                or: "country"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "cusa"
+                or: "cusa"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "direction"
+                or: "direction"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "size"
+                or: "size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
+          q: {
+            exist: [
+              "age"
+              "country"
+              "cusa"
+              "direction"
+              "language"
+              "size"
+              "sort"
+              "start"
+            ]
+          }
+          s: [
+            {
+              lit: "chihiro-api"
+            }
+            {
+              lit: "viewfinder"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
