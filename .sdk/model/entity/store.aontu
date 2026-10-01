@@ -205,14 +205,14 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "game_content_type"
-                or: "game_content_type"
+                or: "gameContentType"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "game_demo"
-                or: "game_demo"
+                or: "gameDemo"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -254,7 +254,7 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "release_date"
-                or: "release_date"
+                or: "releaseDate"
                 r: false
                 t: "`$STRING`"
               }
@@ -284,21 +284,21 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "subtitle_lang"
-                or: "subtitle_lang"
+                or: "subtitleLang"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "top_category"
-                or: "top_category"
+                or: "topCategory"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "voice_lang"
-                or: "voice_lang"
+                or: "voiceLang"
                 r: false
                 t: "`$STRING`"
               }
@@ -396,7 +396,7 @@ main: kit: entity: store: {
               {
                 k: "param"
                 n: "search_string"
-                or: "search_string"
+                or: "searchString"
                 r: true
                 t: "`$STRING`"
               }
@@ -412,14 +412,14 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "game_content_type"
-                or: "game_content_type"
+                or: "gameContentType"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "game_demo"
-                or: "game_demo"
+                or: "gameDemo"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -461,7 +461,7 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "release_date"
-                or: "release_date"
+                or: "releaseDate"
                 r: false
                 t: "`$STRING`"
               }
@@ -491,21 +491,21 @@ main: kit: entity: store: {
               {
                 k: "query"
                 n: "subtitle_lang"
-                or: "subtitle_lang"
+                or: "subtitleLang"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "top_category"
-                or: "top_category"
+                or: "topCategory"
                 r: false
                 t: "`$STRING`"
               }
               {
                 k: "query"
                 n: "voice_lang"
-                or: "voice_lang"
+                or: "voiceLang"
                 r: false
                 t: "`$STRING`"
               }

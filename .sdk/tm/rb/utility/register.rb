@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 PlaystationStoreUtility.registrar = ->(u) {
   u.clean = PlaystationStoreUtilities::Clean
+  u.clean_add = PlaystationStoreUtilities::CleanAdd
+  u.clean_explain = PlaystationStoreUtilities::CleanExplain
   u.done = PlaystationStoreUtilities::Done
   u.make_error = PlaystationStoreUtilities::MakeError
   u.feature_add = PlaystationStoreUtilities::FeatureAdd

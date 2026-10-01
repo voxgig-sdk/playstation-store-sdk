@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 PlaystationStoreUtility::setRegistrar(function (PlaystationStoreUtility $u): void {
     $u->clean = [PlaystationStoreClean::class, 'call'];
+    $u->clean_add = [PlaystationStoreClean::class, 'add'];
+    $u->clean_explain = [PlaystationStoreDone::class, 'clean_explain'];
     $u->done = [PlaystationStoreDone::class, 'call'];
     $u->make_error = [PlaystationStoreMakeError::class, 'call'];
     $u->feature_add = [PlaystationStoreFeatureAdd::class, 'call'];

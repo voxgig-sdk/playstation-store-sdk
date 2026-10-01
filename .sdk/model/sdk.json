@@ -543,7 +543,7 @@
                         "a": true,
                         "k": "query",
                         "n": "game_content_type",
-                        "or": "game_content_type",
+                        "or": "gameContentType",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -551,7 +551,7 @@
                         "a": true,
                         "k": "query",
                         "n": "game_demo",
-                        "or": "game_demo",
+                        "or": "gameDemo",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -599,7 +599,7 @@
                         "a": true,
                         "k": "query",
                         "n": "release_date",
-                        "or": "release_date",
+                        "or": "releaseDate",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -633,7 +633,7 @@
                         "a": true,
                         "k": "query",
                         "n": "subtitle_lang",
-                        "or": "subtitle_lang",
+                        "or": "subtitleLang",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -641,7 +641,7 @@
                         "a": true,
                         "k": "query",
                         "n": "top_category",
-                        "or": "top_category",
+                        "or": "topCategory",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -649,7 +649,7 @@
                         "a": true,
                         "k": "query",
                         "n": "voice_lang",
-                        "or": "voice_lang",
+                        "or": "voiceLang",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -754,7 +754,7 @@
                         "a": true,
                         "k": "param",
                         "n": "search_string",
-                        "or": "search_string",
+                        "or": "searchString",
                         "r": true,
                         "t": "`$STRING`"
                       }
@@ -772,7 +772,7 @@
                         "a": true,
                         "k": "query",
                         "n": "game_content_type",
-                        "or": "game_content_type",
+                        "or": "gameContentType",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -780,7 +780,7 @@
                         "a": true,
                         "k": "query",
                         "n": "game_demo",
-                        "or": "game_demo",
+                        "or": "gameDemo",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -828,7 +828,7 @@
                         "a": true,
                         "k": "query",
                         "n": "release_date",
-                        "or": "release_date",
+                        "or": "releaseDate",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -862,7 +862,7 @@
                         "a": true,
                         "k": "query",
                         "n": "subtitle_lang",
-                        "or": "subtitle_lang",
+                        "or": "subtitleLang",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -870,7 +870,7 @@
                         "a": true,
                         "k": "query",
                         "n": "top_category",
-                        "or": "top_category",
+                        "or": "topCategory",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -878,7 +878,7 @@
                         "a": true,
                         "k": "query",
                         "n": "voice_lang",
-                        "or": "voice_lang",
+                        "or": "voiceLang",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -1623,7 +1623,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

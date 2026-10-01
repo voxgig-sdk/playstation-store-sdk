@@ -579,13 +579,13 @@ class Config {
                   },
                   {
                     "name": "game_content_type",
-                    "orig": "game_content_type",
+                    "orig": "gameContentType",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "game_demo",
-                    "orig": "game_demo",
+                    "orig": "gameDemo",
                     "type": "`$BOOLEAN`",
                     "kind": "query"
                   },
@@ -621,7 +621,7 @@ class Config {
                   },
                   {
                     "name": "release_date",
-                    "orig": "release_date",
+                    "orig": "releaseDate",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
@@ -647,19 +647,19 @@ class Config {
                   },
                   {
                     "name": "subtitle_lang",
-                    "orig": "subtitle_lang",
+                    "orig": "subtitleLang",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "top_category",
-                    "orig": "top_category",
+                    "orig": "topCategory",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "voice_lang",
-                    "orig": "voice_lang",
+                    "orig": "voiceLang",
                     "type": "`$STRING`",
                     "kind": "query"
                   }
@@ -768,7 +768,7 @@ class Config {
                   },
                   {
                     "name": "search_string",
-                    "orig": "search_string",
+                    "orig": "searchString",
                     "type": "`$STRING`",
                     "kind": "param",
                     "reqd": true
@@ -783,13 +783,13 @@ class Config {
                   },
                   {
                     "name": "game_content_type",
-                    "orig": "game_content_type",
+                    "orig": "gameContentType",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "game_demo",
-                    "orig": "game_demo",
+                    "orig": "gameDemo",
                     "type": "`$BOOLEAN`",
                     "kind": "query"
                   },
@@ -825,7 +825,7 @@ class Config {
                   },
                   {
                     "name": "release_date",
-                    "orig": "release_date",
+                    "orig": "releaseDate",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
@@ -851,19 +851,19 @@ class Config {
                   },
                   {
                     "name": "subtitle_lang",
-                    "orig": "subtitle_lang",
+                    "orig": "subtitleLang",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "top_category",
-                    "orig": "top_category",
+                    "orig": "topCategory",
                     "type": "`$STRING`",
                     "kind": "query"
                   },
                   {
                     "name": "voice_lang",
-                    "orig": "voice_lang",
+                    "orig": "voiceLang",
                     "type": "`$STRING`",
                     "kind": "query"
                   }
