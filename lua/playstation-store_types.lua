@@ -53,6 +53,9 @@
 ---@field cusa? string
 ---@field language string
 ---@field direction? string
+---@field size? number
+---@field sort? string
+---@field start? number
 ---@field game_content_type? string
 ---@field game_demo? boolean
 ---@field game_type? string
@@ -61,9 +64,6 @@
 ---@field price? string
 ---@field relationship? string
 ---@field release_date? string
----@field size? number
----@field sort? string
----@field start? number
 ---@field subtitle_lang? string
 ---@field top_category? string
 ---@field voice_lang? string

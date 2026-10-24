@@ -57,6 +57,9 @@ export interface StoreLoadMatch {
   cusa?: string
   language: string
   direction?: string
+  size?: number
+  sort?: string
+  start?: number
   game_content_type?: string
   game_demo?: boolean
   game_type?: string
@@ -65,9 +68,6 @@ export interface StoreLoadMatch {
   price?: string
   relationship?: string
   release_date?: string
-  size?: number
-  sort?: string
-  start?: number
   subtitle_lang?: string
   top_category?: string
   voice_lang?: string

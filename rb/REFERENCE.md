@@ -101,7 +101,7 @@ geo = client.Geo
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Geo.load()
@@ -147,7 +147,7 @@ image = client.Image
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
 result = client.Image.load({ "age" => 1, "container_id" => "container_id", "cusa" => "cusa", "language" => "language" })
@@ -220,10 +220,10 @@ store = client.Store
 
 #### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria. Raises on error.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get` reads, and raises on error.
 
 ```ruby
-result = client.Store.load({ "age" => 1, "country" => "country", "language" => "language" })
+result = client.Store.load({ "age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language" })
 ```
 
 ### Common Methods
@@ -413,6 +413,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -274,15 +275,15 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{
 									"exist": []any{
 										"age",
-										"bg_color",
 										"container_id",
 										"cusa",
-										"h",
 										"language",
-										"opacity",
-										"platform",
-										"w",
 									},
+								},
+								"response": map[string]any{
+									"binary": true,
+									"kind": "raw",
+									"media": "image/jpeg;charset=UTF-8",
 								},
 							},
 						},
@@ -447,6 +448,120 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"kind": "http",
 								"method": "GET",
+								"orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
+								"segments": []any{
+									map[string]any{
+										"lit": "chihiro-api",
+									},
+									map[string]any{
+										"lit": "viewfinder",
+									},
+									map[string]any{
+										"var": "country",
+									},
+									map[string]any{
+										"var": "language",
+									},
+									map[string]any{
+										"var": "age",
+									},
+									map[string]any{
+										"var": "cusa",
+									},
+								},
+								"parts": []any{
+									"chihiro-api",
+									"viewfinder",
+									"{country}",
+									"{language}",
+									"{age}",
+									"{cusa}",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "age",
+											"orig": "age",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+											"example": 999,
+										},
+										map[string]any{
+											"name": "country",
+											"orig": "country",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "cusa",
+											"orig": "cusa",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "language",
+											"orig": "language",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+									"query": []any{
+										map[string]any{
+											"name": "direction",
+											"orig": "direction",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "size",
+											"orig": "size",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+											"field": true,
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+											"field": true,
+										},
+										map[string]any{
+											"name": "start",
+											"orig": "start",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+											"field": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"age",
+										"country",
+										"cusa",
+										"language",
+									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
+								},
+							},
+							map[string]any{
+								"kind": "http",
+								"method": "GET",
 								"orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
 								"segments": []any{
 									map[string]any{
@@ -586,12 +701,14 @@ func MakeConfig() map[string]any {
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 1,
+											"field": true,
 										},
 										map[string]any{
 											"name": "sort",
 											"orig": "sort",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "start",
@@ -599,6 +716,7 @@ func MakeConfig() map[string]any {
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 0,
+											"field": true,
 										},
 										map[string]any{
 											"name": "subtitle_lang",
@@ -625,23 +743,12 @@ func MakeConfig() map[string]any {
 										"age",
 										"country",
 										"cusa",
-										"direction",
-										"game_content_type",
-										"game_demo",
-										"game_type",
-										"genre",
 										"language",
-										"platform",
-										"price",
-										"relationship",
-										"release_date",
-										"size",
-										"sort",
-										"start",
-										"subtitle_lang",
-										"top_category",
-										"voice_lang",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 							map[string]any{
@@ -790,12 +897,14 @@ func MakeConfig() map[string]any {
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 1,
+											"field": true,
 										},
 										map[string]any{
 											"name": "sort",
 											"orig": "sort",
 											"type": "`$STRING`",
 											"kind": "query",
+											"field": true,
 										},
 										map[string]any{
 											"name": "start",
@@ -803,6 +912,7 @@ func MakeConfig() map[string]any {
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 0,
+											"field": true,
 										},
 										map[string]any{
 											"name": "subtitle_lang",
@@ -828,135 +938,13 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"age",
 										"country",
-										"direction",
-										"game_content_type",
-										"game_demo",
-										"game_type",
-										"genre",
 										"language",
-										"platform",
-										"price",
-										"relationship",
-										"release_date",
 										"search_string",
-										"size",
-										"sort",
-										"start",
-										"subtitle_lang",
-										"top_category",
-										"voice_lang",
 									},
 								},
-							},
-							map[string]any{
-								"kind": "http",
-								"method": "GET",
-								"orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-								"segments": []any{
-									map[string]any{
-										"lit": "chihiro-api",
-									},
-									map[string]any{
-										"lit": "viewfinder",
-									},
-									map[string]any{
-										"var": "country",
-									},
-									map[string]any{
-										"var": "language",
-									},
-									map[string]any{
-										"var": "age",
-									},
-									map[string]any{
-										"var": "cusa",
-									},
-								},
-								"parts": []any{
-									"chihiro-api",
-									"viewfinder",
-									"{country}",
-									"{language}",
-									"{age}",
-									"{cusa}",
-								},
-								"rename": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"name": "age",
-											"orig": "age",
-											"type": "`$INTEGER`",
-											"kind": "param",
-											"reqd": true,
-											"example": 999,
-										},
-										map[string]any{
-											"name": "country",
-											"orig": "country",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "cusa",
-											"orig": "cusa",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-										map[string]any{
-											"name": "language",
-											"orig": "language",
-											"type": "`$STRING`",
-											"kind": "param",
-											"reqd": true,
-										},
-									},
-									"query": []any{
-										map[string]any{
-											"name": "direction",
-											"orig": "direction",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "size",
-											"orig": "size",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 1,
-										},
-										map[string]any{
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-											"kind": "query",
-										},
-										map[string]any{
-											"name": "start",
-											"orig": "start",
-											"type": "`$INTEGER`",
-											"kind": "query",
-											"example": 0,
-										},
-									},
-								},
-								"select": map[string]any{
-									"exist": []any{
-										"age",
-										"country",
-										"cusa",
-										"direction",
-										"language",
-										"size",
-										"sort",
-										"start",
-									},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

@@ -171,6 +171,15 @@ Store = Struct.new(
 # @!attribute [rw] direction
 #   @return [String, nil]
 #
+# @!attribute [rw] size
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [Integer, nil]
+#
 # @!attribute [rw] game_content_type
 #   @return [String, nil]
 #
@@ -195,15 +204,6 @@ Store = Struct.new(
 # @!attribute [rw] release_date
 #   @return [String, nil]
 #
-# @!attribute [rw] size
-#   @return [Integer, nil]
-#
-# @!attribute [rw] sort
-#   @return [String, nil]
-#
-# @!attribute [rw] start
-#   @return [Integer, nil]
-#
 # @!attribute [rw] subtitle_lang
 #   @return [String, nil]
 #
@@ -221,6 +221,9 @@ StoreLoadMatch = Struct.new(
   :cusa,
   :language,
   :direction,
+  :size,
+  :sort,
+  :start,
   :game_content_type,
   :game_demo,
   :game_type,
@@ -229,9 +232,6 @@ StoreLoadMatch = Struct.new(
   :price,
   :relationship,
   :release_date,
-  :size,
-  :sort,
-  :start,
   :subtitle_lang,
   :top_category,
   :voice_lang,

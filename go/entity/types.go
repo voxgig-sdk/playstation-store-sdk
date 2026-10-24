@@ -48,6 +48,9 @@ type StoreLoadMatch struct {
 	Cusa *string `json:"cusa,omitempty"`
 	Language string `json:"language"`
 	Direction *string `json:"direction,omitempty"`
+	Size *int `json:"size,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Start *int `json:"start,omitempty"`
 	GameContentType *string `json:"game_content_type,omitempty"`
 	GameDemo *bool `json:"game_demo,omitempty"`
 	GameType *string `json:"game_type,omitempty"`
@@ -56,9 +59,6 @@ type StoreLoadMatch struct {
 	Price *string `json:"price,omitempty"`
 	Relationship *string `json:"relationship,omitempty"`
 	ReleaseDate *string `json:"release_date,omitempty"`
-	Size *int `json:"size,omitempty"`
-	Sort *string `json:"sort,omitempty"`
-	Start *int `json:"start,omitempty"`
 	SubtitleLang *string `json:"subtitle_lang,omitempty"`
 	TopCategory *string `json:"top_category,omitempty"`
 	VoiceLang *string `json:"voice_lang,omitempty"`

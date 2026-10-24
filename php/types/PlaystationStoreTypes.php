@@ -76,6 +76,9 @@ class StoreLoadMatch
     public ?string $cusa = null;
     public string $language;
     public ?string $direction = null;
+    public ?int $size = null;
+    public ?string $sort = null;
+    public ?int $start = null;
     public ?string $game_content_type = null;
     public ?bool $game_demo = null;
     public ?string $game_type = null;
@@ -84,9 +87,6 @@ class StoreLoadMatch
     public ?string $price = null;
     public ?string $relationship = null;
     public ?string $release_date = null;
-    public ?int $size = null;
-    public ?string $sort = null;
-    public ?int $start = null;
     public ?string $subtitle_lang = null;
     public ?string $top_category = null;
     public ?string $voice_lang = null;

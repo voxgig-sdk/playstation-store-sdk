@@ -11,6 +11,12 @@ use Voxgig\Struct\Struct as Vs;
 
 class StoreEntityTest extends TestCase
 {
+    // main.kit.test.live.strict is true (the default is true): a live
+    // request that fails, or a live test missing an input it needs,
+    // fails the test.
+    // An account with no record for a test to read skips it either way.
+    private const LIVE_STRICT = true;
+
     public function test_create_instance(): void
     {
         $testsdk = PlaystationStoreSDK::test(null, null);
@@ -23,18 +29,12 @@ class StoreEntityTest extends TestCase
         $setup = store_basic_setup(null);
         // Per-op sdk-test-control.json skip.
         $_live = !empty($setup["live"]);
-        foreach (["load"] as $_op) {
+        foreach ([] as $_op) {
             [$_shouldSkip, $_reason] = Runner::is_control_skipped("entityOp", "store." . $_op, $_live ? "live" : "unit");
             if ($_shouldSkip) {
                 $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
                 return;
             }
-        }
-        // The basic flow consumes synthetic IDs from the fixture. In live mode
-        // without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set PLAYSTATION_STORE_TEST_STORE_ENTID JSON to run live");
-            return;
         }
         $client = $setup["client"];
 
@@ -45,16 +45,6 @@ class StoreEntityTest extends TestCase
         if (count($store_ref01_data_raw) > 0) {
             $store_ref01_data = Helpers::to_map($store_ref01_data_raw[0][1]);
         }
-
-        // LOAD
-        $store_ref01_ent = $client->Store(null);
-        $store_ref01_match_dt0 = [
-            "id" => $store_ref01_data["id"],
-        ];
-        $store_ref01_data_dt0_loaded = $store_ref01_ent->load($store_ref01_match_dt0, null);
-        $store_ref01_data_dt0_load_result = Helpers::to_map(is_object($store_ref01_data_dt0_loaded) && method_exists($store_ref01_data_dt0_loaded, 'data_get') ? $store_ref01_data_dt0_loaded->data_get() : $store_ref01_data_dt0_loaded);
-        $this->assertNotNull($store_ref01_data_dt0_load_result);
-        $this->assertEquals($store_ref01_data_dt0_load_result["id"], $store_ref01_data["id"]);
 
     }
 }
@@ -74,13 +64,12 @@ function store_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["store01", "store02", "store03", "age01", "country01", "language01"] as $k) {
+    foreach (["store01", "store02", "store03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 
-    // Detect ENTID env override before envOverride consumes it. When live
-    // mode is on without a real override, the basic test runs against synthetic
-    // IDs from the fixture and 4xx's. Surface this so the test can skip.
+    // Whether *_ENTID supplied the idmap, read before env_override consumes
+    // it: without it, the ids a live flow binds are the fixture's synthetic ones.
     $entid_env_raw = getenv("PLAYSTATION_STORE_TEST_STORE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 

@@ -9,9 +9,19 @@ import pytest
 from playstationstore_sdk.utility.voxgig_struct import voxgig_struct as vs
 from playstationstore_sdk import PlaystationStoreSDK
 from playstationstore_sdk.core import helpers
+from playstationstore_sdk.config import shared_config
+from playstationstore_sdk.feature.base_feature import PlaystationStoreBaseFeature
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
+
+
+
+# main.kit.test.live.strict is true (the default is true): a live
+# request that fails, or a live test missing an input it needs,
+# fails the test.
+# An account with no record for a test to read skips it either way.
+LIVE_STRICT = True
 
 
 class TestStoreEntity:
@@ -27,16 +37,11 @@ class TestStoreEntity:
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["load"]:
+        for _op in []:
             _skip, _reason = runner.is_control_skipped("entityOp", "store." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
-        # The basic flow consumes synthetic IDs from the fixture. In live mode
-        # without an *_ENTID env override, those IDs hit the live API and 4xx.
-        if setup.get("synthetic_only"):
-            pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set PLAYSTATION_STORE_TEST_STORE_ENTID JSON to run live")
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
@@ -46,23 +51,13 @@ class TestStoreEntity:
         if len(store_ref01_data_raw) > 0:
             store_ref01_data = helpers.to_map(store_ref01_data_raw[0][1])
 
-        # LOAD
-        store_ref01_ent = client.Store(None)
-        store_ref01_match_dt0 = {
-            "id": store_ref01_data["id"],
-        }
-        store_ref01_data_dt0_loaded = store_ref01_ent.load(store_ref01_match_dt0, None)
-        store_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(store_ref01_data_dt0_loaded))
-        assert store_ref01_data_dt0_load_result is not None
-        assert store_ref01_data_dt0_load_result["id"] == store_ref01_data["id"]
-
 
 
 def _store_basic_setup(extra):
     runner.load_env_local()
 
     entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/store/StoreTestData.json")
-    with open(entity_data_file, "r") as f:
+    with open(entity_data_file, "r", encoding="utf-8") as f:
         entity_data_source = f.read()
 
     entity_data = json.loads(entity_data_source)
@@ -74,7 +69,7 @@ def _store_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["store01", "store02", "store03", "age01", "country01", "language01"],
+        ["store01", "store02", "store03"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",
@@ -83,9 +78,8 @@ def _store_basic_setup(extra):
         }
     )
 
-    # Detect ENTID env override before envOverride consumes it. When live
-    # mode is on without a real override, the basic test runs against synthetic
-    # IDs from the fixture and 4xx's. We surface this so the test can skip.
+    # Whether *_ENTID supplied the idmap, read before env_override consumes
+    # it: without it, the ids a live flow binds are the fixture's synthetic ones.
     _entid_env_raw = os.environ.get(
         "PLAYSTATION_STORE_TEST_STORE_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")

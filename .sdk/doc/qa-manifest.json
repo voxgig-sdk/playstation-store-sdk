@@ -3,5 +3,13 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "> This is a sample Playstation Store server. You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).\n>\n> For search all games you can use the CUSA key for regions:\n>\n> * `STORE-MSF75508-FULLGAMES` for Europe.\n>\n> * `STORE-MSF77008-ALLGAMES` for America.\n>\n> See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page",
+      "Playstation Store server",
+      "Success",
+      "Successful operation"
+    ]
+  }
 }

@@ -158,6 +158,116 @@ main: kit: entity: store: {
       points: [
         {
           co: {
+            id: "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: 999
+                k: "param"
+                n: "age"
+                or: "age"
+                r: true
+                t: "`$INTEGER`"
+              }
+              {
+                k: "param"
+                n: "country"
+                or: "country"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "cusa"
+                or: "cusa"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "param"
+                n: "language"
+                or: "language"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                k: "query"
+                n: "direction"
+                or: "direction"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "size"
+                or: "size"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
+          q: {
+            exist: [
+              "age"
+              "country"
+              "cusa"
+              "language"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "chihiro-api"
+            }
+            {
+              lit: "viewfinder"
+            }
+            {
+              var: "country"
+            }
+            {
+              var: "language"
+            }
+            {
+              var: "age"
+            }
+            {
+              var: "cusa"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
             id: "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
             source: "openapi3"
             version: 2
@@ -311,23 +421,12 @@ main: kit: entity: store: {
               "age"
               "country"
               "cusa"
-              "direction"
-              "game_content_type"
-              "game_demo"
-              "game_type"
-              "genre"
               "language"
-              "platform"
-              "price"
-              "relationship"
-              "release_date"
-              "size"
-              "sort"
-              "start"
-              "subtitle_lang"
-              "top_category"
-              "voice_lang"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -517,29 +616,18 @@ main: kit: entity: store: {
             exist: [
               "age"
               "country"
-              "direction"
-              "game_content_type"
-              "game_demo"
-              "game_type"
-              "genre"
               "language"
-              "platform"
-              "price"
-              "relationship"
-              "release_date"
               "search_string"
-              "size"
-              "sort"
-              "start"
-              "subtitle_lang"
-              "top_category"
-              "voice_lang"
             ]
           }
           r: {
             param: {
               searchString: "search_string"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -568,116 +656,6 @@ main: kit: entity: store: {
             }
             {
               var: "search_string"
-            }
-          ]
-          t: {
-            req: "`reqdata`"
-            res: "`body`"
-          }
-        }
-        {
-          co: {
-            id: "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
-            source: "openapi3"
-            version: 2
-          }
-          g: {
-            params: [
-              {
-                ex: 999
-                k: "param"
-                n: "age"
-                or: "age"
-                r: true
-                t: "`$INTEGER`"
-              }
-              {
-                k: "param"
-                n: "country"
-                or: "country"
-                r: true
-                t: "`$STRING`"
-              }
-              {
-                k: "param"
-                n: "cusa"
-                or: "cusa"
-                r: true
-                t: "`$STRING`"
-              }
-              {
-                k: "param"
-                n: "language"
-                or: "language"
-                r: true
-                t: "`$STRING`"
-              }
-            ]
-            query: [
-              {
-                k: "query"
-                n: "direction"
-                or: "direction"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                ex: 1
-                k: "query"
-                n: "size"
-                or: "size"
-                r: false
-                t: "`$INTEGER`"
-              }
-              {
-                k: "query"
-                n: "sort"
-                or: "sort"
-                r: false
-                t: "`$STRING`"
-              }
-              {
-                ex: 0
-                k: "query"
-                n: "start"
-                or: "start"
-                r: false
-                t: "`$INTEGER`"
-              }
-            ]
-          }
-          m: "GET"
-          o: "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
-          q: {
-            exist: [
-              "age"
-              "country"
-              "cusa"
-              "direction"
-              "language"
-              "size"
-              "sort"
-              "start"
-            ]
-          }
-          s: [
-            {
-              lit: "chihiro-api"
-            }
-            {
-              lit: "viewfinder"
-            }
-            {
-              var: "country"
-            }
-            {
-              var: "language"
-            }
-            {
-              var: "age"
-            }
-            {
-              var: "cusa"
             }
           ]
           t: {

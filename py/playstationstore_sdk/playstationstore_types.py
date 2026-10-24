@@ -77,6 +77,9 @@ class StoreLoadMatchRequired(TypedDict):
 class StoreLoadMatch(StoreLoadMatchRequired, total=False):
     cusa: str
     direction: str
+    size: int
+    sort: str
+    start: int
     game_content_type: str
     game_demo: bool
     game_type: str
@@ -85,9 +88,6 @@ class StoreLoadMatch(StoreLoadMatchRequired, total=False):
     price: str
     relationship: str
     release_date: str
-    size: int
-    sort: str
-    start: int
     subtitle_lang: str
     top_category: str
     voice_lang: str

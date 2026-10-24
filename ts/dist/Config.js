@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -290,15 +291,15 @@ class Config {
                             "select": {
                                 "exist": [
                                     "age",
-                                    "bg_color",
                                     "container_id",
                                     "cusa",
-                                    "h",
-                                    "language",
-                                    "opacity",
-                                    "platform",
-                                    "w"
+                                    "language"
                                 ]
+                            },
+                            "response": {
+                                "binary": true,
+                                "kind": "raw",
+                                "media": "image/jpeg;charset=UTF-8"
                             }
                         }
                     ]
@@ -463,6 +464,120 @@ class Config {
                         {
                             "kind": "http",
                             "method": "GET",
+                            "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
+                            "segments": [
+                                {
+                                    "lit": "chihiro-api"
+                                },
+                                {
+                                    "lit": "viewfinder"
+                                },
+                                {
+                                    "var": "country"
+                                },
+                                {
+                                    "var": "language"
+                                },
+                                {
+                                    "var": "age"
+                                },
+                                {
+                                    "var": "cusa"
+                                }
+                            ],
+                            "parts": [
+                                "chihiro-api",
+                                "viewfinder",
+                                "{country}",
+                                "{language}",
+                                "{age}",
+                                "{cusa}"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "age",
+                                        "orig": "age",
+                                        "type": "`$INTEGER`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": 999
+                                    },
+                                    {
+                                        "name": "country",
+                                        "orig": "country",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "cusa",
+                                        "orig": "cusa",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "language",
+                                        "orig": "language",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true
+                                    }
+                                ],
+                                "query": [
+                                    {
+                                        "name": "direction",
+                                        "orig": "direction",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "size",
+                                        "orig": "size",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 1,
+                                        "field": true
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "field": true
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0,
+                                        "field": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "age",
+                                    "country",
+                                    "cusa",
+                                    "language"
+                                ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
+                        },
+                        {
+                            "kind": "http",
+                            "method": "GET",
                             "orig": "/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
                             "segments": [
                                 {
@@ -601,20 +716,23 @@ class Config {
                                         "orig": "size",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 1
+                                        "example": 1,
+                                        "field": true
                                     },
                                     {
                                         "name": "sort",
                                         "orig": "sort",
                                         "type": "`$STRING`",
-                                        "kind": "query"
+                                        "kind": "query",
+                                        "field": true
                                     },
                                     {
                                         "name": "start",
                                         "orig": "start",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 0
+                                        "example": 0,
+                                        "field": true
                                     },
                                     {
                                         "name": "subtitle_lang",
@@ -641,23 +759,12 @@ class Config {
                                     "age",
                                     "country",
                                     "cusa",
-                                    "direction",
-                                    "game_content_type",
-                                    "game_demo",
-                                    "game_type",
-                                    "genre",
-                                    "language",
-                                    "platform",
-                                    "price",
-                                    "relationship",
-                                    "release_date",
-                                    "size",
-                                    "sort",
-                                    "start",
-                                    "subtitle_lang",
-                                    "top_category",
-                                    "voice_lang"
+                                    "language"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         },
                         {
@@ -805,20 +912,23 @@ class Config {
                                         "orig": "size",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 1
+                                        "example": 1,
+                                        "field": true
                                     },
                                     {
                                         "name": "sort",
                                         "orig": "sort",
                                         "type": "`$STRING`",
-                                        "kind": "query"
+                                        "kind": "query",
+                                        "field": true
                                     },
                                     {
                                         "name": "start",
                                         "orig": "start",
                                         "type": "`$INTEGER`",
                                         "kind": "query",
-                                        "example": 0
+                                        "example": 0,
+                                        "field": true
                                     },
                                     {
                                         "name": "subtitle_lang",
@@ -844,135 +954,13 @@ class Config {
                                 "exist": [
                                     "age",
                                     "country",
-                                    "direction",
-                                    "game_content_type",
-                                    "game_demo",
-                                    "game_type",
-                                    "genre",
                                     "language",
-                                    "platform",
-                                    "price",
-                                    "relationship",
-                                    "release_date",
-                                    "search_string",
-                                    "size",
-                                    "sort",
-                                    "start",
-                                    "subtitle_lang",
-                                    "top_category",
-                                    "voice_lang"
-                                ]
-                            }
-                        },
-                        {
-                            "kind": "http",
-                            "method": "GET",
-                            "orig": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-                            "segments": [
-                                {
-                                    "lit": "chihiro-api"
-                                },
-                                {
-                                    "lit": "viewfinder"
-                                },
-                                {
-                                    "var": "country"
-                                },
-                                {
-                                    "var": "language"
-                                },
-                                {
-                                    "var": "age"
-                                },
-                                {
-                                    "var": "cusa"
-                                }
-                            ],
-                            "parts": [
-                                "chihiro-api",
-                                "viewfinder",
-                                "{country}",
-                                "{language}",
-                                "{age}",
-                                "{cusa}"
-                            ],
-                            "rename": {},
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "args": {
-                                "params": [
-                                    {
-                                        "name": "age",
-                                        "orig": "age",
-                                        "type": "`$INTEGER`",
-                                        "kind": "param",
-                                        "reqd": true,
-                                        "example": 999
-                                    },
-                                    {
-                                        "name": "country",
-                                        "orig": "country",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "cusa",
-                                        "orig": "cusa",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    },
-                                    {
-                                        "name": "language",
-                                        "orig": "language",
-                                        "type": "`$STRING`",
-                                        "kind": "param",
-                                        "reqd": true
-                                    }
-                                ],
-                                "query": [
-                                    {
-                                        "name": "direction",
-                                        "orig": "direction",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "size",
-                                        "orig": "size",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 1
-                                    },
-                                    {
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`",
-                                        "kind": "query"
-                                    },
-                                    {
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`",
-                                        "kind": "query",
-                                        "example": 0
-                                    }
+                                    "search_string"
                                 ]
                             },
-                            "select": {
-                                "exist": [
-                                    "age",
-                                    "country",
-                                    "cusa",
-                                    "direction",
-                                    "language",
-                                    "size",
-                                    "sort",
-                                    "start"
-                                ]
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

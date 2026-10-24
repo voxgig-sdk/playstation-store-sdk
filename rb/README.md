@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/playstation-store-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/playstation-store-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -45,7 +45,7 @@ client = PlaystationStoreSDK.new
 begin
   # load returns the ENTITY — call data_get for the Geo record (raises on error).
   geo = client.Geo.load()
-  puts geo
+  puts geo.data_get
 rescue => err
   warn "load failed: #{err}"
 end
@@ -127,9 +127,9 @@ Create a mock client for unit testing — no server required:
 client = PlaystationStoreSDK.test
 
 # Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
+# data_get reads its mock record.
 image = client.Image.load({ "age" => 1, "container_id" => "example", "cusa" => "example", "language" => "example" })
-puts image
+puts image.data_get
 ```
 
 ### Use a custom fetch function
@@ -215,7 +215,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +225,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `PlaystationStoreError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`PlaystationStoreError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -289,7 +290,7 @@ API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cu
 
 Operations: Load.
 
-API path: `/store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}`
+API path: `/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}`
 
 
 
@@ -373,7 +374,7 @@ Create an instance: `store = client.Store`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Store record (raises on error).
-store = client.Store.load({ "age" => 1, "country" => "country", "language" => "language" })
+store = client.Store.load({ "age" => 1, "country" => "country", "cusa" => "cusa", "language" => "language" })
 ```
 
 ## Features

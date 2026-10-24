@@ -1,6 +1,14 @@
 # Playstation Store API
 
-This is a sample Playstation Store server. You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html). For search all games you can use the CUSA key for regions: * `STORE-MSF75508-FULLGAMES` for Europe. * `STORE-MSF77008-ALLGAMES` for America. See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page
+> This is a sample Playstation Store server. You can find out more about Country/Region at [PSN Country selector](https://www.playstation.com/country-selector/index.html).
+>
+> For search all games you can use the CUSA key for regions:
+>
+> * `STORE-MSF75508-FULLGAMES` for Europe.
+>
+> * `STORE-MSF77008-ALLGAMES` for America.
+>
+> See more usefull information at [Github](https://github.com/olegshulyakov/psn-swagger) page
 
 ## Start here
 
@@ -38,9 +46,9 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 | --- | --- | --- | --- |
 | Geo | `load` | `GET /kamaji/api/chihiro/00_09_000/geo` | See reference |
 | Image | `load` | `GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}/image` | See reference |
+| Store | `load` | `GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}` | See reference |
 | Store | `load` | `GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}` | See reference |
 | Store | `load` | `GET /store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}` | See reference |
-| Store | `load` | `GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}` | See reference |
 
 ## Connect to the API
 

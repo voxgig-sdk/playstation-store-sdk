@@ -98,7 +98,7 @@ local geo = client:Geo(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Geo():load()
@@ -144,7 +144,7 @@ local image = client:Image(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:Image():load({ age = 1, container_id = "container_id", cusa = "cusa", language = "language" })
@@ -217,10 +217,10 @@ local store = client:Store(nil)
 
 #### `load(reqmatch, ctrl) -> any, err`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity, whose record `data_get()` reads, or `nil` and an error on failure.
 
 ```lua
-local result, err = client:Store():load({ age = 1, country = "country", language = "language" })
+local result, err = client:Store():load({ age = 1, country = "country", cusa = "cusa", language = "language" })
 ```
 
 ### Common Methods
@@ -410,6 +410,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

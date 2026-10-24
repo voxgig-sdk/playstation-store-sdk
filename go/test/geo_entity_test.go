@@ -15,6 +15,13 @@ import (
 	vs "github.com/voxgig-sdk/playstation-store-sdk/go/utility/struct"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const geoEntityLiveStrict = true
+
+
 func TestGeoEntity(t *testing.T) {
 	t.Run("instance", func(t *testing.T) {
 		testsdk := sdk.TestSDK(nil, nil)
@@ -24,7 +31,8 @@ func TestGeoEntity(t *testing.T) {
 		}
 	})
 
-	t.Run("basic", func(t *testing.T) {
+	t.Run("basic", func(tt *testing.T) {
+		var t testing.TB = tt
 		setup := geoBasicSetup(nil)
 		// Per-op sdk-test-control.json skip — basic test exercises a flow
 		// with multiple ops; skipping any op skips the whole flow.
@@ -41,13 +49,8 @@ func TestGeoEntity(t *testing.T) {
 				return
 			}
 		}
-		// The basic flow consumes synthetic IDs from the fixture. In live mode
-		// without an *_ENTID env override, those IDs hit the live API and 4xx.
-		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set PLAYSTATION_STORE_TEST_GEO_ENTID JSON to run live")
-			return
-		}
 		client := setup.client
+		_ = client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
 		geoRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.geo")))
@@ -107,9 +110,8 @@ func geoBasicSetup(extra map[string]any) *entityTestSetup {
 		},
 	)
 
-	// Detect ENTID env override before envOverride consumes it. When live
-	// mode is on without a real override, the basic test runs against synthetic
-	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	// Whether *_ENTID supplied the idmap, read before envOverride consumes it:
+	// without it, the ids a live flow binds are the fixture's synthetic ones.
 	entidEnvRaw := os.Getenv("PLAYSTATION_STORE_TEST_GEO_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 

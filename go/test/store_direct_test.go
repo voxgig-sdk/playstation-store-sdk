@@ -10,6 +10,12 @@ import (
 	"github.com/voxgig-sdk/playstation-store-sdk/go/core"
 )
 
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const storeDirectLiveStrict = true
+
 func TestStoreDirect(t *testing.T) {
 	t.Run("direct-load-store", func(t *testing.T) {
 		setup := storeDirectSetup(map[string]any{"id": "direct01"})
@@ -27,7 +33,7 @@ func TestStoreDirect(t *testing.T) {
 		if setup.live {
 			for _, _liveKey := range []string{"age01", "country01", "cusa01", "language01"} {
 				if v := setup.idmap[_liveKey]; v == nil {
-					t.Skipf("live test needs %s via *_ENTID env var (synthetic IDs only)", _liveKey)
+					liveMiss(t, storeDirectLiveStrict, "Live test blocked: needs %s via PLAYSTATION_STORE_TEST_STORE_ENTID", _liveKey)
 					return
 				}
 			}
@@ -37,6 +43,10 @@ func TestStoreDirect(t *testing.T) {
 		params := map[string]any{}
 		query := map[string]any{}
 		if setup.live {
+			params["age"] = setup.idmap["age01"]
+			params["country"] = setup.idmap["country01"]
+			params["cusa"] = setup.idmap["cusa01"]
+			params["language"] = setup.idmap["language01"]
 		} else {
 			params["age"] = "direct01"
 			params["country"] = "direct02"
@@ -45,25 +55,20 @@ func TestStoreDirect(t *testing.T) {
 		}
 
 		result, err := client.Direct(map[string]any{
-			"path":   "store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
+			"path":   "chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
 			"method": "GET",
 			"params": params,
 			"query":  query,
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
-			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap — unless the model
-			// sets main.kit.test.live.strict.
 			if err != nil {
-				t.Fatalf("load call failed (likely synthetic IDs against live API): %v", err)
+				liveMiss(t, storeDirectLiveStrict, "Live load failed: %v", err)
 			}
-			if result["ok"] != true {
-				t.Fatalf("load call not ok (likely synthetic IDs against live API): %v", result)
+			if status := core.ToInt(result["status"]); result["ok"] != true || status < 200 || status >= 300 {
+				liveMiss(t, storeDirectLiveStrict, "Live load failed: %s", liveDescribe(result))
 			}
-			status := core.ToInt(result["status"])
-			if status < 200 || status >= 300 {
-				t.Fatalf("expected 2xx status, got %v", result["status"])
+			if result["data"] == nil {
+				liveMiss(t, storeDirectLiveStrict, "Live load returned no data: %s", liveDescribe(result))
 			}
 		} else {
 			if err != nil {

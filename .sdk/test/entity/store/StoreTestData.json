@@ -118,17 +118,17 @@
     }
   },
   "requests": {
+    "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
     "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
     "GET /store/api/chihiro/00_09_000/tumbler/{country}/{language}/{age}/{searchString}": {
-      "provenance": "operation-contract",
-      "version": 2,
-      "source": "openapi3"
-    },
-    "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

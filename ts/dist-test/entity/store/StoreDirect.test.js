@@ -29,12 +29,16 @@ const utility_1 = require("../../utility");
         const setup = directSetup({ id: 'direct01' });
         if ((0, utility_1.maybeSkipControl)(t, 'direct', 'direct-load-store', setup.live))
             return;
-        if ((0, utility_1.skipIfMissingIds)(t, setup, ["age01", "country01", "cusa01", "language01"]))
+        if ((0, utility_1.skipIfMissingIds)(t, setup, ["age01", "country01", "cusa01", "language01"], LIVE_STRICT))
             return;
         const { client, calls } = setup;
         const params = {};
         const query = {};
         if (setup.live) {
+            params.age = setup.idmap['age01'];
+            params.country = setup.idmap['country01'];
+            params.cusa = setup.idmap['cusa01'];
+            params.language = setup.idmap['language01'];
         }
         else {
             params.age = 'direct01';
@@ -43,23 +47,18 @@ const utility_1 = require("../../utility");
             params.language = 'direct04';
         }
         const result = await client.direct({
-            path: 'store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}',
+            path: 'chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}',
             method: 'GET',
             params,
             query,
         });
         if (setup.live) {
-            // STRICT live mode: a non-2xx is a real failure - this project owns
-            // the server it points at, so there is nothing to be lenient about.
-            //
-            // What is NOT asserted here is the MOCK's own fixtures. `direct01`
-            // is a scripted id and `calls` records the mock transport; neither
-            // exists on a live run, so asserting them made strict mode mean
-            // "compare the live server against the mock's script" - a suite that
-            // could not pass against any real API, including this project's own.
-            (0, node_assert_1.default)(result.ok === true, 'Live request failed: HTTP ' + result.status);
-            (0, node_assert_1.default)(result.status >= 200 && result.status < 300);
-            (0, node_assert_1.default)(null != result.data);
+            if (!result.ok || result.status < 200 || result.status >= 300) {
+                return void (0, utility_1.liveMiss)(t, LIVE_STRICT, 'Live load failed: ' + (0, utility_1.describeLive)(result));
+            }
+            if (!(null != result.data)) {
+                return void (0, utility_1.liveMiss)(t, LIVE_STRICT, 'Live load returned no data: ' + (0, utility_1.describeLive)(result));
+            }
         }
         else {
             (0, node_assert_1.default)(result.ok === true);
@@ -75,6 +74,11 @@ const utility_1 = require("../../utility");
         }
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function liveScenariosActive() { return false && process.env.PLAYSTATION_STORE_TEST_LIVE === 'TRUE'; }
 function directSetup(mockres) {
     const calls = [];

@@ -1,0 +1,11 @@
+{
+  point: "warning"
+  note: "Points GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa} and GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa} on entity=store op=load have the same selector (exist: age,country,cusa,language), so only GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa} is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "store"
+  op: "load"
+  points: [
+    "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}"
+    "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}"
+  ]
+
+}

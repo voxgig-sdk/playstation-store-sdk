@@ -91,20 +91,20 @@ main: kit: entity: image: {
           q: {
             exist: [
               "age"
-              "bg_color"
               "container_id"
               "cusa"
-              "h"
               "language"
-              "opacity"
-              "platform"
-              "w"
             ]
           }
           r: {
             param: {
               country: "container_id"
             }
+          }
+          rs: {
+            binary: true
+            kind: "raw"
+            media: "image/jpeg;charset=UTF-8"
           }
           s: [
             {

@@ -250,20 +250,20 @@
                   "q": {
                     "exist": [
                       "age",
-                      "bg_color",
                       "container_id",
                       "cusa",
-                      "h",
-                      "language",
-                      "opacity",
-                      "platform",
-                      "w"
+                      "language"
                     ]
                   },
                   "r": {
                     "param": {
                       "country": "container_id"
                     }
+                  },
+                  "rs": {
+                    "binary": true,
+                    "kind": "raw",
+                    "media": "image/jpeg;charset=UTF-8"
                   },
                   "s": [
                     {
@@ -490,6 +490,127 @@
                 {
                   "a": true,
                   "co": {
+                    "id": "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "ex": 999,
+                        "k": "param",
+                        "n": "age",
+                        "or": "age",
+                        "r": true,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "country",
+                        "or": "country",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "cusa",
+                        "or": "cusa",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "language",
+                        "or": "language",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ],
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "direction",
+                        "or": "direction",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "size",
+                        "or": "size",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "sort",
+                        "or": "sort",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "start",
+                        "or": "start",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
+                  "q": {
+                    "exist": [
+                      "age",
+                      "country",
+                      "cusa",
+                      "language"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "chihiro-api"
+                    },
+                    {
+                      "lit": "viewfinder"
+                    },
+                    {
+                      "var": "country"
+                    },
+                    {
+                      "var": "language"
+                    },
+                    {
+                      "var": "age"
+                    },
+                    {
+                      "var": "cusa"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
                     "id": "GET /store/api/chihiro/00_09_000/container/{country}/{language}/{age}/{cusa}",
                     "source": "openapi3",
                     "version": 2
@@ -663,25 +784,14 @@
                       "age",
                       "country",
                       "cusa",
-                      "direction",
-                      "game_content_type",
-                      "game_demo",
-                      "game_type",
-                      "genre",
-                      "language",
-                      "platform",
-                      "price",
-                      "relationship",
-                      "release_date",
-                      "size",
-                      "sort",
-                      "start",
-                      "subtitle_lang",
-                      "top_category",
-                      "voice_lang"
+                      "language"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "store"
@@ -891,29 +1001,18 @@
                     "exist": [
                       "age",
                       "country",
-                      "direction",
-                      "game_content_type",
-                      "game_demo",
-                      "game_type",
-                      "genre",
                       "language",
-                      "platform",
-                      "price",
-                      "relationship",
-                      "release_date",
-                      "search_string",
-                      "size",
-                      "sort",
-                      "start",
-                      "subtitle_lang",
-                      "top_category",
-                      "voice_lang"
+                      "search_string"
                     ]
                   },
                   "r": {
                     "param": {
                       "searchString": "search_string"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -942,127 +1041,6 @@
                     },
                     {
                       "var": "search_string"
-                    }
-                  ],
-                  "t": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  }
-                },
-                {
-                  "a": true,
-                  "co": {
-                    "id": "GET /chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-                    "source": "openapi3",
-                    "version": 2
-                  },
-                  "g": {
-                    "params": [
-                      {
-                        "a": true,
-                        "ex": 999,
-                        "k": "param",
-                        "n": "age",
-                        "or": "age",
-                        "r": true,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "country",
-                        "or": "country",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "cusa",
-                        "or": "cusa",
-                        "r": true,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "k": "param",
-                        "n": "language",
-                        "or": "language",
-                        "r": true,
-                        "t": "`$STRING`"
-                      }
-                    ],
-                    "query": [
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "direction",
-                        "or": "direction",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 1,
-                        "k": "query",
-                        "n": "size",
-                        "or": "size",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      },
-                      {
-                        "a": true,
-                        "k": "query",
-                        "n": "sort",
-                        "or": "sort",
-                        "r": false,
-                        "t": "`$STRING`"
-                      },
-                      {
-                        "a": true,
-                        "ex": 0,
-                        "k": "query",
-                        "n": "start",
-                        "or": "start",
-                        "r": false,
-                        "t": "`$INTEGER`"
-                      }
-                    ]
-                  },
-                  "k": "http",
-                  "m": "GET",
-                  "o": "/chihiro-api/viewfinder/{country}/{language}/{age}/{cusa}",
-                  "q": {
-                    "exist": [
-                      "age",
-                      "country",
-                      "cusa",
-                      "direction",
-                      "language",
-                      "size",
-                      "sort",
-                      "start"
-                    ]
-                  },
-                  "r": {},
-                  "s": [
-                    {
-                      "lit": "chihiro-api"
-                    },
-                    {
-                      "lit": "viewfinder"
-                    },
-                    {
-                      "var": "country"
-                    },
-                    {
-                      "var": "language"
-                    },
-                    {
-                      "var": "age"
-                    },
-                    {
-                      "var": "cusa"
                     }
                   ],
                   "t": {
@@ -1400,6 +1378,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1612,7 +1591,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1665,6 +1644,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1895,7 +1879,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2272,6 +2259,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },
